@@ -40,17 +40,51 @@ body {
 }
 
 /* ---------- One-page scroll ----------
-   Proximity, not mandatory: sections taller than the viewport (work,
-   capability, numbers) stay freely scrollable instead of trapping the reader,
-   while the shorter ones settle into place on their own. */
+   Hero uses mandatory stop so one scroll click lands the next section.
+   Tall sections (work / capability / numbers) only snap at their start and
+   scroll freely inside. Contact+footer share one snap unit via .snap-end. */
 @media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
   html {
     scroll-snap-type: y proximity;
   }
-  .snap-root > section {
+  .snap-page {
+    min-height: 100svh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .snap-start {
     scroll-snap-align: start;
     scroll-snap-stop: normal;
   }
+  .snap-end {
+    scroll-snap-align: end;
+    scroll-snap-stop: always;
+  }
+}
+
+/* Hide the fixed header's blueprint label while the hero is in view —
+   otherwise it stacks under the hero's HERO tag. */
+html.blueprint header.bp-quiet,
+html.blueprint header.bp-quiet::after {
+  outline: none;
+}
+html.blueprint header.bp-quiet[data-bp]::after {
+  display: none;
+}
+html.blueprint header.bp-quiet {
+  outline: none !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 ::selection {

@@ -58,15 +58,22 @@ const CONFIG = {
     ],
   },
 
-  /* Case studies. Add an object here and a new numbered row appears. */
+  /* Case studies. Add an object here and a new numbered row appears.
+     `featured: true` shows a live site preview when the row is open.
+     Organise like the CV: public systems first, then earlier engagements,
+     then the career-break builds further down. */
+  workIntro:
+    "Systems currently in production, organised the same way as my CV. Client names sit inside each case study — Agence ISCL covers KeyCars and Client Analytics.",
+
   projects: [
     {
       id: "keycars",
       title: "KeyCars",
       subtitle: "Multi-tenant car rental platform",
-      client: "Agence ISCL",
-      year: "2025 —",
+      client: "Agence ISCL (Linar)",
+      period: "Jun 2025 — Present",
       role: "Lead developer",
+      featured: true,
       url: "https://keycars.fr/",
       urlLabel: "keycars.fr",
       problem:
@@ -87,8 +94,9 @@ const CONFIG = {
       title: "ZilMall",
       subtitle: "Mauritius multi-vendor marketplace",
       client: "ZilMall",
-      year: "2025 —",
+      period: "Oct 2025 — Present",
       role: "Full-stack developer & project manager",
+      featured: true,
       url: "https://zilmall.mu/",
       urlLabel: "zilmall.mu",
       problem:
@@ -109,8 +117,9 @@ const CONFIG = {
       title: "MR Production",
       subtitle: "Studio booking platform",
       client: "MR Production Co Ltd",
-      year: "2026 —",
+      period: "Feb 2026 — Present",
       role: "Full-stack developer",
+      featured: true,
       url: "https://mineshramchurn.com/",
       urlLabel: "mineshramchurn.com",
       problem:
@@ -130,45 +139,54 @@ const CONFIG = {
       id: "analytics",
       title: "Client Analytics",
       subtitle: "Multi-tenant marketing dashboards",
-      client: "Agence ISCL",
-      year: "2025 —",
+      client: "Agence ISCL (Linar)",
+      period: "Jun 2025 — Present",
       role: "Full-stack developer",
+      featured: true,
       url: "https://tracking-dashboard.fr/",
       urlLabel: "tracking-dashboard.fr",
       problem:
         "The agency rebuilt every client report by hand each month, pulling revenue, Google Analytics and social performance into slides that were stale the moment they were sent.",
       approach:
-        "A white-label multi-tenant dashboard on React and Supabase, with per-client routing, editable layouts, custom metrics and agency branding. Scheduled n8n workflows collect marketing and operational data into Supabase continuously, and saved dashboard versions let anyone compare periods.",
+        "Started during the part-time phase at ISCL: a white-label multi-tenant dashboard on React and Supabase, with per-client routing, editable layouts, custom metrics and agency branding. Scheduled n8n workflows collect marketing and operational data into Supabase continuously, and saved dashboard versions let anyone compare periods.",
       result:
-        "Client reporting became continuous instead of a monthly manual exercise, with historical snapshots for period-over-period comparison.",
-      stack: ["React", "TypeScript", "Supabase", "n8n", "Tailwind"],
+        "Client reporting became continuous instead of a monthly manual exercise, with historical snapshots for period-over-period comparison. Still live and maintained.",
+      stack: ["React", "TypeScript", "Supabase", "n8n", "Tailwind", "WordPress"],
       highlights: [
         { k: "Tenancy", v: "Per-client slugs" },
         { k: "Data", v: "Scheduled ingestion" },
-        { k: "History", v: "Versioned snapshots" },
+        { k: "Phase", v: "Built part-time, Jun–Oct 2025" },
+      ],
+    },
+    {
+      id: "syul",
+      title: "Safyr Utilis",
+      subtitle: "Corporate website",
+      client: "Safyr Utilis",
+      period: "Feb 2025 — Nov 2025",
+      role: "Sole developer",
+      featured: true,
+      url: "https://syul.mu/",
+      urlLabel: "syul.mu",
+      problem:
+        "The company needed a modern public site that presented its services cleanly, loaded well on mobile, and could be handed over without ongoing developer dependency for day-to-day content.",
+      approach:
+        "Designed, built and deployed the official website end to end as sole developer — responsive layout, performance-minded assets, and a structure the client could keep updating after go-live.",
+      result:
+        "Live at syul.mu and handed over in production.",
+      stack: ["HTML/CSS", "JavaScript", "Responsive design"],
+      highlights: [
+        { k: "Delivery", v: "Sole developer" },
+        { k: "Status", v: "In production" },
       ],
     },
   ],
 
-  /* Smaller shipped work that doesn't warrant a full case study. */
-  alsoLive: {
-    label: "Also in production",
-    items: [
-      {
-        name: "Safyr Utilis",
-        note: "Corporate website designed, built and deployed as sole developer",
-        year: "2025",
-        url: "https://syul.mu/",
-        urlLabel: "syul.mu",
-      },
-    ],
-  },
-
   /* Work delivered inside employers' client engagements. Deliberately describes
      role and technology only — no end-client names or proprietary detail. */
   earlier: {
-    label: "Earlier & enterprise work",
-    note: "Delivered inside employers' and agencies' client engagements. Described by role and technology only — end clients and their systems stay confidential.",
+    label: "Earlier engagements",
+    note: "Delivered inside employers' and agencies' client engagements. Described by role and technology only — end clients and their systems stay confidential. Matches the Agileum and Business Force sections on my CV.",
     items: [
       {
         org: "Agileum",
@@ -193,6 +211,31 @@ const CONFIG = {
           "Monthly and yearly closure cycle support",
           "Mentored two interns on PL/SQL and application debugging",
         ],
+      },
+    ],
+  },
+
+  /* Career break between BFL and Agileum — hardware builds sold on Marketplace. */
+  careerBreak: {
+    label: "Career break — PC building",
+    period: "Oct 2024 — Dec 2024",
+    note: "Between Business Force and Agileum I designed and built high-performance gaming PCs from scratch — component selection, assembly, testing and optimisation — and sold them on Facebook Marketplace.",
+    builds: [
+      {
+        name: "Build 01",
+        url: "https://www.facebook.com/marketplace/item/1184770826446411",
+      },
+      {
+        name: "Build 02",
+        url: "https://www.facebook.com/marketplace/item/1864597417679724/",
+      },
+      {
+        name: "Build 03",
+        url: "https://www.facebook.com/marketplace/item/591497393373766/",
+      },
+      {
+        name: "Build 04",
+        url: "https://www.facebook.com/marketplace/item/472324075339632/",
       },
     ],
   },
@@ -225,6 +268,7 @@ const CONFIG = {
           { name: "Tailwind CSS", level: 3, used: ["mrprod", "analytics"] },
           { name: "Filament", level: 3, used: ["mrprod"] },
           { name: "MUI", level: 2, used: ["keycars"] },
+          { name: "HTML/CSS", level: 3, used: ["syul"] },
           { name: "Angular", level: 1, used: [] },
         ],
       },
@@ -297,6 +341,14 @@ const CONFIG = {
       focus: "Salesforce · PL/SQL · enterprise support",
     },
     {
+      name: "PC building",
+      start: [2024, 10],
+      end: [2024, 12],
+      kind: "Career break",
+      role: "Custom PC builds",
+      focus: "Design, assemble, test and sell gaming PCs",
+    },
+    {
       name: "Agileum",
       start: [2025, 1],
       end: [2026, 4],
@@ -316,9 +368,9 @@ const CONFIG = {
       name: "Agence ISCL",
       start: [2025, 6],
       end: null,
-      kind: "Full-time → freelance",
+      kind: "Part-time → full-time → freelance",
       role: "Full-stack developer",
-      focus: "KeyCars SaaS · analytics platform",
+      focus: "KeyCars SaaS · analytics · WordPress",
     },
     {
       name: "ZilMall",
@@ -439,9 +491,10 @@ function useCountUp(target, { decimals = 0, duration = 1600 } = {}) {
   return [ref, display.toFixed(decimals)];
 }
 
-/** Type CONFIG.easterEgg.sequence anywhere to toggle blueprint mode. */
+/** Type CONFIG.easterEgg.sequence anywhere to toggle blueprint mode.
+ *  Defaults to blueprint on — the site's intended first impression. */
 function useBlueprintMode(sequence) {
-  const [on, setOn] = useState(false);
+  const [on, setOn] = useState(true);
   const buffer = useRef("");
 
   useEffect(() => {
@@ -583,6 +636,12 @@ const ICON_PATHS = {
     <>
       <rect x="2.8" y="2.8" width="14.4" height="14.4" rx="1" />
       <path d="M7.6 2.8v14.4M12.4 2.8v14.4M2.8 7.6h14.4M2.8 12.4h14.4" />
+    </>
+  ),
+  paper: (
+    <>
+      <rect x="4" y="2.5" width="12" height="15" rx="1" />
+      <path d="M7 6.5h6M7 10h6M7 13.5h4" />
     </>
   ),
 };
@@ -794,40 +853,31 @@ function SectionRail({ active }) {
   );
 }
 
-/** Blueprint view control. Lives in the header so it's never hiding content. */
-function BlueprintToggle({ on, onToggle, reduced }) {
+/** Theme-style square toggle — same placement pattern as dark-mode switches
+ *  on most product sites (trailing edge of the nav, after the primary CTA). */
+function BlueprintToggle({ on, onToggle }) {
   return (
     <button
       onClick={onToggle}
       aria-pressed={on}
-      title={`Blueprint view — or type "${CONFIG.easterEgg.sequence}"`}
-      className={`flex items-center gap-2 border px-2.5 py-1.5 transition-colors duration-300 ${
+      aria-label={on ? "Switch to paper view" : "Switch to blueprint view"}
+      title={on ? "Paper view (Esc)" : "Blueprint view"}
+      className={`flex h-9 w-9 shrink-0 items-center justify-center border transition-colors duration-300 ${
         on
-          ? "border-accent text-accent"
-          : "border-[var(--color-rule)] text-ink-soft hover:border-accent hover:text-accent"
+          ? "border-accent text-accent hover:bg-accent/10"
+          : "border-ink/30 text-ink-soft hover:border-accent hover:text-accent"
       }`}
     >
-      {!on && (
-        <span className="relative flex h-1.5 w-1.5">
-          {!reduced && (
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-          )}
-          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
-        </span>
-      )}
-      <Icon name="grid" className="h-3.5 w-3.5" />
-      <span className="hidden font-mono text-[10px] uppercase tracking-[0.16em] sm:inline">
-        {on ? "Exit blueprint" : "Blueprint view"}
-      </span>
-      <kbd className="hidden border border-[var(--color-rule)] px-1.5 py-px font-mono text-[9px] tracking-[0.1em] text-ink-faint lg:inline">
-        {on ? "esc" : CONFIG.easterEgg.sequence}
-      </kbd>
+      <Icon name={on ? "paper" : "grid"} className="h-4 w-4" />
+      <span className="sr-only">{on ? "Paper view" : "Blueprint view"}</span>
     </button>
   );
 }
 
-function Nav({ progress, active, blueprintOn, onToggleBlueprint, reduced }) {
+function Nav({ progress, active, blueprintOn, onToggleBlueprint }) {
   const [solid, setSolid] = useState(false);
+  const atHero = active === "top";
+
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 40);
     onScroll();
@@ -837,26 +887,19 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, reduced }) {
 
   return (
     <header
-      data-bp="header"
+      data-bp={atHero ? undefined : "header"}
       className={`fixed inset-x-0 top-0 z-30 transition-colors duration-500 ${
         solid ? "bg-paper/85 backdrop-blur-sm" : "bg-transparent"
-      }`}
+      } ${atHero ? "bp-quiet" : ""}`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-12">
-        <div className="flex items-center gap-4 md:gap-6">
-          <a href="#top" className="group flex items-baseline gap-2.5">
-            <span className="font-display text-xl leading-none">KS</span>
-            <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint md:inline">
-              {CONFIG.identity.role}
-            </span>
-          </a>
-          <BlueprintToggle
-            on={blueprintOn}
-            reduced={reduced}
-            onToggle={onToggleBlueprint}
-          />
-        </div>
-        <nav className="flex items-center gap-5 md:gap-7">
+        <a href="#top" className="group flex items-baseline gap-2.5">
+          <span className="font-display text-xl leading-none">KS</span>
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint md:inline">
+            {CONFIG.identity.role}
+          </span>
+        </a>
+        <nav className="flex items-center gap-4 md:gap-6">
           {NAV.map((item) => (
             <a
               key={item.id}
@@ -879,6 +922,7 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, reduced }) {
           >
             Get in touch
           </a>
+          <BlueprintToggle on={blueprintOn} onToggle={onToggleBlueprint} />
         </nav>
       </div>
       <div className="h-px w-full bg-[var(--color-rule)]">
@@ -907,7 +951,7 @@ function Hero({ reduced, blueprint }) {
     <section
       id="top"
       data-bp="hero"
-      className="relative flex min-h-screen flex-col justify-between overflow-hidden pt-28"
+      className="snap-page relative flex min-h-[100svh] flex-col justify-between overflow-hidden pt-28"
     >
       <InkField reduced={reduced} blueprint={blueprint} />
 
@@ -1001,7 +1045,7 @@ function About() {
     <section
       id="about"
       data-bp="about"
-      className="relative mx-auto max-w-[1400px] px-6 py-28 md:px-12 md:py-36"
+      className="snap-start relative mx-auto max-w-[1400px] px-6 py-28 md:px-12 md:py-36"
     >
       <SectionLabel index="01">{about.label}</SectionLabel>
 
@@ -1072,11 +1116,15 @@ function ProjectRow({ project, index, open, onToggle }) {
               {project.title}
             </h3>
             <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
-              {project.year}
+              {project.period}
             </span>
           </span>
           <span className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
-            <span className="text-sm text-ink-soft">{project.subtitle}</span>
+            <span className="text-sm text-ink-soft">
+              <span className="text-ink">{project.client}</span>
+              <span className="text-ink-faint"> · </span>
+              {project.subtitle}
+            </span>
             {project.urlLabel && (
               <span className="font-mono text-[10px] tracking-[0.08em] text-ink-faint">
                 {project.urlLabel}
@@ -1107,6 +1155,7 @@ function ProjectRow({ project, index, open, onToggle }) {
                 {[
                   { k: "Client", v: project.client },
                   { k: "Role", v: project.role },
+                  { k: "Period", v: project.period },
                 ].map((m) => (
                   <div key={m.k} className="mb-4">
                     <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
@@ -1150,20 +1199,51 @@ function ProjectRow({ project, index, open, onToggle }) {
                 </div>
               </dl>
 
-              <div className="grid gap-7 md:col-span-9 md:grid-cols-3">
-                {[
-                  { k: "Problem", v: project.problem },
-                  { k: "Approach", v: project.approach },
-                  { k: "Result", v: project.result },
-                ].map((block, i) => (
-                  <div key={block.k}>
-                    <h4 className="mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
-                      <span className="h-px w-4 bg-accent" />
-                      {block.k}
-                    </h4>
-                    <p className="text-[13.5px] leading-relaxed text-ink-soft">{block.v}</p>
-                  </div>
-                ))}
+              <div className="md:col-span-9">
+                {project.featured && project.url && (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group/preview mb-7 block overflow-hidden border border-[var(--color-rule)] bg-[var(--color-paper-deep)]"
+                  >
+                    <div className="flex items-center gap-2 border-b border-[var(--color-rule)] px-3 py-2">
+                      <span className="flex gap-1.5">
+                        <span className="h-2 w-2 rounded-full bg-ink/20" />
+                        <span className="h-2 w-2 rounded-full bg-ink/20" />
+                        <span className="h-2 w-2 rounded-full bg-ink/20" />
+                      </span>
+                      <span className="font-mono text-[10px] tracking-[0.08em] text-ink-faint">
+                        {project.urlLabel}
+                      </span>
+                    </div>
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <img
+                        src={`https://s.wordpress.com/mshots/v1/${encodeURIComponent(project.url)}?w=1400`}
+                        alt={`Preview of ${project.title}`}
+                        loading="lazy"
+                        className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover/preview:scale-[1.02]"
+                      />
+                      <span className="absolute inset-0 bg-gradient-to-t from-paper/40 to-transparent opacity-60" />
+                    </div>
+                  </a>
+                )}
+
+                <div className="grid gap-7 md:grid-cols-3">
+                  {[
+                    { k: "Problem", v: project.problem },
+                    { k: "Approach", v: project.approach },
+                    { k: "Result", v: project.result },
+                  ].map((block) => (
+                    <div key={block.k}>
+                      <h4 className="mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
+                        <span className="h-px w-4 bg-accent" />
+                        {block.k}
+                      </h4>
+                      <p className="text-[13.5px] leading-relaxed text-ink-soft">{block.v}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
@@ -1192,12 +1272,11 @@ function Work() {
     <section
       id="work"
       data-bp="work"
-      className="relative mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32"
+      className="snap-start relative mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32"
     >
       <SectionLabel index="02">Selected work</SectionLabel>
-      <Reveal className="mb-10 max-w-[58ch] text-[15px] leading-relaxed text-ink-soft">
-        Four systems currently in production. Each one replaced a manual process that
-        someone was doing by hand every week.
+      <Reveal className="mb-10 max-w-[62ch] text-[15px] leading-relaxed text-ink-soft">
+        {CONFIG.workIntro}
       </Reveal>
 
       <div className="border-t border-[var(--color-rule)]">
@@ -1212,39 +1291,8 @@ function Work() {
         ))}
       </div>
 
-      {/* Smaller shipped work */}
-      <Reveal className="mt-10">
-        <h3 className="mb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
-          {CONFIG.alsoLive.label}
-        </h3>
-        <ul className="divide-y divide-[var(--color-rule)] border-y border-[var(--color-rule)]">
-          {CONFIG.alsoLive.items.map((item) => (
-            <li key={item.name}>
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3.5"
-              >
-                <span className="font-display text-lg transition-colors group-hover:text-accent">
-                  {item.name}
-                </span>
-                <span className="flex-1 text-[13px] text-ink-soft">{item.note}</span>
-                <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.08em] text-ink-faint transition-colors group-hover:text-accent">
-                  {item.urlLabel}
-                  <Icon
-                    name="arrow"
-                    className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  />
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </Reveal>
-
-      {/* Enterprise work, described without naming end clients */}
-      <Reveal className="mt-14">
+      {/* Employer engagements — same classification as the CV */}
+      <Reveal className="mt-16">
         <h3 className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
           {CONFIG.earlier.label}
         </h3>
@@ -1272,6 +1320,44 @@ function Work() {
             </div>
           ))}
         </div>
+      </Reveal>
+
+      {/* Career break — PC builds */}
+      <Reveal className="mt-16">
+        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+          <h3 className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+            {CONFIG.careerBreak.label}
+          </h3>
+          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
+            {CONFIG.careerBreak.period}
+          </span>
+        </div>
+        <p className="mt-2 mb-6 max-w-[62ch] text-[13px] leading-relaxed text-ink-soft">
+          {CONFIG.careerBreak.note}
+        </p>
+        <ul className="grid gap-3 border-t border-[var(--color-rule)] pt-5 sm:grid-cols-2 lg:grid-cols-4">
+          {CONFIG.careerBreak.builds.map((build, i) => (
+            <li key={build.url}>
+              <a
+                href={build.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center justify-between gap-3 border border-[var(--color-rule)] px-4 py-3 transition-colors hover:border-accent"
+              >
+                <span className="font-display text-lg transition-colors group-hover:text-accent">
+                  {build.name}
+                </span>
+                <span className="flex items-center gap-1.5 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-faint group-hover:text-accent">
+                  Marketplace
+                  <Icon
+                    name="arrow"
+                    className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
       </Reveal>
     </section>
   );
@@ -1337,7 +1423,7 @@ function Capability() {
     <section
       id="capability"
       data-bp="capability"
-      className="relative mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32"
+      className="snap-start relative mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32"
     >
       <SectionLabel index="03">{skills.label}</SectionLabel>
 
@@ -1821,7 +1907,7 @@ function Numbers() {
     <section
       id="numbers"
       data-bp="numbers"
-      className="relative border-y border-[var(--color-rule)] bg-[var(--color-paper-deep)]/40"
+      className="snap-start relative border-y border-[var(--color-rule)] bg-[var(--color-paper-deep)]/40"
     >
       <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32">
         <SectionLabel index="04">{CONFIG.stats.label}</SectionLabel>
@@ -1862,115 +1948,104 @@ function Contact() {
   };
 
   return (
-    <section
-      id="contact"
-      data-bp="contact"
-      className="relative mx-auto max-w-[1400px] px-6 py-28 md:px-12 md:py-36"
-    >
-      <SectionLabel index="05">{contact.label}</SectionLabel>
+    <section id="contact" data-bp="contact" className="snap-end relative">
+      <div className="mx-auto max-w-[1400px] px-6 py-28 md:px-12 md:py-36">
+        <SectionLabel index="05">{contact.label}</SectionLabel>
 
-      <div className="grid gap-12 md:grid-cols-12 md:gap-16">
-        <Reveal className="md:col-span-7">
-          <h2 className="font-display text-[clamp(2.4rem,6.5vw,5.2rem)] leading-[0.95] tracking-[-0.02em]">
-            {contact.heading[0]}
-            <br />
-            <span className="italic text-accent">{contact.heading[1]}</span>
-          </h2>
-          <p className="mt-7 max-w-[48ch] text-[15px] leading-relaxed text-ink-soft">
-            {contact.blurb}
-          </p>
+        <div className="grid gap-12 md:grid-cols-12 md:gap-16">
+          <Reveal className="md:col-span-7">
+            <h2 className="font-display text-[clamp(2.4rem,6.5vw,5.2rem)] leading-[0.95] tracking-[-0.02em]">
+              {contact.heading[0]}
+              <br />
+              <span className="italic text-accent">{contact.heading[1]}</span>
+            </h2>
+            <p className="mt-7 max-w-[48ch] text-[15px] leading-relaxed text-ink-soft">
+              {contact.blurb}
+            </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href={`mailto:${identity.email}`}
-              className="group relative overflow-hidden border border-ink px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em]"
-            >
-              <span className="relative z-10 transition-colors duration-400 group-hover:text-paper">
-                {contact.cta}
-              </span>
-              <span className="absolute inset-0 -translate-y-full bg-ink transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0" />
-            </a>
-            <button
-              onClick={copyEmail}
-              className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft underline decoration-[var(--color-rule)] underline-offset-4 transition-colors hover:text-accent"
-            >
-              {copied ? "Copied ✓" : "Copy email"}
-            </button>
-          </div>
-        </Reveal>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <a
+                href={`mailto:${identity.email}`}
+                className="group relative overflow-hidden border border-ink px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em]"
+              >
+                <span className="relative z-10 transition-colors duration-400 group-hover:text-paper">
+                  {contact.cta}
+                </span>
+                <span className="absolute inset-0 -translate-y-full bg-ink transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0" />
+              </a>
+              <button
+                onClick={copyEmail}
+                className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft underline decoration-[var(--color-rule)] underline-offset-4 transition-colors hover:text-accent"
+              >
+                {copied ? "Copied ✓" : "Copy email"}
+              </button>
+            </div>
+          </Reveal>
 
-        <Reveal delay={120} className="md:col-span-5">
-          <dl className="divide-y divide-[var(--color-rule)] border-y border-[var(--color-rule)]">
-            {[
-              { k: "Email", icon: "mail", v: identity.email, href: `mailto:${identity.email}` },
-              {
-                k: "Phone",
-                icon: "phone",
-                v: identity.phone,
-                href: `tel:${identity.phone.replace(/\s/g, "")}`,
-              },
-              { k: "LinkedIn", icon: "linkedin", v: identity.linkedinLabel, href: identity.linkedin },
-              { k: "GitHub", icon: "github", v: identity.githubLabel, href: identity.github },
-              { k: "Location", icon: "pin", v: identity.location, href: null },
-            ].map((row) => {
-              const external = row.href?.startsWith("http");
-              const Row = (
-                <>
-                  <dt className="flex items-center gap-2.5 text-ink-faint transition-colors duration-300 group-hover:text-accent">
-                    <Icon name={row.icon} className="h-[15px] w-[15px]" />
-                    <span className="font-mono text-[10px] uppercase tracking-[0.18em]">{row.k}</span>
-                  </dt>
-                  <dd className="flex items-center gap-2 text-right text-sm transition-colors duration-300 group-hover:text-accent">
-                    {row.v}
-                    {external && (
-                      <Icon
-                        name="arrow"
-                        className="h-3 w-3 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
-                      />
-                    )}
-                  </dd>
-                </>
-              );
-              return row.href ? (
-                <a
-                  key={row.k}
-                  href={row.href}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noreferrer" : undefined}
-                  className="group flex items-center justify-between gap-6 py-3.5"
-                >
-                  {Row}
-                </a>
-              ) : (
-                <div key={row.k} className="group flex items-center justify-between gap-6 py-3.5">
-                  {Row}
-                </div>
-              );
-            })}
-          </dl>
-        </Reveal>
+          <Reveal delay={120} className="md:col-span-5">
+            <dl className="divide-y divide-[var(--color-rule)] border-y border-[var(--color-rule)]">
+              {[
+                { k: "Email", icon: "mail", v: identity.email, href: `mailto:${identity.email}` },
+                {
+                  k: "Phone",
+                  icon: "phone",
+                  v: identity.phone,
+                  href: `tel:${identity.phone.replace(/\s/g, "")}`,
+                },
+                { k: "LinkedIn", icon: "linkedin", v: identity.linkedinLabel, href: identity.linkedin },
+                { k: "GitHub", icon: "github", v: identity.githubLabel, href: identity.github },
+                { k: "Location", icon: "pin", v: identity.location, href: null },
+              ].map((row) => {
+                const external = row.href?.startsWith("http");
+                const Row = (
+                  <>
+                    <dt className="flex items-center gap-2.5 text-ink-faint transition-colors duration-300 group-hover:text-accent">
+                      <Icon name={row.icon} className="h-[15px] w-[15px]" />
+                      <span className="font-mono text-[10px] uppercase tracking-[0.18em]">{row.k}</span>
+                    </dt>
+                    <dd className="flex items-center gap-2 text-right text-sm transition-colors duration-300 group-hover:text-accent">
+                      {row.v}
+                      {external && (
+                        <Icon
+                          name="arrow"
+                          className="h-3 w-3 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                        />
+                      )}
+                    </dd>
+                  </>
+                );
+                return row.href ? (
+                  <a
+                    key={row.k}
+                    href={row.href}
+                    target={external ? "_blank" : undefined}
+                    rel={external ? "noreferrer" : undefined}
+                    className="group flex items-center justify-between gap-6 py-3.5"
+                  >
+                    {Row}
+                  </a>
+                ) : (
+                  <div key={row.k} className="group flex items-center justify-between gap-6 py-3.5">
+                    {Row}
+                  </div>
+                );
+              })}
+            </dl>
+          </Reveal>
+        </div>
       </div>
+
+      <footer className="relative border-t border-[var(--color-rule)] px-6 py-8 md:px-12">
+        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-4">
+          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
+            © {new Date().getFullYear()} {CONFIG.identity.fullName}
+          </span>
+          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
+            Built in Mauritius · Working worldwide
+          </span>
+        </div>
+      </footer>
     </section>
-  );
-}
-
-/* --------------------------------- footer --------------------------------- */
-
-function Footer() {
-  return (
-    <footer
-      data-bp="footer"
-      className="relative border-t border-[var(--color-rule)] px-6 py-8 md:px-12"
-    >
-      <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-4">
-        <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
-          © {new Date().getFullYear()} {CONFIG.identity.fullName}
-        </span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
-          Built in Mauritius · Working worldwide
-        </span>
-      </div>
-    </footer>
   );
 }
 
@@ -1988,7 +2063,6 @@ export default function Portfolio() {
         progress={progress}
         active={active}
         blueprintOn={blueprintOn}
-        reduced={reduced}
         onToggleBlueprint={() => setBlueprintOn((v) => !v)}
       />
       <SectionRail active={active} />
@@ -2000,7 +2074,6 @@ export default function Portfolio() {
         <Numbers />
         <Contact />
       </main>
-      <Footer />
     </div>
   );
 }
