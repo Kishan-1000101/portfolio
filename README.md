@@ -50,19 +50,19 @@ marks down the right edge track position and jump between sections.
 
 ## Deploying to GitHub Pages
 
-This repo ships with a GitHub Actions workflow (`.github/workflows/deploy.yml`) that
-builds on every push to `master` and publishes `dist/` to GitHub Pages.
-
-1. In the repo on GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**
-2. Push to `master` (or run the workflow manually under **Actions**)
-3. Site URL: `https://<your-username>.github.io/<repo-name>/`
-
-Local preview of the production build:
+This site is published from the `gh-pages` branch (static `dist/` output).
 
 ```bash
-npm run build
-npm run preview
+npm ci
+$env:VITE_BASE="/portfolio/"; npm run build   # PowerShell
+# VITE_BASE=/portfolio/ npm run build         # bash
 ```
+
+Then publish `dist/` to the `gh-pages` branch (done automatically when pushing from this agent setup). Site URL:
+
+`https://Kishan-1000101.github.io/portfolio/`
+
+In the repo: **Settings → Pages → Deploy from a branch → `gh-pages` / `/ (root)`**.
 
 ## Deploying to OVH
 
