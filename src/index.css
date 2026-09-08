@@ -24,6 +24,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 60px;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -33,7 +34,23 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   font-weight: 400;
-  overflow-x: hidden;
+  /* `clip` rather than `hidden` — `hidden` would make body a scroll container
+     and break scroll snapping on the root. */
+  overflow-x: clip;
+}
+
+/* ---------- One-page scroll ----------
+   Proximity, not mandatory: sections taller than the viewport (work,
+   capability, numbers) stay freely scrollable instead of trapping the reader,
+   while the shorter ones settle into place on their own. */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+  .snap-root > section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
 }
 
 ::selection {

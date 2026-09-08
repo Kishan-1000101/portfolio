@@ -23,7 +23,7 @@ const CONFIG = {
   },
 
   hero: {
-    eyebrow: "Full-stack developer — Mauritius & Réunion",
+    eyebrow: "Full-stack developer — remote, worldwide",
     // Each string is its own masked reveal line.
     headline: ["I build the systems", "businesses actually", "run on."],
     emphasis: 2, // index of the line that gets the serif italic accent
@@ -52,7 +52,7 @@ const CONFIG = {
       "The interesting part was never the framework. It's the pricing rule nobody wrote down, and the paperwork somebody still fills in by hand.",
     facts: [
       { k: "Based", v: "Vacoas, Mauritius" },
-      { k: "Working with", v: "Mauritius · Réunion · Remote" },
+      { k: "Working with", v: "Mauritius · Réunion · France · UK · Remote" },
       { k: "Education", v: "BSc (Hons) Software Engineering, UTM" },
       { k: "Languages", v: "English (fluent) · French (working)" },
     ],
@@ -67,6 +67,8 @@ const CONFIG = {
       client: "Agence ISCL",
       year: "2025 —",
       role: "Lead developer",
+      url: "https://keycars.fr/",
+      urlLabel: "keycars.fr",
       problem:
         "Rental companies were running fleets on paper and spreadsheets. Quotes, contracts, vehicle condition reports and parking assignments were all manual, and every branch did them slightly differently.",
       approach:
@@ -87,6 +89,8 @@ const CONFIG = {
       client: "ZilMall",
       year: "2025 —",
       role: "Full-stack developer & project manager",
+      url: "https://zilmall.mu/",
+      urlLabel: "zilmall.mu",
       problem:
         "Mauritian sellers had no marketplace built around how they actually trade — registered businesses alongside individual sellers, wholesale pricing, local payout methods and local VAT rules.",
       approach:
@@ -107,6 +111,8 @@ const CONFIG = {
       client: "MR Production Co Ltd",
       year: "2026 —",
       role: "Full-stack developer",
+      url: "https://mineshramchurn.com/",
+      urlLabel: "mineshramchurn.com",
       problem:
         "A photography and videography studio took bookings through messages, with no shared view of availability, and needed a developer for every content change on its site.",
       approach:
@@ -127,6 +133,8 @@ const CONFIG = {
       client: "Agence ISCL",
       year: "2025 —",
       role: "Full-stack developer",
+      url: "https://tracking-dashboard.fr/",
+      urlLabel: "tracking-dashboard.fr",
       problem:
         "The agency rebuilt every client report by hand each month, pulling revenue, Google Analytics and social performance into slides that were stale the moment they were sent.",
       approach:
@@ -141,6 +149,53 @@ const CONFIG = {
       ],
     },
   ],
+
+  /* Smaller shipped work that doesn't warrant a full case study. */
+  alsoLive: {
+    label: "Also in production",
+    items: [
+      {
+        name: "Safyr Utilis",
+        note: "Corporate website designed, built and deployed as sole developer",
+        year: "2025",
+        url: "https://syul.mu/",
+        urlLabel: "syul.mu",
+      },
+    ],
+  },
+
+  /* Work delivered inside employers' client engagements. Deliberately describes
+     role and technology only — no end-client names or proprietary detail. */
+  earlier: {
+    label: "Earlier & enterprise work",
+    note: "Delivered inside employers' and agencies' client engagements. Described by role and technology only — end clients and their systems stay confidential.",
+    items: [
+      {
+        org: "Agileum",
+        period: "Jan 2025 — Apr 2026",
+        role: "Associate software engineer → freelance",
+        work: [
+          "Secure AI chatbot with JWT and Google/Microsoft authentication",
+          "Automated invoice processing and document data extraction",
+          "Drupal content platforms plus Laravel, Angular and Node applications",
+          "Release and environment management with Docker, Nginx and Jenkins",
+          ".NET Core migration support",
+        ],
+      },
+      {
+        org: "Business Force Limited",
+        period: "Feb 2023 — Sep 2024",
+        role: "Information system engineer",
+        work: [
+          "Salesforce delivery using Apex, SOQL, Flows, Triggers and Omnistudio",
+          "PL/SQL investigation and query optimisation on Oracle",
+          "Off-hours production support for clients in other time zones",
+          "Monthly and yearly closure cycle support",
+          "Mentored two interns on PL/SQL and application debugging",
+        ],
+      },
+    ],
+  },
 
   /* Capability index. `level`: 3 = daily, 2 = builds with, 1 = prior/enterprise.
      `used` cross-references project ids above. */
@@ -209,9 +264,9 @@ const CONFIG = {
     label: "By the numbers",
     counters: [
       { value: 3.5, suffix: "+", decimals: 1, label: "Years building professionally", sub: "Since Feb 2023" },
-      { value: 6, suffix: "", decimals: 0, label: "Production systems shipped", sub: "Live and maintained" },
+      { value: 5, suffix: "", decimals: 0, label: "Live systems you can visit", sub: "Publicly linked above" },
       { value: 6, suffix: "", decimals: 0, label: "Organisations delivered for", sub: "Agency, product & enterprise" },
-      { value: 3, suffix: "", decimals: 0, label: "Markets served", sub: "Mauritius · Réunion · France" },
+      { value: 4, suffix: "", decimals: 0, label: "Markets served", sub: "Mauritius · Réunion · France · UK" },
     ],
     // Relative weight of where delivery time goes. Keep total near 100.
     breakdown: {
@@ -233,12 +288,54 @@ const CONFIG = {
   /* Drives the heatmap and the timeline. Months are inclusive, 1-indexed.
      Leave `end` null for an ongoing engagement. */
   engagements: [
-    { name: "Business Force Limited", start: [2023, 2], end: [2024, 9], kind: "Full-time" },
-    { name: "Agileum", start: [2025, 1], end: [2026, 4], kind: "Full-time → freelance" },
-    { name: "Safyr Utilis", start: [2025, 2], end: [2025, 11], kind: "Freelance" },
-    { name: "Agence ISCL", start: [2025, 6], end: null, kind: "Full-time → freelance" },
-    { name: "ZilMall", start: [2025, 10], end: null, kind: "Freelance" },
-    { name: "MR Production", start: [2026, 2], end: null, kind: "Freelance" },
+    {
+      name: "Business Force Limited",
+      start: [2023, 2],
+      end: [2024, 9],
+      kind: "Full-time",
+      role: "Information system engineer",
+      focus: "Salesforce · PL/SQL · enterprise support",
+    },
+    {
+      name: "Agileum",
+      start: [2025, 1],
+      end: [2026, 4],
+      kind: "Full-time → freelance",
+      role: "Associate software engineer",
+      focus: "AI integration · Drupal · Laravel · DevOps",
+    },
+    {
+      name: "Safyr Utilis",
+      start: [2025, 2],
+      end: [2025, 11],
+      kind: "Freelance",
+      role: "Web developer",
+      focus: "Corporate website, sole developer",
+    },
+    {
+      name: "Agence ISCL",
+      start: [2025, 6],
+      end: null,
+      kind: "Full-time → freelance",
+      role: "Full-stack developer",
+      focus: "KeyCars SaaS · analytics platform",
+    },
+    {
+      name: "ZilMall",
+      start: [2025, 10],
+      end: null,
+      kind: "Freelance",
+      role: "Full-stack developer & PM",
+      focus: "Multi-vendor marketplace",
+    },
+    {
+      name: "MR Production",
+      start: [2026, 2],
+      end: null,
+      kind: "Freelance",
+      role: "Full-stack developer",
+      focus: "Studio site & booking platform",
+    },
   ],
   timelineRange: { from: 2023, to: 2026 },
 
@@ -252,7 +349,6 @@ const CONFIG = {
 
   easterEgg: {
     sequence: "grid",
-    hint: "Type “grid”",
   },
 };
 
@@ -377,6 +473,28 @@ function useBlueprintMode(sequence) {
   return [on, setOn];
 }
 
+/** Tracks which section currently occupies the middle of the viewport. */
+function useActiveSection(ids) {
+  const [active, setActive] = useState(ids[0]);
+  useEffect(() => {
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+    return () => io.disconnect();
+  }, [ids]);
+  return active;
+}
+
 /** Scroll progress 0 → 1 for the top rule. */
 function useScrollProgress() {
   const [p, setP] = useState(0);
@@ -429,6 +547,62 @@ function Reveal({ as: Tag = "div", delay = 0, className = "", children, ...rest 
     >
       {children}
     </Tag>
+  );
+}
+
+/* ---------------------------------- icons --------------------------------- */
+/* Stroke-drawn to match the hairline rules; inherit currentColor. */
+
+const ICON_PATHS = {
+  mail: (
+    <>
+      <rect x="2.5" y="4.5" width="15" height="11" rx="1" />
+      <path d="M2.8 5.4 10 11l7.2-5.6" />
+    </>
+  ),
+  phone: (
+    <path d="M6.4 2.8 8 6.1 6.4 7.7c.9 2 2.4 3.5 4.4 4.4l1.6-1.6 3.3 1.6v3.1c0 .7-.6 1.3-1.3 1.2C7.8 15.9 4.1 12.2 3.2 4.1c-.1-.7.5-1.3 1.2-1.3z" />
+  ),
+  linkedin: (
+    <>
+      <rect x="2.5" y="2.5" width="15" height="15" rx="1.5" />
+      <path d="M6.2 8.6v5.2M6.2 6.1v.1M9.6 13.8V8.6M9.6 10.7c0-1.2.8-2.1 2-2.1s2.2.9 2.2 2.4v2.8" />
+    </>
+  ),
+  github: (
+    <path d="M7.6 17c-3 .9-3-1.6-4.2-1.9m8.4 3.4v-2.9c0-.8-.1-1.1-.6-1.5 2.2-.2 4.4-1.1 4.4-4.8a3.7 3.7 0 0 0-1-2.6 3.5 3.5 0 0 0-.1-2.6s-.8-.2-2.7 1a9.2 9.2 0 0 0-4.8 0C5.1 4 4.3 4.2 4.3 4.2a3.5 3.5 0 0 0-.1 2.6 3.7 3.7 0 0 0-1 2.6c0 3.7 2.2 4.5 4.4 4.8-.3.3-.5.7-.6 1.2v2.1" />
+  ),
+  pin: (
+    <>
+      <path d="M16 8.3c0 4.2-6 9.2-6 9.2s-6-5-6-9.2a6 6 0 0 1 12 0z" />
+      <circle cx="10" cy="8.2" r="2.1" />
+    </>
+  ),
+  arrow: <path d="M5 15 15 5M7.4 5H15v7.6" />,
+  grid: (
+    <>
+      <rect x="2.8" y="2.8" width="14.4" height="14.4" rx="1" />
+      <path d="M7.6 2.8v14.4M12.4 2.8v14.4M2.8 7.6h14.4M2.8 12.4h14.4" />
+    </>
+  ),
+};
+
+function Icon({ name, className = "h-4 w-4" }) {
+  const path = ICON_PATHS[name];
+  if (!path) return null;
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.25"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className={className}
+    >
+      {path}
+    </svg>
   );
 }
 
@@ -580,7 +754,79 @@ const NAV = [
   { id: "contact", label: "Contact" },
 ];
 
-function Nav({ progress }) {
+const RAIL = [{ id: "top", label: "Intro" }, ...NAV];
+const RAIL_IDS = RAIL.map((s) => s.id);
+
+/** Fixed rule-marks down the right edge — position indicator and jump nav. */
+function SectionRail({ active }) {
+  return (
+    <nav
+      aria-label="Section navigation"
+      className="fixed top-1/2 right-6 z-30 hidden -translate-y-1/2 flex-col items-end gap-3.5 lg:flex"
+    >
+      {RAIL.map((s) => {
+        const on = active === s.id;
+        return (
+          <a
+            key={s.id}
+            href={`#${s.id}`}
+            aria-current={on ? "true" : undefined}
+            className="group flex items-center justify-end gap-2.5 py-1"
+          >
+            {/* Label only on hover — at rest the rail stays inside the page
+                margin instead of sitting on top of the content column. */}
+            <span
+              className={`bg-paper/90 px-1.5 py-0.5 font-mono text-[9.5px] uppercase tracking-[0.16em] opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 ${
+                on ? "text-accent" : "text-ink-soft"
+              }`}
+            >
+              {s.label}
+            </span>
+            <span
+              className={`h-px transition-all duration-400 ${
+                on ? "w-7 bg-accent" : "w-3.5 bg-ink/35 group-hover:w-5 group-hover:bg-ink"
+              }`}
+            />
+          </a>
+        );
+      })}
+    </nav>
+  );
+}
+
+/** Blueprint view control. Lives in the header so it's never hiding content. */
+function BlueprintToggle({ on, onToggle, reduced }) {
+  return (
+    <button
+      onClick={onToggle}
+      aria-pressed={on}
+      title={`Blueprint view — or type "${CONFIG.easterEgg.sequence}"`}
+      className={`flex items-center gap-2 border px-2.5 py-1.5 transition-colors duration-300 ${
+        on
+          ? "border-accent text-accent"
+          : "border-[var(--color-rule)] text-ink-soft hover:border-accent hover:text-accent"
+      }`}
+    >
+      {!on && (
+        <span className="relative flex h-1.5 w-1.5">
+          {!reduced && (
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+          )}
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+        </span>
+      )}
+      <Icon name="grid" className="h-3.5 w-3.5" />
+      <span className="hidden font-mono text-[10px] uppercase tracking-[0.16em] sm:inline">
+        {on ? "Exit blueprint" : "Blueprint view"}
+      </span>
+      <kbd className="hidden border border-[var(--color-rule)] px-1.5 py-px font-mono text-[9px] tracking-[0.1em] text-ink-faint lg:inline">
+        {on ? "esc" : CONFIG.easterEgg.sequence}
+      </kbd>
+    </button>
+  );
+}
+
+function Nav({ progress, active, blueprintOn, onToggleBlueprint, reduced }) {
   const [solid, setSolid] = useState(false);
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 40);
@@ -597,21 +843,34 @@ function Nav({ progress }) {
       }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-12">
-        <a href="#top" className="group flex items-baseline gap-2.5">
-          <span className="font-display text-xl leading-none">KS</span>
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint sm:inline">
-            {CONFIG.identity.role}
-          </span>
-        </a>
+        <div className="flex items-center gap-4 md:gap-6">
+          <a href="#top" className="group flex items-baseline gap-2.5">
+            <span className="font-display text-xl leading-none">KS</span>
+            <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint md:inline">
+              {CONFIG.identity.role}
+            </span>
+          </a>
+          <BlueprintToggle
+            on={blueprintOn}
+            reduced={reduced}
+            onToggle={onToggleBlueprint}
+          />
+        </div>
         <nav className="flex items-center gap-5 md:gap-7">
           {NAV.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
-              className="group relative hidden font-mono text-[11px] uppercase tracking-[0.16em] text-ink-soft transition-colors hover:text-ink sm:block"
+              className={`group relative hidden font-mono text-[11px] uppercase tracking-[0.16em] transition-colors sm:block ${
+                active === item.id ? "text-accent" : "text-ink-soft hover:text-ink"
+              }`}
             >
               {item.label}
-              <span className="absolute -bottom-1 left-0 h-px w-0 bg-accent transition-all duration-400 group-hover:w-full" />
+              <span
+                className={`absolute -bottom-1 left-0 h-px bg-accent transition-all duration-400 ${
+                  active === item.id ? "w-full" : "w-0 group-hover:w-full"
+                }`}
+              />
             </a>
           ))}
           <a
@@ -816,7 +1075,14 @@ function ProjectRow({ project, index, open, onToggle }) {
               {project.year}
             </span>
           </span>
-          <span className="mt-2 block text-sm text-ink-soft">{project.subtitle}</span>
+          <span className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span className="text-sm text-ink-soft">{project.subtitle}</span>
+            {project.urlLabel && (
+              <span className="font-mono text-[10px] tracking-[0.08em] text-ink-faint">
+                {project.urlLabel}
+              </span>
+            )}
+          </span>
         </span>
 
         <span aria-hidden="true" className="relative mt-4 h-6 w-6 shrink-0">
@@ -849,7 +1115,30 @@ function ProjectRow({ project, index, open, onToggle }) {
                     <dd className="mt-1 text-sm">{m.v}</dd>
                   </div>
                 ))}
-                <div className="mt-6 flex flex-wrap gap-1.5">
+                {project.url && (
+                  <div className="mb-5">
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+                      Live
+                    </dt>
+                    <dd className="mt-1">
+                      <a
+                        href={project.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="group/link inline-flex items-center gap-1.5 text-sm text-accent"
+                      >
+                        <span className="border-b border-accent/40 transition-colors group-hover/link:border-accent">
+                          {project.urlLabel}
+                        </span>
+                        <Icon
+                          name="arrow"
+                          className="h-3 w-3 transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                        />
+                      </a>
+                    </dd>
+                  </div>
+                )}
+                <div className="flex flex-wrap gap-1.5">
                   {project.stack.map((s) => (
                     <span
                       key={s}
@@ -922,6 +1211,68 @@ function Work() {
           />
         ))}
       </div>
+
+      {/* Smaller shipped work */}
+      <Reveal className="mt-10">
+        <h3 className="mb-4 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+          {CONFIG.alsoLive.label}
+        </h3>
+        <ul className="divide-y divide-[var(--color-rule)] border-y border-[var(--color-rule)]">
+          {CONFIG.alsoLive.items.map((item) => (
+            <li key={item.name}>
+              <a
+                href={item.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3.5"
+              >
+                <span className="font-display text-lg transition-colors group-hover:text-accent">
+                  {item.name}
+                </span>
+                <span className="flex-1 text-[13px] text-ink-soft">{item.note}</span>
+                <span className="flex items-center gap-1.5 font-mono text-[10px] tracking-[0.08em] text-ink-faint transition-colors group-hover:text-accent">
+                  {item.urlLabel}
+                  <Icon
+                    name="arrow"
+                    className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </Reveal>
+
+      {/* Enterprise work, described without naming end clients */}
+      <Reveal className="mt-14">
+        <h3 className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+          {CONFIG.earlier.label}
+        </h3>
+        <p className="mt-2 mb-6 max-w-[62ch] text-[13px] leading-relaxed text-ink-faint">
+          {CONFIG.earlier.note}
+        </p>
+        <div className="grid gap-8 border-t border-[var(--color-rule)] pt-6 md:grid-cols-2 md:gap-12">
+          {CONFIG.earlier.items.map((item) => (
+            <div key={item.org}>
+              <div className="flex flex-wrap items-baseline gap-x-3">
+                <h4 className="font-display text-xl">{item.org}</h4>
+                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
+                  {item.period}
+                </span>
+              </div>
+              <p className="mt-1 text-[13px] text-ink-soft">{item.role}</p>
+              <ul className="mt-4 space-y-2">
+                {item.work.map((w) => (
+                  <li key={w} className="flex gap-3 text-[13px] leading-relaxed text-ink-soft">
+                    <span className="mt-[8px] h-[2px] w-3 shrink-0 bg-accent" />
+                    <span>{w}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </Reveal>
     </section>
   );
 }
@@ -1225,44 +1576,241 @@ function Heatmap() {
   );
 }
 
+function formatDuration(months) {
+  const y = Math.floor(months / 12);
+  const m = months % 12;
+  const parts = [];
+  if (y) parts.push(`${y} yr${y > 1 ? "s" : ""}`);
+  if (m) parts.push(`${m} mo${m > 1 ? "s" : ""}`);
+  return parts.join(" ") || "1 mo";
+}
+
+function formatMonth([y, m]) {
+  return `${MONTH_NAMES[m - 1].slice(0, 3)} ${y}`;
+}
+
 function Timeline() {
   const { from, to } = CONFIG.timelineRange;
   const span = (to + 1 - from) * 12;
+  const [active, setActive] = useState(null);
+  const [shown, setShown] = useState(false);
+  const reduced = usePrefersReducedMotion();
+  const wrapRef = useRef(null);
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    if (reduced) {
+      setShown(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      (e) => e[0].isIntersecting && (setShown(true), io.disconnect()),
+      { threshold: 0.2 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [reduced]);
+
+  // Months elapsed since Jan of `from`, through the end of the current month.
+  const nowIdx = useMemo(() => {
+    const d = new Date();
+    return Math.min(span, Math.max(0, (d.getFullYear() - from) * 12 + d.getMonth() + 1));
+  }, [from, span]);
+
+  const rows = useMemo(
+    () =>
+      CONFIG.engagements.map((e) => {
+        const startIdx = (e.start[0] - from) * 12 + (e.start[1] - 1);
+        // Ongoing engagements stop at today, not at the end of the chart.
+        const endIdx = e.end ? (e.end[0] - from) * 12 + e.end[1] : nowIdx;
+        return {
+          ...e,
+          startIdx,
+          endIdx,
+          ongoing: !e.end,
+          left: (startIdx / span) * 100,
+          width: ((endIdx - startIdx) / span) * 100,
+          months: endIdx - startIdx,
+        };
+      }),
+    [from, span, nowIdx]
+  );
+
+  const peak = useMemo(() => {
+    let best = 0;
+    for (let i = 0; i < span; i++) {
+      const n = rows.filter((r) => i >= r.startIdx && i < r.endIdx).length;
+      if (n > best) best = n;
+    }
+    return best;
+  }, [rows, span]);
+
+  const years = [];
+  for (let y = from; y <= to + 1; y++) years.push(y);
+
+  const nowPct = (nowIdx / span) * 100;
+
   return (
-    <Reveal className="mt-8 border-t border-[var(--color-rule)] pt-8 md:mt-16">
-      <h3 className="mb-6 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
-        Engagement timeline
-      </h3>
-      <ul className="space-y-3">
-        {CONFIG.engagements.map((e, i) => {
-          const startVal = (e.start[0] - from) * 12 + (e.start[1] - 1);
-          const endVal = e.end ? (e.end[0] - from) * 12 + e.end[1] : span;
-          const left = (startVal / span) * 100;
-          const width = ((endVal - startVal) / span) * 100;
-          const ongoing = !e.end;
-          return (
-            <li key={e.name} className="grid grid-cols-12 items-center gap-3">
-              <span className="col-span-4 truncate text-[12.5px] md:col-span-3">{e.name}</span>
-              <span className="col-span-8 md:col-span-9">
-                <span className="relative block h-[7px] w-full bg-[var(--color-paper-deep)]">
-                  <span
-                    className="absolute top-0 h-full transition-all duration-1000 ease-out"
-                    style={{
-                      left: `${left}%`,
-                      width: `${width}%`,
-                      background: ongoing ? "var(--color-accent)" : "var(--bar-past)",
-                      transitionDelay: `${i * 80}ms`,
-                    }}
-                  />
-                </span>
+    <Reveal className="mt-10 border-t border-[var(--color-rule)] pt-8 md:mt-16">
+      <div className="mb-7 flex flex-wrap items-end justify-between gap-4">
+        <div>
+          <h3 className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+            Engagement timeline
+          </h3>
+          <p className="mt-1.5 max-w-[56ch] text-[13px] leading-relaxed text-ink-soft">
+            Up to <span className="text-accent">{peak} engagements running at once</span> — client
+            projects delivered alongside full-time work and a degree.
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-x-5 gap-y-2">
+          {[
+            { c: "var(--color-accent)", l: "Ongoing" },
+            { c: "var(--bar-past)", l: "Completed" },
+          ].map((k) => (
+            <span key={k.l} className="flex items-center gap-2">
+              <span className="h-2.5 w-2.5" style={{ background: k.c }} />
+              <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink-faint">
+                {k.l}
               </span>
-            </li>
-          );
-        })}
-      </ul>
-      <div className="mt-3 flex justify-between font-mono text-[9px] text-ink-faint">
-        <span>{from}</span>
-        <span>{to}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div ref={wrapRef} className="flex gap-3 md:gap-5">
+        {/* Row labels */}
+        <div className="w-[104px] shrink-0 sm:w-[150px] md:w-[190px]">
+          <div className="h-6" />
+          {rows.map((r) => (
+            <div
+              key={r.name}
+              onMouseEnter={() => setActive(r.name)}
+              onMouseLeave={() => setActive(null)}
+              onClick={() => setActive(active === r.name ? null : r.name)}
+              className="flex h-12 cursor-pointer flex-col justify-center pr-2"
+            >
+              <span
+                className={`truncate text-[12.5px] leading-tight transition-colors duration-200 ${
+                  active === r.name ? "text-accent" : ""
+                }`}
+              >
+                {r.name}
+              </span>
+              <span className="hidden truncate font-mono text-[9px] uppercase tracking-[0.14em] text-ink-faint sm:block">
+                {r.kind}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Track */}
+        <div className="relative min-w-0 flex-1">
+          {/* Year gridlines */}
+          <div className="pointer-events-none absolute inset-0">
+            {years.map((y, i) => (
+              <div
+                key={y}
+                className="absolute top-0 bottom-0 border-l border-[var(--color-rule)]"
+                style={{ left: `${(i / (years.length - 1)) * 100}%` }}
+              />
+            ))}
+            <div
+              className="absolute top-6 bottom-0 border-l border-dashed border-accent/50"
+              style={{ left: `${nowPct}%` }}
+            />
+          </div>
+
+          {/* Year scale */}
+          <div className="relative h-6">
+            {years.slice(0, -1).map((y, i) => (
+              <span
+                key={y}
+                className="absolute top-0 pl-1.5 font-mono text-[9.5px] text-ink-faint"
+                style={{ left: `${(i / (years.length - 1)) * 100}%` }}
+              >
+                {y}
+              </span>
+            ))}
+            <span
+              className="absolute top-0 hidden -translate-x-1/2 bg-[var(--color-paper-deep)] px-1 font-mono text-[9px] uppercase tracking-[0.14em] text-accent md:inline"
+              style={{ left: `${nowPct}%` }}
+            >
+              now
+            </span>
+          </div>
+
+          {/* Bars */}
+          {rows.map((r, i) => {
+            const isActive = active === r.name;
+            const dim = active && !isActive;
+            return (
+              <div
+                key={r.name}
+                onMouseEnter={() => setActive(r.name)}
+                onMouseLeave={() => setActive(null)}
+                onClick={() => setActive(active === r.name ? null : r.name)}
+                className="relative flex h-12 cursor-pointer items-center"
+              >
+                <div
+                  className="absolute h-[10px] transition-all duration-[900ms] ease-out"
+                  style={{
+                    left: `${r.left}%`,
+                    width: shown ? `${r.width}%` : "0%",
+                    transitionDelay: `${i * 90}ms`,
+                    opacity: dim ? 0.28 : 1,
+                    background: r.ongoing ? "var(--color-accent)" : "var(--bar-past)",
+                    transform: isActive ? "scaleY(1.5)" : "scaleY(1)",
+                  }}
+                />
+                {/* Duration label sits after the bar, or before it when the
+                    bar runs close to the right edge. */}
+                <span
+                  className="absolute hidden font-mono text-[9.5px] whitespace-nowrap text-ink-faint transition-opacity duration-700 md:block"
+                  style={
+                    r.left + r.width > 78
+                      ? {
+                          right: `calc(${100 - r.left}% + 8px)`,
+                          opacity: shown ? (dim ? 0.3 : 1) : 0,
+                          transitionDelay: `${i * 90 + 500}ms`,
+                        }
+                      : {
+                          left: `calc(${r.left + r.width}% + 8px)`,
+                          opacity: shown ? (dim ? 0.3 : 1) : 0,
+                          transitionDelay: `${i * 90 + 500}ms`,
+                        }
+                  }
+                >
+                  {formatDuration(r.months)}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Detail strip — fixed height so hovering never shifts layout */}
+      <div className="mt-5 flex h-14 items-start border-t border-[var(--color-rule)] pt-3">
+        {active ? (
+          (() => {
+            const r = rows.find((x) => x.name === active);
+            return (
+              <div className="text-[12.5px] leading-relaxed">
+                <span className="text-accent">{r.role}</span>
+                <span className="text-ink-faint">
+                  {" "}
+                  — {formatMonth(r.start)} to {r.end ? formatMonth(r.end) : "present"} ·{" "}
+                  {formatDuration(r.months)}
+                </span>
+                <div className="mt-0.5 text-ink-soft">{r.focus}</div>
+              </div>
+            );
+          })()
+        ) : (
+          <p className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink-faint">
+            Hover or tap a row for role, dates and focus
+          </p>
+        )}
       </div>
     </Reveal>
   );
@@ -1354,32 +1902,51 @@ function Contact() {
         <Reveal delay={120} className="md:col-span-5">
           <dl className="divide-y divide-[var(--color-rule)] border-y border-[var(--color-rule)]">
             {[
-              { k: "Email", v: identity.email, href: `mailto:${identity.email}` },
-              { k: "Phone", v: identity.phone, href: `tel:${identity.phone.replace(/\s/g, "")}` },
-              { k: "LinkedIn", v: identity.linkedinLabel, href: identity.linkedin },
-              { k: "GitHub", v: identity.githubLabel, href: identity.github },
-              { k: "Location", v: identity.location, href: null },
-            ].map((row) => (
-              <div key={row.k} className="group flex items-baseline justify-between gap-6 py-3.5">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
-                  {row.k}
-                </dt>
-                <dd className="text-right text-sm">
-                  {row.href ? (
-                    <a
-                      href={row.href}
-                      target={row.href.startsWith("http") ? "_blank" : undefined}
-                      rel="noreferrer"
-                      className="transition-colors group-hover:text-accent"
-                    >
-                      {row.v}
-                    </a>
-                  ) : (
-                    row.v
-                  )}
-                </dd>
-              </div>
-            ))}
+              { k: "Email", icon: "mail", v: identity.email, href: `mailto:${identity.email}` },
+              {
+                k: "Phone",
+                icon: "phone",
+                v: identity.phone,
+                href: `tel:${identity.phone.replace(/\s/g, "")}`,
+              },
+              { k: "LinkedIn", icon: "linkedin", v: identity.linkedinLabel, href: identity.linkedin },
+              { k: "GitHub", icon: "github", v: identity.githubLabel, href: identity.github },
+              { k: "Location", icon: "pin", v: identity.location, href: null },
+            ].map((row) => {
+              const external = row.href?.startsWith("http");
+              const Row = (
+                <>
+                  <dt className="flex items-center gap-2.5 text-ink-faint transition-colors duration-300 group-hover:text-accent">
+                    <Icon name={row.icon} className="h-[15px] w-[15px]" />
+                    <span className="font-mono text-[10px] uppercase tracking-[0.18em]">{row.k}</span>
+                  </dt>
+                  <dd className="flex items-center gap-2 text-right text-sm transition-colors duration-300 group-hover:text-accent">
+                    {row.v}
+                    {external && (
+                      <Icon
+                        name="arrow"
+                        className="h-3 w-3 -translate-x-1 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100"
+                      />
+                    )}
+                  </dd>
+                </>
+              );
+              return row.href ? (
+                <a
+                  key={row.k}
+                  href={row.href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noreferrer" : undefined}
+                  className="group flex items-center justify-between gap-6 py-3.5"
+                >
+                  {Row}
+                </a>
+              ) : (
+                <div key={row.k} className="group flex items-center justify-between gap-6 py-3.5">
+                  {Row}
+                </div>
+              );
+            })}
           </dl>
         </Reveal>
       </div>
@@ -1389,7 +1956,7 @@ function Contact() {
 
 /* --------------------------------- footer --------------------------------- */
 
-function Footer({ blueprintOn, onToggleBlueprint }) {
+function Footer() {
   return (
     <footer
       data-bp="footer"
@@ -1399,15 +1966,8 @@ function Footer({ blueprintOn, onToggleBlueprint }) {
         <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
           © {new Date().getFullYear()} {CONFIG.identity.fullName}
         </span>
-        <button
-          onClick={onToggleBlueprint}
-          className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint transition-colors hover:text-accent"
-          title="Toggle blueprint mode"
-        >
-          {blueprintOn ? "Blueprint on — Esc to exit" : `${CONFIG.easterEgg.hint} ↴`}
-        </button>
         <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
-          Built in Mauritius
+          Built in Mauritius · Working worldwide
         </span>
       </div>
     </footer>
@@ -1419,12 +1979,20 @@ function Footer({ blueprintOn, onToggleBlueprint }) {
 export default function Portfolio() {
   const reduced = usePrefersReducedMotion();
   const progress = useScrollProgress();
+  const active = useActiveSection(RAIL_IDS);
   const [blueprintOn, setBlueprintOn] = useBlueprintMode(CONFIG.easterEgg.sequence);
 
   return (
     <div className="relative min-h-screen">
-      <Nav progress={progress} />
-      <main>
+      <Nav
+        progress={progress}
+        active={active}
+        blueprintOn={blueprintOn}
+        reduced={reduced}
+        onToggleBlueprint={() => setBlueprintOn((v) => !v)}
+      />
+      <SectionRail active={active} />
+      <main className="snap-root">
         <Hero reduced={reduced} blueprint={blueprintOn} />
         <About />
         <Work />
@@ -1432,7 +2000,7 @@ export default function Portfolio() {
         <Numbers />
         <Contact />
       </main>
-      <Footer blueprintOn={blueprintOn} onToggleBlueprint={() => setBlueprintOn((v) => !v)} />
+      <Footer />
     </div>
   );
 }
