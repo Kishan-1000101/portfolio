@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f4f1ea;
+  --color-paper-deep: #ebe6dc;
+  --color-paper-dark: #12100e;
+  --color-ink: #14110f;
+  --color-ink-soft: #554e46;
+  --color-ink-faint: #8c8377;
+  --color-accent: #0b769f;
+  --color-rule: rgba(20, 17, 15, 0.14);
+
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  /* Non-utility colours read directly by JS/inline styles. */
+  --bar-past: rgba(20, 17, 15, 0.45);
+  --stroke-ink: 20, 17, 15;
+  --stroke-accent: 11, 118, 159;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* Paper grain — cheap, one repeating svg, no image request */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.28;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+}
+
+/* ---------- Scroll reveal ---------- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Masked line reveal for display type */
+.line-mask {
+  display: block;
+  overflow: hidden;
+}
+.line-mask > span {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 1.05s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.line-mask.is-visible > span {
+  transform: none;
+}
+
+/* ---------- Marquee ---------- */
+@keyframes drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: drift 46s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ---------- Accordion ---------- */
+.collapse-grid {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.collapse-grid.is-open {
+  grid-template-rows: 1fr;
+}
+.collapse-inner {
+  overflow: hidden;
+}
+
+/* ---------- Blueprint easter egg ----------
+   Remaps the theme variables rather than forcing `color`, so every Tailwind
+   utility built on --color-ink / --color-paper flips with it. */
+html.blueprint {
+  --color-paper: #0d1b26;
+  --color-paper-deep: #162936;
+  --color-ink: #d6ecf8;
+  --color-ink-soft: #94bdd3;
+  --color-ink-faint: #6389a0;
+  --color-accent: #6fd3ff;
+  --color-rule: rgba(111, 211, 255, 0.26);
+  --bar-past: rgba(214, 236, 248, 0.34);
+  --stroke-ink: 214, 236, 248;
+  --stroke-accent: 111, 211, 255;
+  background: #0d1b26;
+}
+html.blueprint body {
+  background: #0d1b26;
+  color: #d6ecf8;
+}
+html.blueprint body::before {
+  opacity: 0.05;
+}
+html.blueprint section,
+html.blueprint header,
+html.blueprint footer,
+html.blueprint article,
+html.blueprint figure {
+  outline: 1px dashed rgba(111, 211, 255, 0.3);
+  outline-offset: -1px;
+}
+html.blueprint [data-bp]::after {
+  content: attr(data-bp);
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6fd3ff;
+  background: rgba(13, 27, 38, 0.92);
+  padding: 2px 6px;
+  border: 1px solid rgba(111, 211, 255, 0.4);
+  z-index: 40;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal],
+  .line-mask > span {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .marquee-track {
+    animation: none;
+  }
+}
