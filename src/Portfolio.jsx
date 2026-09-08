@@ -58,12 +58,9 @@ const CONFIG = {
     ],
   },
 
-  /* Case studies. Add an object here and a new numbered row appears.
-     `featured: true` shows a live site preview when the row is open.
-     Organise like the CV: public systems first, then earlier engagements,
-     then the career-break builds further down. */
+  /* Case studies for systems with a public URL / deep dive. */
   workIntro:
-    "Systems currently in production, organised the same way as my CV. Client names sit inside each case study — Agence ISCL covers KeyCars and Client Analytics.",
+    "Selected systems currently in production. Open any row for the problem, approach, result and a live preview.",
 
   projects: [
     {
@@ -182,69 +179,186 @@ const CONFIG = {
     },
   ],
 
-  /* Work delivered inside employers' client engagements. Deliberately describes
-     role and technology only — no end-client names or proprietary detail. */
-  earlier: {
-    label: "Earlier engagements",
-    note: "Delivered inside employers' and agencies' client engagements. Described by role and technology only — end clients and their systems stay confidential. Matches the Agileum and Business Force sections on my CV.",
-    items: [
+  /* LinkedIn-style experience: company → each position (title, type, dates) → what I did. */
+  experience: {
+    label: "Experience",
+    note: "By company and role — title, employment type, dates, and what I shipped. Work inside employers' client systems stays unnamed.",
+    companies: [
       {
-        org: "Agileum",
-        period: "Jan 2025 — Apr 2026",
-        role: "Associate software engineer → freelance",
-        work: [
-          "Secure AI chatbot with JWT and Google/Microsoft authentication",
-          "Automated invoice processing and document data extraction",
-          "Drupal content platforms plus Laravel, Angular and Node applications",
-          "Release and environment management with Docker, Nginx and Jenkins",
-          ".NET Core migration support",
+        org: "Agence ISCL (Linar)",
+        location: "Réunion · Remote",
+        roles: [
+          {
+            title: "Full Stack Developer",
+            type: "Freelance",
+            period: "Sep 2026 — Present",
+            bullets: [
+              "Continuing delivery on the same platforms — feature work, refactoring and production support across the rental SaaS and analytics products",
+            ],
+          },
+          {
+            title: "Full Stack Developer",
+            type: "Full-time",
+            period: "Jun 2025 — Sep 2026",
+            bullets: [
+              "KeyCars — multi-tenant car rental SaaS (Laravel, React, TypeScript): fleets, agencies, pricing, OCR, devis/contrat/facture, états des lieux, parking editor",
+              "Structured QA on a related rental product (rentflo.fr)",
+            ],
+          },
+          {
+            title: "Full Stack Developer",
+            type: "Part-time",
+            period: "Jun 2025 — Oct 2025",
+            bullets: [
+              "WordPress plugins for internal agency needs",
+              "Multi-tenant marketing analytics dashboard (React, Supabase) with n8n data automation",
+            ],
+          },
         ],
       },
       {
+        org: "ZilMall",
+        location: "Mauritius · Hybrid",
+        roles: [
+          {
+            title: "Full Stack Developer & Project Manager",
+            type: "Freelance",
+            period: "Oct 2025 — Present",
+            bullets: [
+              "Building a Mauritius multi-vendor marketplace (Laravel, React) — storefront, seller portal, admin, onboarding/approvals and commerce flows",
+              "Managing scope, priorities and release sequencing directly with stakeholders",
+            ],
+          },
+        ],
+      },
+      {
+        org: "MR Production Co Ltd",
+        location: "Remote",
+        roles: [
+          {
+            title: "Full Stack Developer",
+            type: "Freelance",
+            period: "Feb 2026 — Present",
+            bullets: [
+              "Studio website and booking platform (Laravel, Filament, React) — live availability calendar, admin panel, production on OVH",
+            ],
+          },
+        ],
+      },
+      {
+        org: "Agileum",
+        location: "Mauritius",
+        roles: [
+          {
+            title: "Full Stack Web Developer",
+            type: "Freelance",
+            period: "Oct 2025 — Apr 2026",
+            bullets: [
+              "Continued client delivery after the full-time role — feature work, integrations and issue resolution on existing applications",
+            ],
+          },
+          {
+            title: "Associate Software Engineer",
+            type: "Full-time",
+            period: "Jan 2025 — Oct 2025",
+            bullets: [
+              "Built and maintained web apps across Laravel, PHP, Node.js, Angular, Python and Drupal",
+              "Secure AI chatbot with JWT and Google/Microsoft auth; automated invoice / document extraction",
+              "Client-facing proposals, estimates and requirement discussions",
+              "Environments and releases with Docker, Nginx, Jenkins and Git; .NET Core migration support",
+            ],
+          },
+        ],
+      },
+      {
+        org: "Safyr Utilis",
+        location: "Mauritius · Remote",
+        roles: [
+          {
+            title: "Web Developer",
+            type: "Freelance",
+            period: "Feb 2025 — Nov 2025",
+            bullets: [
+              "Designed, built and deployed the company site (syul.mu) as sole developer",
+            ],
+          },
+        ],
+      },
+      {
+        org: "Career break — PC building",
+        location: "Mauritius",
+        roles: [
+          {
+            title: "Custom PC builds",
+            type: "Personal",
+            period: "Oct 2024 — Dec 2024",
+            bullets: [
+              "Designed and built high-performance gaming PCs from scratch — component selection, assembly, testing and optimisation — sold on Facebook Marketplace",
+            ],
+          },
+        ],
+        /* Gallery rendered under this company when `builds` is set. */
+        buildsKey: "careerBreak",
+      },
+      {
         org: "Business Force Limited",
-        period: "Feb 2023 — Sep 2024",
-        role: "Information system engineer",
-        work: [
-          "Salesforce delivery using Apex, SOQL, Flows, Triggers and Omnistudio",
-          "PL/SQL investigation and query optimisation on Oracle",
-          "Off-hours production support for clients in other time zones",
-          "Monthly and yearly closure cycle support",
-          "Mentored two interns on PL/SQL and application debugging",
+        location: "Curepipe, Mauritius · Hybrid",
+        roles: [
+          {
+            title: "Information System Engineer",
+            type: "Full-time",
+            period: "Feb 2023 — Sep 2024",
+            bullets: [
+              "Salesforce delivery with Apex, SOQL, Flows, Triggers and Omnistudio",
+              "PL/SQL investigation and query work on Oracle; Laravel and API contributions",
+              "Off-hours production support for clients in other time zones; monthly and yearly closure cycles",
+              "Mentored two interns on PL/SQL and application debugging",
+            ],
+          },
         ],
       },
     ],
   },
 
-  /* Career break between BFL and Agileum — hardware builds sold on Marketplace. */
+  /* Career break builds — referenced from experience via buildsKey. */
   careerBreak: {
-    label: "Career break — PC building",
-    period: "Oct 2024 — Dec 2024",
-    note: "Between Business Force and Agileum I designed and built high-performance gaming PCs from scratch — component selection, assembly, testing and optimisation — and sold them on Facebook Marketplace.",
     builds: [
       {
         name: "Build 01",
+        title: "Gaming PC Bundle · RTX 3060",
+        spec: "MSI Z590 · 16GB DDR4 · RTX 3060 12GB · 512GB",
+        image: "./builds/build-01.jpg",
         url: "https://www.facebook.com/marketplace/item/1184770826446411",
       },
       {
         name: "Build 02",
+        title: "Full setup · Ryzen 5 1500X",
+        spec: "Ryzen 5 1500X · GTX 1650 OC · peripherals",
+        image: "./builds/build-02.jpg",
         url: "https://www.facebook.com/marketplace/item/1864597417679724/",
       },
       {
         name: "Build 03",
+        title: "Full setup · Ryzen 7 2700",
+        spec: "Ryzen 7 2700 · GTX 1060 6GB · RGB case",
+        image: "./builds/build-03.jpg",
         url: "https://www.facebook.com/marketplace/item/591497393373766/",
       },
       {
         name: "Build 04",
+        title: "Full setup · i7-12700",
+        spec: "i7-12700 · GTX 1080 Ti · dual-monitor desk",
+        image: "./builds/build-04.jpg",
         url: "https://www.facebook.com/marketplace/item/472324075339632/",
       },
     ],
   },
 
   /* Capability index. `level`: 3 = daily, 2 = builds with, 1 = prior/enterprise.
-     Curated from LinkedIn + current delivery — not every skill ever listed. */
+     Capability index — honest tiers against current delivery. */
   skills: {
     label: "Capability index",
-    note: "Levelled honestly against what I ship. Everything at three, I use every week and can be interviewed on. Drawn from LinkedIn and the work above — not a dump of every tool I've touched.",
+    note: "Levelled honestly against what I ship. Everything at three, I use every week and can be interviewed on — not a dump of every tool I've touched.",
     groups: [
       {
         name: "Backend",
@@ -361,8 +475,8 @@ const CONFIG = {
     {
       name: "Agileum",
       start: [2025, 1],
-      end: [2026, 4],
-      kind: "Full-time → freelance",
+      end: [2025, 10],
+      kind: "Full-time",
       role: "Associate software engineer",
       focus: "AI integration · Drupal · Laravel · DevOps",
     },
@@ -377,10 +491,26 @@ const CONFIG = {
     {
       name: "Agence ISCL",
       start: [2025, 6],
-      end: null,
-      kind: "Part-time → full-time → freelance",
+      end: [2025, 10],
+      kind: "Part-time",
       role: "Full-stack developer",
-      focus: "KeyCars SaaS · analytics · WordPress",
+      focus: "WordPress · analytics · n8n",
+    },
+    {
+      name: "Agence ISCL",
+      start: [2025, 6],
+      end: [2026, 9],
+      kind: "Full-time",
+      role: "Full-stack developer",
+      focus: "KeyCars SaaS · analytics",
+    },
+    {
+      name: "Agileum",
+      start: [2025, 10],
+      end: [2026, 4],
+      kind: "Freelance",
+      role: "Full stack web developer",
+      focus: "Continued client delivery",
     },
     {
       name: "ZilMall",
@@ -397,6 +527,14 @@ const CONFIG = {
       kind: "Freelance",
       role: "Full-stack developer",
       focus: "Studio site & booking platform",
+    },
+    {
+      name: "Agence ISCL",
+      start: [2026, 9],
+      end: null,
+      kind: "Freelance",
+      role: "Full-stack developer",
+      focus: "Ongoing KeyCars · analytics support",
     },
   ],
   timelineRange: { from: 2023, to: 2026 },
@@ -453,7 +591,7 @@ function useReveal(options = {}) {
           }
         });
       },
-      { threshold: options.threshold ?? 0.15, rootMargin: options.rootMargin ?? "0px 0px -8% 0px" }
+      { threshold: options.threshold ?? 0.08, rootMargin: options.rootMargin ?? "0px 0px -4% 0px" }
     );
     io.observe(el);
     return () => io.disconnect();
@@ -539,7 +677,10 @@ function useImmersiveScroll(reduced) {
       const to = SCROLL_PLAN.findIndex((s) => s.id === targetId);
       if (to < 0 || to === from) {
         // Same section — still jump to its start without animation
-        el.scrollIntoView({ behavior: reduced ? "smooth" : "instant", block: "start" });
+        window.scrollTo({
+          top: el.offsetTop,
+          behavior: reduced ? "smooth" : "instant",
+        });
         return;
       }
       const dir = direction || (to > from ? "down" : "up");
@@ -548,7 +689,7 @@ function useImmersiveScroll(reduced) {
       const index = String(to).padStart(2, "0");
 
       if (reduced) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.scrollTo({ top: el.offsetTop, behavior: "smooth" });
         return;
       }
 
@@ -563,7 +704,7 @@ function useImmersiveScroll(reduced) {
           behavior: "instant",
         });
       } else {
-        el.scrollIntoView({ behavior: "instant", block: "start" });
+        window.scrollTo({ top: el.offsetTop, behavior: "instant" });
       }
       await new Promise((r) => setTimeout(r, 310));
       setCurtain(null);
@@ -575,7 +716,28 @@ function useImmersiveScroll(reduced) {
 
   goToRef.current = goTo;
 
+  /** Same band curtain as section hops — call `atCovered` while the screen is fully covered. */
+  const runCurtain = useCallback(
+    async ({ direction = "down", label, index, atCovered }) => {
+      if (reduced) {
+        await atCovered?.();
+        return;
+      }
+      if (locked.current) return;
+      locked.current = true;
+      setCurtain({ direction, label, index });
+      await new Promise((r) => setTimeout(r, 185));
+      await atCovered?.();
+      await new Promise((r) => setTimeout(r, 310));
+      setCurtain(null);
+      await new Promise((r) => setTimeout(r, 40));
+      locked.current = false;
+    },
+    [reduced]
+  );
+
   const navigateTo = useCallback((targetId) => {
+    if (document.body.dataset.modalOpen === "1") return;
     goToRef.current?.(targetId);
   }, []);
 
@@ -603,7 +765,16 @@ function useImmersiveScroll(reduced) {
         e.preventDefault();
         return;
       }
-      if (document.body.dataset.modalOpen === "1") return;
+      if (document.body.dataset.modalOpen === "1") {
+        const preview = e.target.closest?.(".project-modal-preview");
+        if (preview) {
+          const canDown = preview.scrollTop + preview.clientHeight < preview.scrollHeight - 2;
+          const canUp = preview.scrollTop > 2;
+          if ((e.deltaY > 0 && canDown) || (e.deltaY < 0 && canUp)) return;
+        }
+        e.preventDefault();
+        return;
+      }
 
       const i = currentIndex();
       const section = SCROLL_PLAN[i];
@@ -614,12 +785,17 @@ function useImmersiveScroll(reduced) {
       if (Math.abs(e.deltaY) < 8) return;
 
       if (section.mode === "page") {
+        const next = dir === "down" ? i + 1 : i - 1;
+        // Don't trap scroll on the first/last page section when there's nowhere to go
+        if (next < 0 || next >= SCROLL_PLAN.length) return;
         e.preventDefault();
         advance(dir);
         return;
       }
 
       if (atSectionEdge(el, dir)) {
+        const next = dir === "down" ? i + 1 : i - 1;
+        if (next < 0 || next >= SCROLL_PLAN.length) return;
         e.preventDefault();
         advance(dir);
       }
@@ -631,6 +807,8 @@ function useImmersiveScroll(reduced) {
         const i = currentIndex();
         const section = SCROLL_PLAN[i];
         const el = document.getElementById(section.id);
+        const canAdvance = i + 1 < SCROLL_PLAN.length;
+        if (!canAdvance) return;
         if (section.mode === "page" || (el && atSectionEdge(el, "down"))) {
           e.preventDefault();
           advance("down");
@@ -640,6 +818,8 @@ function useImmersiveScroll(reduced) {
         const i = currentIndex();
         const section = SCROLL_PLAN[i];
         const el = document.getElementById(section.id);
+        const canAdvance = i - 1 >= 0;
+        if (!canAdvance) return;
         if (section.mode === "page" || (el && atSectionEdge(el, "up"))) {
           e.preventDefault();
           advance("up");
@@ -658,6 +838,8 @@ function useImmersiveScroll(reduced) {
       const i = currentIndex();
       const section = SCROLL_PLAN[i];
       const el = document.getElementById(section.id);
+      const next = dir === "down" ? i + 1 : i - 1;
+      if (next < 0 || next >= SCROLL_PLAN.length) return;
       if (section.mode === "page" || (el && atSectionEdge(el, dir))) {
         advance(dir);
       }
@@ -675,7 +857,7 @@ function useImmersiveScroll(reduced) {
     };
   }, [goTo, currentIndex, reduced]);
 
-  return { curtain, navigateTo };
+  return { curtain, navigateTo, runCurtain };
 }
 
 function PageCurtain({ curtain }) {
@@ -714,6 +896,7 @@ function useBlueprintMode(sequence) {
       const tag = document.activeElement?.tagName;
       if (tag === "INPUT" || tag === "TEXTAREA") return;
       if (e.key === "Escape") {
+        if (document.body.dataset.modalOpen === "1") return;
         setOn(false);
         buffer.current = "";
         return;
@@ -789,7 +972,7 @@ function SectionLabel({ index, children }) {
     <div
       ref={ref}
       data-reveal
-      className="mb-10 flex items-baseline gap-4 border-b border-[var(--color-rule)] pb-3"
+      className="mb-6 flex items-baseline gap-4 border-b border-[var(--color-rule)] pb-2.5 md:mb-7"
     >
       <span className="font-mono text-[11px] tracking-[0.22em] text-accent">{index}</span>
       <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-soft">
@@ -1089,6 +1272,7 @@ function BlueprintToggle({ on, onToggle }) {
 
 function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
   const [solid, setSolid] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const atHero = active === "top";
 
   useEffect(() => {
@@ -1098,37 +1282,49 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e) => e.key === "Escape" && setMenuOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
+  const go = (id) => {
+    setMenuOpen(false);
+    onNavigate?.(id);
+  };
+
   return (
     <header
       data-bp={atHero ? undefined : "header"}
       className={`fixed inset-x-0 top-0 z-30 transition-colors duration-500 ${
-        solid ? "bg-paper/85 backdrop-blur-sm" : "bg-transparent"
+        solid || menuOpen ? "bg-paper/90 backdrop-blur-sm" : "bg-transparent"
       } ${atHero ? "bp-quiet" : ""}`}
     >
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-12">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-3.5 md:px-12 md:py-4">
         <a
           href="#top"
           onClick={(e) => {
             e.preventDefault();
-            onNavigate?.("top");
+            go("top");
           }}
           className="group flex items-baseline gap-2.5"
         >
           <span className="font-display text-xl leading-none">KS</span>
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint md:inline">
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint sm:inline">
             {CONFIG.identity.role}
           </span>
         </a>
-        <nav className="flex items-center gap-4 md:gap-6">
+        <nav className="flex items-center gap-3 md:gap-6">
           {NAV.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
               onClick={(e) => {
                 e.preventDefault();
-                onNavigate?.(item.id);
+                go(item.id);
               }}
-              className={`group relative hidden font-mono text-[11px] uppercase tracking-[0.16em] transition-colors sm:block ${
+              className={`group relative hidden font-mono text-[11px] uppercase tracking-[0.16em] transition-colors md:block ${
                 active === item.id ? "text-accent" : "text-ink-soft hover:text-ink"
               }`}
             >
@@ -1142,13 +1338,54 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
           ))}
           <a
             href={`mailto:${CONFIG.identity.email}`}
-            className="border border-ink px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors duration-300 hover:bg-ink hover:text-paper"
+            className="hidden border border-ink px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors duration-300 hover:bg-ink hover:text-paper sm:inline-flex"
           >
             Get in touch
           </a>
           <BlueprintToggle on={blueprintOn} onToggle={onToggleBlueprint} />
+          <button
+            type="button"
+            className="flex h-9 w-9 items-center justify-center border border-[var(--color-rule)] md:hidden"
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            <span className="font-mono text-[11px] tracking-[0.08em]">{menuOpen ? "✕" : "☰"}</span>
+          </button>
         </nav>
       </div>
+
+      {menuOpen && (
+        <div className="border-t border-[var(--color-rule)] bg-paper px-5 py-4 md:hidden">
+          <ul className="space-y-1">
+            {NAV.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    go(item.id);
+                  }}
+                  className={`block py-2.5 font-mono text-[12px] uppercase tracking-[0.16em] ${
+                    active === item.id ? "text-accent" : "text-ink-soft"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+            <li className="pt-2">
+              <a
+                href={`mailto:${CONFIG.identity.email}`}
+                className="inline-flex border border-ink px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.16em]"
+              >
+                Get in touch
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
+
       <div className="h-px w-full bg-[var(--color-rule)]">
         <div
           className="h-px bg-accent transition-[width] duration-150 ease-out"
@@ -1175,11 +1412,11 @@ function Hero({ reduced, blueprint }) {
     <section
       id="top"
       data-bp="hero"
-      className="panel-page relative flex min-h-[100svh] flex-col justify-between overflow-hidden pt-28"
+      className="panel-page relative flex h-[100svh] max-h-[100svh] flex-col overflow-hidden"
     >
       <InkField reduced={reduced} blueprint={blueprint} />
 
-      <div className="relative mx-auto w-full max-w-[1400px] flex-1 px-6 pt-10 md:px-12 md:pt-20">
+      <div className="relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-center px-5 pt-14 pb-4 md:px-12 md:pt-16 md:pb-6">
         <div className="flex items-center gap-3">
           <span className="relative flex h-1.5 w-1.5">
             {identity.available && !reduced && (
@@ -1192,7 +1429,7 @@ function Hero({ reduced, blueprint }) {
           </p>
         </div>
 
-        <h1 className="mt-8 max-w-[16ch] font-display text-[clamp(2.9rem,10vw,8.5rem)] leading-[0.92] tracking-[-0.02em]">
+        <h1 className="mt-5 max-w-[16ch] font-display text-[clamp(2.6rem,9vw,7.5rem)] leading-[0.92] tracking-[-0.02em]">
           {hero.headline.map((line, i) => (
             <span
               key={line}
@@ -1209,7 +1446,7 @@ function Hero({ reduced, blueprint }) {
           ))}
         </h1>
 
-        <div className="mt-12 grid gap-8 border-t border-[var(--color-rule)] pt-6 md:grid-cols-12">
+        <div className="mt-8 grid gap-8 border-t border-[var(--color-rule)] pt-5 md:grid-cols-12">
           <p
             className="max-w-[52ch] text-[15px] leading-relaxed text-ink-soft transition-all duration-1000 md:col-span-6 md:text-base"
             style={{
@@ -1221,7 +1458,7 @@ function Hero({ reduced, blueprint }) {
             {hero.intro}
           </p>
           <dl
-            className="grid grid-cols-2 gap-x-6 gap-y-4 transition-all duration-1000 md:col-span-6 md:grid-cols-3 md:justify-items-end"
+            className="mt-1 grid grid-cols-1 gap-x-6 gap-y-3 transition-all duration-1000 sm:grid-cols-3 md:col-span-6 md:justify-items-end"
             style={{
               opacity: mounted ? 1 : 0,
               transform: mounted ? "none" : "translateY(14px)",
@@ -1244,7 +1481,7 @@ function Hero({ reduced, blueprint }) {
         </div>
       </div>
 
-      <div className="marquee relative mt-16 overflow-hidden border-y border-[var(--color-rule)] py-3">
+      <div className="marquee relative shrink-0 overflow-hidden border-y border-[var(--color-rule)] py-3">
         <div className="marquee-track flex w-max gap-10 whitespace-nowrap">
           {marquee.map((item, i) => (
             <span
@@ -1269,17 +1506,17 @@ function About() {
     <section
       id="about"
       data-bp="about"
-      className="panel-page relative flex min-h-[100svh] flex-col justify-center px-6 py-20 md:px-12"
+      className="panel-page relative flex min-h-[100svh] flex-col justify-center px-5 py-20 md:px-12 md:py-24"
     >
       <div className="mx-auto w-full max-w-[1400px]">
       <SectionLabel index="01">{about.label}</SectionLabel>
 
-      <div className="grid gap-10 md:grid-cols-12 md:gap-14">
+      <div className="grid gap-8 md:grid-cols-12 md:gap-12 lg:gap-14">
         <Reveal className="md:col-span-7">
-          <p className="font-display text-[clamp(1.55rem,3vw,2.55rem)] leading-[1.15] tracking-[-0.01em]">
+          <p className="font-display text-[clamp(1.45rem,2.8vw,2.4rem)] leading-[1.15] tracking-[-0.01em]">
             {about.lead}
           </p>
-          <div className="mt-6 space-y-4 text-[14.5px] leading-relaxed text-ink-soft md:text-[15px]">
+          <div className="mt-5 space-y-3.5 text-[14px] leading-relaxed text-ink-soft md:text-[15px]">
             {about.body.map((para) => (
               <p key={para.slice(0, 24)}>{para}</p>
             ))}
@@ -1287,18 +1524,18 @@ function About() {
         </Reveal>
 
         <Reveal delay={120} className="md:col-span-5">
-          <figure className="border-l-2 border-accent pl-6">
-            <blockquote className="font-display text-xl italic leading-snug md:text-2xl">
+          <figure className="border-l-2 border-accent pl-5 md:pl-6">
+            <blockquote className="font-display text-lg italic leading-snug md:text-xl lg:text-2xl">
               “{about.pullQuote}”
             </blockquote>
           </figure>
-          <dl className="mt-8 divide-y divide-[var(--color-rule)] border-y border-[var(--color-rule)]">
+          <dl className="mt-6 divide-y divide-[var(--color-rule)] border-y border-[var(--color-rule)]">
             {about.facts.map((f) => (
-              <div key={f.k} className="flex items-baseline justify-between gap-6 py-2.5">
-                <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+              <div key={f.k} className="flex items-baseline justify-between gap-4 py-2.5 sm:gap-6">
+                <dt className="shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
                   {f.k}
                 </dt>
-                <dd className="text-right text-sm">{f.v}</dd>
+                <dd className="text-right text-[13px] sm:text-sm">{f.v}</dd>
               </div>
             ))}
           </dl>
@@ -1311,107 +1548,146 @@ function About() {
 
 /* ---------------------------------- work ---------------------------------- */
 
-function ProjectCaseStudy({ project }) {
-  return (
-    <div className="grid gap-8 md:grid-cols-12 md:gap-10">
-      <dl className="md:col-span-3">
-        {[
-          { k: "Client", v: project.client },
-          { k: "Role", v: project.role },
-          { k: "Period", v: project.period },
-        ].map((m) => (
-          <div key={m.k} className="mb-4">
-            <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
-              {m.k}
-            </dt>
-            <dd className="mt-1 text-sm">{m.v}</dd>
-          </div>
-        ))}
-        {project.url && (
-          <div className="mb-5">
-            <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
-              Live
-            </dt>
-            <dd className="mt-1">
-              <a
-                href={project.url}
-                target="_blank"
-                rel="noreferrer"
-                className="group/link inline-flex items-center gap-1.5 text-sm text-accent"
-              >
-                <span className="border-b border-accent/40 transition-colors group-hover/link:border-accent">
-                  {project.urlLabel}
-                </span>
-                <Icon
-                  name="arrow"
-                  className="h-3 w-3 transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
-                />
-              </a>
-            </dd>
-          </div>
-        )}
-        <div className="flex flex-wrap gap-1.5">
-          {project.stack.map((s) => (
-            <span
-              key={s}
-              className="border border-[var(--color-rule)] px-2 py-1 font-mono text-[10px] tracking-[0.08em] text-ink-soft"
-            >
-              {s}
-            </span>
-          ))}
-        </div>
-      </dl>
+/** Sized like a normal desktop browser (16:10), never stretched tall with empty gray. */
+function BrowserFrame({ url, urlLabel, title }) {
+  const hostRef = useRef(null);
+  const [size, setSize] = useState({ w: 0, h: 0 });
 
-      <div className="md:col-span-9">
-        {project.featured && project.url && (
+  useEffect(() => {
+    const el = hostRef.current;
+    if (!el) return;
+    const sync = () => {
+      const width = el.clientWidth;
+      const height = el.clientHeight;
+      if (width < 2 || height < 2) return;
+      const ratio = 16 / 10;
+      let w = width;
+      let h = w / ratio;
+      if (h > height) {
+        h = height;
+        w = h * ratio;
+      }
+      setSize({ w: Math.round(w), h: Math.round(h) });
+    };
+    sync();
+    const ro = new ResizeObserver(sync);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <div ref={hostRef} className="flex h-full min-h-0 w-full items-center justify-center">
+      <div
+        className="flex flex-col overflow-hidden border border-[var(--color-rule)] bg-[var(--color-paper-deep)]"
+        style={size.w ? { width: size.w, height: size.h } : { width: "100%", aspectRatio: "16 / 10" }}
+      >
+        <div className="flex shrink-0 items-center gap-2 border-b border-[var(--color-rule)] px-3 py-1.5">
+          <span className="flex gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-ink/20" />
+            <span className="h-1.5 w-1.5 rounded-full bg-ink/20" />
+            <span className="h-1.5 w-1.5 rounded-full bg-ink/20" />
+          </span>
+          <span className="min-w-0 truncate font-mono text-[10px] tracking-[0.08em] text-ink-faint">
+            {urlLabel}
+          </span>
           <a
-            href={project.url}
+            href={url}
             target="_blank"
             rel="noreferrer"
-            className="group/preview mb-7 block overflow-hidden border border-[var(--color-rule)] bg-[var(--color-paper-deep)]"
+            className="ml-auto shrink-0 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-faint transition-colors hover:text-accent"
           >
-            <div className="flex items-center gap-2 border-b border-[var(--color-rule)] px-3 py-2">
-              <span className="flex gap-1.5">
-                <span className="h-2 w-2 rounded-full bg-ink/20" />
-                <span className="h-2 w-2 rounded-full bg-ink/20" />
-                <span className="h-2 w-2 rounded-full bg-ink/20" />
-              </span>
-              <span className="font-mono text-[10px] tracking-[0.08em] text-ink-faint">
-                {project.urlLabel}
-              </span>
-            </div>
-            <div className="relative aspect-[16/9] overflow-hidden">
-              <img
-                src={`https://s.wordpress.com/mshots/v1/${encodeURIComponent(project.url)}?w=1400`}
-                alt={`Preview of ${project.title}`}
-                loading="lazy"
-                className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover/preview:scale-[1.02]"
-              />
-              <span className="absolute inset-0 bg-gradient-to-t from-paper/40 to-transparent opacity-60" />
-            </div>
+            Open site ↗
           </a>
-        )}
+        </div>
+        <iframe
+          key={url}
+          title={`Live preview — ${title}`}
+          src={url}
+          className="pointer-events-none h-full w-full flex-1 border-0 bg-paper"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          tabIndex={-1}
+        />
+      </div>
+    </div>
+  );
+}
 
-        <div className="grid gap-7 md:grid-cols-3">
+function ProjectCaseStudy({ project }) {
+  const narrative = [
+    { k: "Problem", v: project.problem },
+    { k: "Approach", v: project.approach },
+    { k: "Result", v: project.result },
+  ];
+
+  return (
+    <div className="grid h-full min-h-0 gap-4 md:grid-cols-12 md:gap-5 lg:gap-6">
+      {/* Left: meta + narrative */}
+      <aside className="flex min-h-0 flex-col gap-3 md:overflow-y-auto md:col-span-4">
+        <dl className="shrink-0">
           {[
-            { k: "Problem", v: project.problem },
-            { k: "Approach", v: project.approach },
-            { k: "Result", v: project.result },
-          ].map((block) => (
+            { k: "Client", v: project.client },
+            { k: "Role", v: project.role },
+            { k: "Period", v: project.period },
+          ].map((m) => (
+            <div key={m.k} className="mb-2.5">
+              <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+                {m.k}
+              </dt>
+              <dd className="mt-0.5 text-[13px] leading-snug">{m.v}</dd>
+            </div>
+          ))}
+          {project.url && (
+            <div className="mb-3">
+              <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+                Live
+              </dt>
+              <dd className="mt-0.5">
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group/link inline-flex items-center gap-1.5 text-[13px] text-accent"
+                >
+                  <span className="border-b border-accent/40 transition-colors group-hover/link:border-accent">
+                    {project.urlLabel}
+                  </span>
+                  <Icon
+                    name="arrow"
+                    className="h-3 w-3 transition-transform duration-300 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                  />
+                </a>
+              </dd>
+            </div>
+          )}
+          <div className="flex flex-wrap gap-1">
+            {project.stack.map((s) => (
+              <span
+                key={s}
+                className="border border-[var(--color-rule)] px-1.5 py-0.5 font-mono text-[9px] tracking-[0.08em] text-ink-soft"
+              >
+                {s}
+              </span>
+            ))}
+          </div>
+        </dl>
+
+        <div className="space-y-3.5 border-t border-[var(--color-rule)] pt-4">
+          {narrative.map((block) => (
             <div key={block.k}>
-              <h4 className="mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
-                <span className="h-px w-4 bg-accent" />
+              <h4 className="mb-1 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-accent">
+                <span className="h-px w-3 bg-accent" />
                 {block.k}
               </h4>
-              <p className="text-[13.5px] leading-relaxed text-ink-soft">{block.v}</p>
+              <p className="text-[12.5px] leading-relaxed text-ink-soft">{block.v}</p>
             </div>
           ))}
         </div>
 
         {project.highlights?.length > 0 && (
-          <dl className="mt-8 flex flex-wrap gap-x-10 gap-y-3 border-t border-[var(--color-rule)] pt-5">
+          <dl className="mt-auto space-y-1.5 border-t border-[var(--color-rule)] pt-3">
             {project.highlights.map((h) => (
-              <div key={h.k} className="flex items-baseline gap-2">
+              <div key={h.k} className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
                 <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
                   {h.k}
                 </dt>
@@ -1419,6 +1695,18 @@ function ProjectCaseStudy({ project }) {
               </div>
             ))}
           </dl>
+        )}
+      </aside>
+
+      <div className="project-modal-preview min-h-[42vw] w-full sm:min-h-[280px] md:col-span-8 md:h-full md:min-h-0">
+        {project.featured && project.url ? (
+          <BrowserFrame url={project.url} urlLabel={project.urlLabel} title={project.title} />
+        ) : (
+          <div className="flex h-full min-h-[180px] items-center justify-center border border-dashed border-[var(--color-rule)] px-6 text-center">
+            <p className="max-w-[36ch] text-[13px] leading-relaxed text-ink-faint">
+              No public preview for this engagement — details stay on the left.
+            </p>
+          </div>
         )}
       </div>
     </div>
@@ -1431,11 +1719,11 @@ function ProjectRow({ project, index, onOpen }) {
     <Reveal
       as="article"
       delay={index * 60}
-      className="group border-b border-[var(--color-rule)] px-5 md:px-8"
+      className="group border-b border-[var(--color-rule)] px-3 md:px-8"
     >
       <button
         onClick={onOpen}
-        className="flex w-full cursor-pointer items-start gap-5 py-7 text-left md:gap-10"
+        className="flex w-full cursor-pointer items-start gap-3 py-5 text-left sm:gap-5 md:gap-10 md:py-6"
       >
         <span className="mt-2 font-mono text-[11px] tracking-[0.18em] text-ink-faint transition-colors duration-300 group-hover:text-accent">
           {num}
@@ -1466,7 +1754,7 @@ function ProjectRow({ project, index, onOpen }) {
 
         <span
           aria-hidden="true"
-          className="mt-3 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint opacity-0 transition-opacity group-hover:opacity-100"
+          className="mt-3 hidden font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint opacity-0 transition-opacity group-hover:opacity-100 sm:inline"
         >
           Open ↗
         </span>
@@ -1475,63 +1763,268 @@ function ProjectRow({ project, index, onOpen }) {
   );
 }
 
-function ProjectModal({ project, index, onClose }) {
-  useEffect(() => {
-    document.body.dataset.modalOpen = "1";
-    const onKey = (e) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    return () => {
-      delete document.body.dataset.modalOpen;
-      window.removeEventListener("keydown", onKey);
-    };
-  }, [onClose]);
-
+function ProjectModal({
+  project,
+  index,
+  total,
+  onClose,
+  onPrev,
+  onNext,
+}) {
+  const hasPrev = index > 0;
+  const hasNext = index < total - 1;
   const num = String(index + 1).padStart(2, "0");
+  const prevProject = hasPrev ? CONFIG.projects[index - 1] : null;
+  const nextProject = hasNext ? CONFIG.projects[index + 1] : null;
+
+  const onCloseRef = useRef(onClose);
+  const onPrevRef = useRef(onPrev);
+  const onNextRef = useRef(onNext);
+  onCloseRef.current = onClose;
+  onPrevRef.current = onPrev;
+  onNextRef.current = onNext;
+
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        onCloseRef.current();
+      } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+        if (hasNext) {
+          e.preventDefault();
+          onNextRef.current();
+        }
+      } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+        if (hasPrev) {
+          e.preventDefault();
+          onPrevRef.current();
+        }
+      }
+    };
+
+    let coolUntil = 0;
+    let acc = 0;
+    const onWheel = (e) => {
+      // Don't steal wheel from interactive controls (links/buttons in the chrome).
+      if (e.target.closest?.("a, button, input, textarea, select")) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+      if (Date.now() < coolUntil) {
+        acc = 0;
+        return;
+      }
+
+      acc += e.deltaY;
+      if (Math.abs(acc) < 40) return;
+
+      const dir = acc > 0 ? "down" : "up";
+      acc = 0;
+      coolUntil = Date.now() + 650;
+      if (dir === "down") {
+        if (hasNext) onNextRef.current();
+      } else if (hasPrev) {
+        onPrevRef.current();
+      }
+    };
+
+    let touchY = 0;
+    const onTouchStart = (e) => {
+      touchY = e.touches[0].clientY;
+    };
+    const onTouchEnd = (e) => {
+      const dy = touchY - e.changedTouches[0].clientY;
+      if (Math.abs(dy) < 50) return;
+      if (Date.now() < coolUntil) return;
+      coolUntil = Date.now() + 650;
+      if (dy > 0) {
+        if (hasNext) onNextRef.current();
+      } else if (hasPrev) {
+        onPrevRef.current();
+      }
+    };
+
+    window.addEventListener("keydown", onKey);
+    // Capture so we win over page immersive-scroll and iframe chrome.
+    window.addEventListener("wheel", onWheel, { passive: false, capture: true });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+    window.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("wheel", onWheel, { capture: true });
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [hasNext, hasPrev]);
 
   return (
     <div className="project-modal" role="dialog" aria-modal="true" aria-label={project.title}>
       <button className="project-modal-backdrop" onClick={onClose} aria-label="Close" />
       <div className="project-modal-panel">
-        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-[var(--color-rule)] bg-paper/95 px-6 py-4 backdrop-blur-sm md:px-12">
-          <div className="flex items-baseline gap-4">
-            <span className="font-mono text-[11px] tracking-[0.18em] text-accent">{num}</span>
-            <h2 className="font-display text-2xl md:text-3xl">{project.title}</h2>
-            <span className="hidden font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint sm:inline">
-              {project.period}
-            </span>
+        <div className="project-modal-header flex shrink-0 items-center justify-between gap-4 border-b border-[var(--color-rule)] bg-paper/95 px-5 py-2.5 backdrop-blur-sm md:px-8">
+          <div className="min-w-0 flex-1">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
+              <span className="font-mono text-[11px] tracking-[0.18em] text-accent">{num}</span>
+              <h2 className="font-display text-lg md:text-xl">{project.title}</h2>
+              <span className="hidden font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint sm:inline">
+                {project.period}
+              </span>
+            </div>
+            <p className="mt-0.5 truncate text-[12px] text-ink-soft">
+              {project.client} · {project.subtitle}
+            </p>
           </div>
-          <button
-            onClick={onClose}
-            className="flex h-9 w-9 items-center justify-center border border-[var(--color-rule)] font-mono text-sm transition-colors hover:border-accent hover:text-accent"
-            aria-label="Close case study"
-          >
-            ✕
-          </button>
+
+          <div className="flex shrink-0 items-center gap-2">
+            <button
+              type="button"
+              onClick={onPrev}
+              disabled={!hasPrev}
+              className="hidden items-center gap-1.5 border border-[var(--color-rule)] px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] transition-colors hover:border-accent hover:text-accent disabled:pointer-events-none disabled:opacity-30 sm:inline-flex"
+              aria-label={prevProject ? `Previous: ${prevProject.title}` : "No previous project"}
+            >
+              ← Prev
+            </button>
+            <button
+              type="button"
+              onClick={onNext}
+              disabled={!hasNext}
+              className="hidden items-center gap-1.5 border border-[var(--color-rule)] px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] transition-colors hover:border-accent hover:text-accent disabled:pointer-events-none disabled:opacity-30 sm:inline-flex"
+              aria-label={nextProject ? `Next: ${nextProject.title}` : "No next project"}
+            >
+              Next →
+            </button>
+            <span className="hidden font-mono text-[10px] tracking-[0.12em] text-ink-faint md:inline">
+              {num} / {String(total).padStart(2, "0")}
+            </span>
+            <button
+              onClick={onClose}
+              className="flex h-8 w-8 shrink-0 items-center justify-center border border-[var(--color-rule)] font-mono text-sm transition-colors hover:border-accent hover:text-accent"
+              aria-label="Close case study"
+            >
+              ✕
+            </button>
+          </div>
         </div>
-        <div className="mx-auto max-w-[1400px] px-6 py-10 md:px-12 md:py-12">
-          <p className="mb-10 text-sm text-ink-soft">
-            {project.client} · {project.subtitle}
-          </p>
-          <ProjectCaseStudy project={project} />
+        <div className="project-modal-body">
+          <div className="min-h-0 flex-1" key={project.id}>
+            <ProjectCaseStudy project={project} />
+          </div>
+        </div>
+
+        <div className="flex shrink-0 items-center justify-between gap-3 border-t border-[var(--color-rule)] px-5 py-2.5 sm:hidden">
+          <button
+            type="button"
+            onClick={onPrev}
+            disabled={!hasPrev}
+            className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft disabled:opacity-30"
+          >
+            ← {prevProject?.title ?? "Prev"}
+          </button>
+          <button
+            type="button"
+            onClick={onNext}
+            disabled={!hasNext}
+            className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-soft disabled:opacity-30"
+          >
+            {nextProject?.title ?? "Next"} →
+          </button>
         </div>
       </div>
     </div>
   );
 }
 
-function Work() {
+function Work({ runCurtain }) {
   const [openId, setOpenId] = useState(null);
+  const transitioning = useRef(false);
+  const lockY = useRef(0);
   const openProject = CONFIG.projects.find((p) => p.id === openId);
   const openIndex = CONFIG.projects.findIndex((p) => p.id === openId);
+
+  const lockPage = useCallback(() => {
+    if (document.body.dataset.modalOpen === "1") return;
+    lockY.current = window.scrollY;
+    document.body.dataset.modalOpen = "1";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${lockY.current}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  }, []);
+
+  const unlockPage = useCallback(() => {
+    if (document.body.dataset.modalOpen !== "1") return;
+    const y = lockY.current;
+    delete document.body.dataset.modalOpen;
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    window.scrollTo(0, y);
+  }, []);
+
+  useEffect(() => () => unlockPage(), [unlockPage]);
+
+  const openAt = useCallback(
+    async (id, direction = "down") => {
+      if (transitioning.current) return;
+      const index = CONFIG.projects.findIndex((p) => p.id === id);
+      const project = CONFIG.projects[index];
+      if (!project) return;
+      transitioning.current = true;
+      lockPage();
+      try {
+        await runCurtain({
+          direction,
+          label: project.title,
+          index: String(index + 1).padStart(2, "0"),
+          atCovered: () => setOpenId(id),
+        });
+      } finally {
+        transitioning.current = false;
+      }
+    },
+    [runCurtain, lockPage]
+  );
+
+  const closeModal = useCallback(async () => {
+    if (transitioning.current) return;
+    transitioning.current = true;
+    try {
+      await runCurtain({
+        direction: "up",
+        label: "Work",
+        index: "02",
+        atCovered: () => {
+          setOpenId(null);
+          unlockPage();
+        },
+      });
+    } finally {
+      transitioning.current = false;
+    }
+  }, [runCurtain, unlockPage]);
+
+  const goPrev = useCallback(() => {
+    if (openIndex <= 0) return;
+    openAt(CONFIG.projects[openIndex - 1].id, "up");
+  }, [openIndex, openAt]);
+
+  const goNext = useCallback(() => {
+    if (openIndex < 0 || openIndex >= CONFIG.projects.length - 1) return;
+    openAt(CONFIG.projects[openIndex + 1].id, "down");
+  }, [openIndex, openAt]);
 
   return (
     <section
       id="work"
       data-bp="work"
-      className="panel-free relative mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32"
+      className="panel-free relative mx-auto max-w-[1400px] px-5 pb-14 pt-24 md:px-12 md:pb-20 md:pt-28"
     >
       <SectionLabel index="02">Selected work</SectionLabel>
-      <Reveal className="mb-10 max-w-[62ch] text-[15px] leading-relaxed text-ink-soft">
+      <Reveal className="mb-8 max-w-[62ch] text-[14px] leading-relaxed text-ink-soft md:mb-10 md:text-[15px]">
         {CONFIG.workIntro}
       </Reveal>
 
@@ -1541,83 +2034,117 @@ function Work() {
             key={p.id}
             project={p}
             index={i}
-            onOpen={() => setOpenId(p.id)}
+            onOpen={() => openAt(p.id, "down")}
           />
         ))}
       </div>
 
       <Reveal className="mt-16 px-1">
         <h3 className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
-          {CONFIG.earlier.label}
+          {CONFIG.experience.label}
         </h3>
-        <p className="mt-2 mb-6 max-w-[62ch] text-[13px] leading-relaxed text-ink-faint">
-          {CONFIG.earlier.note}
+        <p className="mt-2 mb-8 max-w-[62ch] text-[13px] leading-relaxed text-ink-faint">
+          {CONFIG.experience.note}
         </p>
-        <div className="grid gap-8 border-t border-[var(--color-rule)] pt-6 md:grid-cols-2 md:gap-12">
-          {CONFIG.earlier.items.map((item) => (
-            <div key={item.org} className="px-1">
-              <div className="flex flex-wrap items-baseline gap-x-3">
-                <h4 className="font-display text-xl">{item.org}</h4>
-                <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
-                  {item.period}
-                </span>
-              </div>
-              <p className="mt-1 text-[13px] text-ink-soft">{item.role}</p>
-              <ul className="mt-4 space-y-2">
-                {item.work.map((w) => (
-                  <li key={w} className="flex gap-3 text-[13px] leading-relaxed text-ink-soft">
-                    <span className="mt-[8px] h-[2px] w-3 shrink-0 bg-accent" />
-                    <span>{w}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </Reveal>
 
-      <Reveal className="mt-16 px-1">
-        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-          <h3 className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
-            {CONFIG.careerBreak.label}
-          </h3>
-          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
-            {CONFIG.careerBreak.period}
-          </span>
+        <div className="space-y-10 border-t border-[var(--color-rule)] pt-8">
+          {CONFIG.experience.companies.map((company) => {
+            const builds =
+              company.buildsKey === "careerBreak" ? CONFIG.careerBreak.builds : null;
+            return (
+              <article key={company.org} className="experience-entry px-1">
+                <div className="experience-company flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <h4 className="font-display text-[1.35rem] leading-none md:text-2xl">{company.org}</h4>
+                  {company.location && (
+                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">
+                      {company.location}
+                    </span>
+                  )}
+                </div>
+
+                <div className="experience-roles mt-5 space-y-6 border-l border-[var(--color-rule)] py-0.5 pl-4 pr-2 md:pl-5 md:pr-3">
+                  {company.roles.map((role) => (
+                    <div key={`${role.title}-${role.type}-${role.period}`}>
+                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                        <h5 className="text-[14px] font-medium text-ink md:text-[15px]">{role.title}</h5>
+                        <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
+                          {role.type}
+                        </span>
+                      </div>
+                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">
+                        {role.period}
+                      </p>
+                      <ul className="mt-3 space-y-2">
+                        {role.bullets.map((b) => (
+                          <li
+                            key={b}
+                            className="flex gap-3 text-[13px] leading-relaxed text-ink-soft"
+                          >
+                            <span className="mt-[8px] h-[2px] w-3 shrink-0 bg-accent" />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+
+                {builds && (
+                  <ul className="experience-builds mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+                    {builds.map((build) => (
+                      <li key={build.url}>
+                        <a
+                          href={build.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="group block overflow-hidden border border-[var(--color-rule)] transition-colors hover:border-accent"
+                        >
+                          <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-paper-deep)]">
+                            <img
+                              src={build.image}
+                              alt={build.title}
+                              loading="lazy"
+                              className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                            />
+                            <span className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent opacity-80" />
+                            <span className="absolute bottom-2 left-2 font-mono text-[9px] uppercase tracking-[0.14em] text-paper/90">
+                              {build.name}
+                            </span>
+                          </div>
+                          <div className="px-3 py-3">
+                            <p className="font-display text-[15px] leading-snug transition-colors group-hover:text-accent">
+                              {build.title}
+                            </p>
+                            <p className="mt-1 font-mono text-[9.5px] leading-relaxed tracking-[0.04em] text-ink-faint">
+                              {build.spec}
+                            </p>
+                            <span className="mt-2 inline-flex items-center gap-1.5 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-faint group-hover:text-accent">
+                              Marketplace
+                              <Icon
+                                name="arrow"
+                                className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                              />
+                            </span>
+                          </div>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </article>
+            );
+          })}
         </div>
-        <p className="mt-2 mb-6 max-w-[62ch] text-[13px] leading-relaxed text-ink-soft">
-          {CONFIG.careerBreak.note}
-        </p>
-        <ul className="grid gap-3 border-t border-[var(--color-rule)] pt-5 sm:grid-cols-2 lg:grid-cols-4">
-          {CONFIG.careerBreak.builds.map((build) => (
-            <li key={build.url}>
-              <a
-                href={build.url}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-center justify-between gap-3 border border-[var(--color-rule)] px-4 py-3 transition-colors hover:border-accent"
-              >
-                <span className="font-display text-lg transition-colors group-hover:text-accent">
-                  {build.name}
-                </span>
-                <span className="flex items-center gap-1.5 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-faint group-hover:text-accent">
-                  Marketplace
-                  <Icon
-                    name="arrow"
-                    className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  />
-                </span>
-              </a>
-            </li>
-          ))}
-        </ul>
       </Reveal>
 
       {openProject && (
         <ProjectModal
           project={openProject}
           index={openIndex}
-          onClose={() => setOpenId(null)}
+          total={CONFIG.projects.length}
+          onClose={closeModal}
+          onPrev={goPrev}
+          onNext={goNext}
         />
       )}
     </section>
@@ -1632,7 +2159,8 @@ function SkillRow({ item, projectsById, hovered, onHover }) {
     <li
       onMouseEnter={() => onHover(item.name)}
       onMouseLeave={() => onHover(null)}
-      className="group/skill border-b border-[var(--color-rule)] py-1.5"
+      onClick={() => onHover(isHovered ? null : item.name)}
+      className="group/skill cursor-pointer border-b border-[var(--color-rule)] py-2 touch-manipulation"
     >
       <div className="flex items-center gap-3">
         <span className="flex-1 text-[12.5px] transition-colors duration-200 group-hover/skill:text-accent">
@@ -1655,11 +2183,12 @@ function SkillRow({ item, projectsById, hovered, onHover }) {
         style={{ gridTemplateRows: isHovered && item.used.length ? "1fr" : "0fr" }}
       >
         <div className="overflow-hidden">
-          <div className="flex flex-wrap gap-1.5 pt-2">
+          <div className="flex flex-wrap gap-1.5 pt-2 pb-1">
             {item.used.map((id) => (
               <a
                 key={id}
                 href="#work"
+                onClick={(e) => e.stopPropagation()}
                 className="bg-accent/10 px-2 py-0.5 font-mono text-[9.5px] uppercase tracking-[0.12em] text-accent"
               >
                 {projectsById[id]?.title ?? id}
@@ -1684,14 +2213,14 @@ function Capability() {
     <section
       id="capability"
       data-bp="capability"
-      className="panel-page relative flex min-h-[100svh] flex-col justify-center px-6 py-16 md:px-12"
+      className="panel-page relative flex min-h-[100svh] flex-col justify-center px-5 py-14 md:px-12 md:py-16"
     >
       <div className="mx-auto w-full max-w-[1400px]">
       <SectionLabel index="03">{skills.label}</SectionLabel>
 
-      <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-        <Reveal className="max-w-[56ch] text-[13.5px] leading-relaxed text-ink-soft">
-          {skills.note} Hover any capability to see where it shipped.
+      <div className="mb-4 flex flex-wrap items-end justify-between gap-3 md:mb-5">
+        <Reveal className="max-w-[56ch] text-[12.5px] leading-relaxed text-ink-soft md:text-[13.5px]">
+          {skills.note} Tap or hover a capability to see where it shipped.
         </Reveal>
         <Reveal delay={80} className="flex flex-wrap gap-x-5 gap-y-2">
           {skills.legend.map((l) => (
@@ -1714,14 +2243,14 @@ function Capability() {
         </Reveal>
       </div>
 
-      <div className="grid gap-x-8 gap-y-8 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-x-6 gap-y-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-6">
         {skills.groups.map((group, gi) => (
           <Reveal key={group.name} delay={gi * 70}>
-            <h3 className="mb-2 flex items-baseline gap-2.5 border-b border-ink pb-1.5">
+            <h3 className="mb-1.5 flex items-baseline gap-2.5 border-b border-ink pb-1.5">
               <span className="font-mono text-[10px] text-accent">
                 {String(gi + 1).padStart(2, "0")}
               </span>
-              <span className="font-display text-lg">{group.name}</span>
+              <span className="font-display text-base md:text-lg">{group.name}</span>
             </h3>
             <ul>
               {group.items.map((item) => (
@@ -2172,7 +2701,7 @@ function Numbers() {
       data-bp="numbers"
       className="panel-free relative border-y border-[var(--color-rule)] bg-[var(--color-paper-deep)]/40"
     >
-      <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-12 md:py-32">
+      <div className="mx-auto max-w-[1400px] px-5 pb-14 pt-24 md:px-12 md:pb-20 md:pt-28">
         <SectionLabel index="04">{CONFIG.stats.label}</SectionLabel>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -2181,7 +2710,7 @@ function Numbers() {
           ))}
         </div>
 
-        <div className="mt-20 grid gap-14 md:grid-cols-2 md:gap-20">
+        <div className="mt-14 grid gap-12 md:mt-20 md:grid-cols-2 md:gap-20">
           <Breakdown />
           <Reveal delay={100}>
             <Heatmap />
@@ -2211,25 +2740,29 @@ function Contact() {
   };
 
   return (
-    <section id="contact" data-bp="contact" className="panel-page relative flex min-h-[100svh] flex-col">
-      <div className="mx-auto w-full max-w-[1400px] flex-1 px-6 py-24 md:flex md:flex-col md:justify-center md:px-12 md:py-28">
+    <section
+      id="contact"
+      data-bp="contact"
+      className="panel-page relative flex h-[100svh] max-h-[100svh] flex-col overflow-hidden"
+    >
+      <div className="mx-auto flex min-h-0 w-full max-w-[1400px] flex-1 flex-col justify-center overflow-y-auto px-5 py-6 md:overflow-visible md:px-12 md:py-10">
         <SectionLabel index="05">{contact.label}</SectionLabel>
 
-        <div className="grid gap-12 md:grid-cols-12 md:gap-16">
+        <div className="grid gap-6 md:grid-cols-12 md:items-center md:gap-12">
           <Reveal className="md:col-span-7">
-            <h2 className="font-display text-[clamp(2.4rem,6.5vw,5.2rem)] leading-[0.95] tracking-[-0.02em]">
+            <h2 className="font-display text-[clamp(1.85rem,5.5vw,4.4rem)] leading-[0.95] tracking-[-0.02em]">
               {contact.heading[0]}
               <br />
               <span className="italic text-accent">{contact.heading[1]}</span>
             </h2>
-            <p className="mt-7 max-w-[48ch] text-[15px] leading-relaxed text-ink-soft">
+            <p className="mt-4 max-w-[48ch] text-[13.5px] leading-relaxed text-ink-soft md:mt-5 md:text-[15px]">
               {contact.blurb}
             </p>
 
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-3 md:mt-7 md:gap-4">
               <a
                 href={`mailto:${identity.email}`}
-                className="group relative overflow-hidden border border-ink px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em]"
+                className="group relative overflow-hidden border border-ink px-5 py-3 font-mono text-[11px] uppercase tracking-[0.18em] md:px-7 md:py-3.5"
               >
                 <span className="relative z-10 transition-colors duration-400 group-hover:text-paper">
                   {contact.cta}
@@ -2283,12 +2816,12 @@ function Contact() {
                     href={row.href}
                     target={external ? "_blank" : undefined}
                     rel={external ? "noreferrer" : undefined}
-                    className="group flex items-center justify-between gap-6 py-3.5"
+                    className="group flex items-center justify-between gap-3 py-2.5 sm:gap-6"
                   >
                     {Row}
                   </a>
                 ) : (
-                  <div key={row.k} className="group flex items-center justify-between gap-6 py-3.5">
+                  <div key={row.k} className="group flex items-center justify-between gap-3 py-2.5 sm:gap-6">
                     {Row}
                   </div>
                 );
@@ -2298,12 +2831,12 @@ function Contact() {
         </div>
       </div>
 
-      <footer className="relative border-t border-[var(--color-rule)] px-6 py-8 md:px-12">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-4">
-          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
+      <footer className="relative shrink-0 border-t border-[var(--color-rule)] px-5 py-3.5 md:px-12 md:py-4">
+        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-2">
+          <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink-faint md:text-[10px]">
             © {new Date().getFullYear()} {CONFIG.identity.fullName}
           </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint">
+          <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-ink-faint md:text-[10px]">
             Built in Mauritius · Working worldwide
           </span>
         </div>
@@ -2319,7 +2852,7 @@ export default function Portfolio() {
   const progress = useScrollProgress();
   const active = useActiveSection(RAIL_IDS);
   const [blueprintOn, setBlueprintOn] = useBlueprintMode(CONFIG.easterEgg.sequence);
-  const { curtain, navigateTo } = useImmersiveScroll(reduced);
+  const { curtain, navigateTo, runCurtain } = useImmersiveScroll(reduced);
 
   return (
     <div className="relative min-h-screen">
@@ -2335,7 +2868,7 @@ export default function Portfolio() {
       <main>
         <Hero reduced={reduced} blueprint={blueprintOn} />
         <About />
-        <Work />
+        <Work runCurtain={runCurtain} />
         <Capability />
         <Numbers />
         <Contact />

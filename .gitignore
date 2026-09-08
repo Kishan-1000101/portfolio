@@ -8,3 +8,9 @@ dist-ssr
 .env.*
 !.env.example
 .playwright-mcp
+_audit-*.png
+_browser-*.png
+_chk-*.png
+_preview-*.png
+_sp-*.png
+m-*.png

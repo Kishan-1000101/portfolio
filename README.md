@@ -48,12 +48,27 @@ sections are taller than a viewport, and mandatory snapping would fight the read
 inside them. Short sections settle into place; tall ones scroll freely. The rule
 marks down the right edge track position and jump between sections.
 
+## Deploying to GitHub Pages
+
+This repo ships with a GitHub Actions workflow (`.github/workflows/deploy.yml`) that
+builds on every push to `master` and publishes `dist/` to GitHub Pages.
+
+1. In the repo on GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**
+2. Push to `master` (or run the workflow manually under **Actions**)
+3. Site URL: `https://<your-username>.github.io/<repo-name>/`
+
+Local preview of the production build:
+
+```bash
+npm run build
+npm run preview
+```
+
 ## Deploying to OVH
 
-`npm run build` produces a fully static `dist/`. `vite.config.js` sets `base: "./"`
-so it works from a subdirectory too. Upload the contents of `dist/` to your web root.
+`npm run build` produces a fully static `dist/`. Upload the contents of `dist/` to your web root.
 
-If you serve it from a subpath and links break, that `base` value is the thing to change.
+For a subdirectory deploy without GitHub Actions, keep or set `base: "./"` in `vite.config.js`.
 
 ## Accessibility / performance notes
 

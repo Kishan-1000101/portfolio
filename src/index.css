@@ -24,17 +24,19 @@
 
 html {
   scroll-behavior: auto;
-  scroll-padding-top: 60px;
+  scroll-padding-top: 0;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 
 body {
-  margin: 0;
-  background: var(--color-paper);
-  color: var(--color-ink);
-  font-family: var(--font-sans);
-  font-weight: 400;
   overflow-x: clip;
+}
+
+body[data-modal-open="1"] {
+  overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
 }
 
 /* Full-viewport panels (intro, about, capability, contact) */
@@ -187,7 +189,6 @@ body {
   align-items: stretch;
   justify-content: stretch;
   padding: 0;
-  animation: modal-in 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 .project-modal-backdrop {
   position: absolute;
@@ -195,17 +196,38 @@ body {
   border: 0;
   background: color-mix(in srgb, var(--color-ink) 55%, transparent);
   cursor: pointer;
-  animation: fade-in 0.35s ease both;
 }
 .project-modal-panel {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100svh;
   max-height: 100svh;
-  overflow: auto;
+  overflow: hidden;
   background: var(--color-paper);
-  animation: zoom-panel 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.project-modal-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding: 0.65rem 1rem 0.75rem;
+  overflow: hidden;
+}
+@media (min-width: 768px) {
+  .project-modal-body {
+    padding: 0.75rem 1.25rem 1rem;
+  }
+}
+@media (max-width: 767px) {
+  .project-modal-body {
+    overflow: auto;
+  }
 }
 @keyframes modal-in {
   from { opacity: 0; }
@@ -249,6 +271,24 @@ html.blueprint header.bp-quiet[data-bp]::after {
 /* Breathing room inside blueprint-outlined work rows */
 html.blueprint #work article {
   outline-offset: -8px;
+}
+
+/* Experience: company title may sit near the dashed edge; body text stays inset */
+html.blueprint #work article.experience-entry {
+  outline-offset: -12px;
+  padding: 14px 22px 20px 10px;
+}
+html.blueprint #work article.experience-entry .experience-company {
+  margin-left: -4px;
+  padding-right: 8px;
+}
+html.blueprint #work article.experience-entry .experience-roles,
+html.blueprint #work article.experience-entry .experience-builds {
+  margin-left: 16px;
+  margin-right: 6px;
+}
+html.blueprint section.panel-page {
+  outline-offset: -10px;
 }
 
 ::selection {
