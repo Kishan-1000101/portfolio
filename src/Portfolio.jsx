@@ -972,10 +972,12 @@ function SectionLabel({ index, children }) {
     <div
       ref={ref}
       data-reveal
-      className="mb-6 flex items-baseline gap-4 border-b border-[var(--color-rule)] pb-2.5 md:mb-7"
+      className="mb-7 flex items-baseline gap-4 border-b border-[var(--color-rule)] pb-3 md:mb-8"
     >
-      <span className="font-mono text-[11px] tracking-[0.22em] text-accent">{index}</span>
-      <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-soft">
+      <span className="font-mono text-[12px] font-medium tracking-[0.22em] text-accent md:text-[13px]">
+        {index}
+      </span>
+      <span className="font-mono text-[12px] font-medium uppercase tracking-[0.2em] text-ink md:text-[13px]">
         {children}
       </span>
     </div>
@@ -1231,7 +1233,7 @@ function SectionRail({ active, onNavigate }) {
             className="group flex items-center justify-end gap-2.5 py-1"
           >
             <span
-              className={`bg-paper/90 px-1.5 py-0.5 font-mono text-[9.5px] uppercase tracking-[0.16em] opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 ${
+              className={`bg-paper/90 px-1.5 py-0.5 font-mono text-[11px] font-medium uppercase tracking-[0.14em] opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 ${
                 on ? "text-accent" : "text-ink-soft"
               }`}
             >
@@ -1273,7 +1275,6 @@ function BlueprintToggle({ on, onToggle }) {
 function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
   const [solid, setSolid] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const atHero = active === "top";
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > 40);
@@ -1296,10 +1297,9 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
 
   return (
     <header
-      data-bp={atHero ? undefined : "header"}
       className={`fixed inset-x-0 top-0 z-30 transition-colors duration-500 ${
         solid || menuOpen ? "bg-paper/90 backdrop-blur-sm" : "bg-transparent"
-      } ${atHero ? "bp-quiet" : ""}`}
+      }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-3.5 md:px-12 md:py-4">
         <a
@@ -1310,12 +1310,12 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
           }}
           className="group flex items-baseline gap-2.5"
         >
-          <span className="font-display text-xl leading-none">KS</span>
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint sm:inline">
+          <span className="font-display text-2xl leading-none md:text-[1.65rem]">KS</span>
+          <span className="hidden font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-ink-soft sm:inline md:text-[12px]">
             {CONFIG.identity.role}
           </span>
         </a>
-        <nav className="flex items-center gap-3 md:gap-6">
+        <nav className="flex items-center gap-3 md:gap-7">
           {NAV.map((item) => (
             <a
               key={item.id}
@@ -1324,7 +1324,7 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
                 e.preventDefault();
                 go(item.id);
               }}
-              className={`group relative hidden font-mono text-[11px] uppercase tracking-[0.16em] transition-colors md:block ${
+              className={`group relative hidden font-mono text-[12px] font-medium uppercase tracking-[0.14em] transition-colors md:block ${
                 active === item.id ? "text-accent" : "text-ink-soft hover:text-ink"
               }`}
             >
@@ -1338,19 +1338,19 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
           ))}
           <a
             href={`mailto:${CONFIG.identity.email}`}
-            className="hidden border border-ink px-3.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] transition-colors duration-300 hover:bg-ink hover:text-paper sm:inline-flex"
+            className="hidden border border-ink px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.14em] transition-colors duration-300 hover:bg-ink hover:text-paper sm:inline-flex"
           >
             Get in touch
           </a>
           <BlueprintToggle on={blueprintOn} onToggle={onToggleBlueprint} />
           <button
             type="button"
-            className="flex h-9 w-9 items-center justify-center border border-[var(--color-rule)] md:hidden"
+            className="flex h-10 w-10 items-center justify-center border border-[var(--color-rule)] md:hidden"
             aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             onClick={() => setMenuOpen((v) => !v)}
           >
-            <span className="font-mono text-[11px] tracking-[0.08em]">{menuOpen ? "✕" : "☰"}</span>
+            <span className="font-mono text-[13px] tracking-[0.08em]">{menuOpen ? "✕" : "☰"}</span>
           </button>
         </nav>
       </div>
@@ -1366,7 +1366,7 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
                     e.preventDefault();
                     go(item.id);
                   }}
-                  className={`block py-2.5 font-mono text-[12px] uppercase tracking-[0.16em] ${
+                  className={`block py-2.5 font-mono text-[13px] font-medium uppercase tracking-[0.14em] ${
                     active === item.id ? "text-accent" : "text-ink-soft"
                   }`}
                 >
@@ -1377,7 +1377,7 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
             <li className="pt-2">
               <a
                 href={`mailto:${CONFIG.identity.email}`}
-                className="inline-flex border border-ink px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.16em]"
+                className="inline-flex border border-ink px-4 py-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.14em]"
               >
                 Get in touch
               </a>
@@ -1411,20 +1411,19 @@ function Hero({ reduced, blueprint }) {
   return (
     <section
       id="top"
-      data-bp="hero"
       className="panel-page relative flex h-[100svh] max-h-[100svh] flex-col overflow-hidden"
     >
       <InkField reduced={reduced} blueprint={blueprint} />
 
       <div className="relative mx-auto flex w-full max-w-[1400px] flex-1 flex-col justify-center px-5 pt-14 pb-4 md:px-12 md:pt-16 md:pb-6">
         <div className="flex items-center gap-3">
-          <span className="relative flex h-1.5 w-1.5">
+          <span className="relative flex h-2 w-2">
             {identity.available && !reduced && (
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
             )}
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
           </span>
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-soft">
+          <p className="font-mono text-[12px] font-medium uppercase tracking-[0.2em] text-ink-soft md:text-[13px]">
             {hero.eyebrow}
           </p>
         </div>
@@ -1448,7 +1447,7 @@ function Hero({ reduced, blueprint }) {
 
         <div className="mt-8 grid gap-8 border-t border-[var(--color-rule)] pt-5 md:grid-cols-12">
           <p
-            className="max-w-[52ch] text-[15px] leading-relaxed text-ink-soft transition-all duration-1000 md:col-span-6 md:text-base"
+            className="max-w-[54ch] text-[16px] leading-[1.65] text-ink-soft transition-all duration-1000 md:col-span-6 md:text-[17px]"
             style={{
               opacity: mounted ? 1 : 0,
               transform: mounted ? "none" : "translateY(14px)",
@@ -1471,22 +1470,22 @@ function Hero({ reduced, blueprint }) {
               { k: "Status", v: identity.availableNote },
             ].map((f) => (
               <div key={f.k}>
-                <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+                <dt className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-ink-faint">
                   {f.k}
                 </dt>
-                <dd className="mt-1 text-sm leading-snug">{f.v}</dd>
+                <dd className="mt-1 text-[15px] font-medium leading-snug text-ink">{f.v}</dd>
               </div>
             ))}
           </dl>
         </div>
       </div>
 
-      <div className="marquee relative shrink-0 overflow-hidden border-y border-[var(--color-rule)] py-3">
+      <div className="marquee relative shrink-0 overflow-hidden border-y border-[var(--color-rule)] py-3.5">
         <div className="marquee-track flex w-max gap-10 whitespace-nowrap">
           {marquee.map((item, i) => (
             <span
               key={`${item}-${i}`}
-              className="flex items-center gap-10 font-mono text-[11px] uppercase tracking-[0.2em] text-ink-faint"
+              className="flex items-center gap-10 font-mono text-[12px] font-medium uppercase tracking-[0.18em] text-ink-faint"
             >
               {item}
               <span className="text-accent">✳</span>
@@ -1500,47 +1499,87 @@ function Hero({ reduced, blueprint }) {
 
 /* ---------------------------------- about --------------------------------- */
 
+function AboutGlyph({ children, className, delay = 0 }) {
+  return (
+    <div className={`about-glyph ${className}`} style={{ animationDelay: `${delay}s` }} aria-hidden>
+      {children}
+    </div>
+  );
+}
+
 function About() {
   const { about } = CONFIG;
   return (
     <section
       id="about"
-      data-bp="about"
-      className="panel-page relative flex min-h-[100svh] flex-col justify-center px-5 py-20 md:px-12 md:py-24"
+      className="panel-page relative flex min-h-[100svh] flex-col justify-center overflow-hidden px-5 py-20 md:px-12 md:py-24"
     >
-      <div className="mx-auto w-full max-w-[1400px]">
-      <SectionLabel index="01">{about.label}</SectionLabel>
+      {/* Floating system glyphs — atmosphere, not decoration clutter */}
+      <AboutGlyph className="left-[6%] top-[18%] hidden h-16 w-16 md:block lg:h-20 lg:w-20" delay={0}>
+        <svg viewBox="0 0 64 64">
+          <rect x="8" y="14" width="48" height="36" rx="2" />
+          <path d="M8 24h48M24 14v36" />
+          <circle cx="18" cy="19" r="1.5" fill="currentColor" stroke="none" />
+        </svg>
+      </AboutGlyph>
+      <AboutGlyph className="right-[8%] top-[22%] hidden h-14 w-14 md:block lg:h-[4.5rem] lg:w-[4.5rem]" delay={2.5}>
+        <svg viewBox="0 0 64 64">
+          <rect x="12" y="10" width="40" height="44" rx="3" />
+          <path d="M20 22h24M20 30h18M20 38h22" />
+        </svg>
+      </AboutGlyph>
+      <AboutGlyph className="bottom-[16%] left-[12%] hidden h-14 w-14 lg:block" delay={1.2}>
+        <svg viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="18" />
+          <path d="M32 20v12l8 5" />
+          <circle cx="32" cy="32" r="2" fill="currentColor" stroke="none" />
+        </svg>
+      </AboutGlyph>
+      <AboutGlyph className="bottom-[20%] right-[10%] hidden h-16 w-16 md:block" delay={3.8}>
+        <svg viewBox="0 0 64 64">
+          <path d="M10 40 L32 12 L54 40 Z" />
+          <path d="M22 40v10h20V40" />
+          <path d="M28 28h8v12h-8z" />
+        </svg>
+      </AboutGlyph>
 
-      <div className="grid gap-8 md:grid-cols-12 md:gap-12 lg:gap-14">
-        <Reveal className="md:col-span-7">
-          <p className="font-display text-[clamp(1.45rem,2.8vw,2.4rem)] leading-[1.15] tracking-[-0.01em]">
-            {about.lead}
-          </p>
-          <div className="mt-5 space-y-3.5 text-[14px] leading-relaxed text-ink-soft md:text-[15px]">
-            {about.body.map((para) => (
-              <p key={para.slice(0, 24)}>{para}</p>
-            ))}
-          </div>
-        </Reveal>
+      <div className="relative z-[1] mx-auto w-full max-w-[1400px]">
+        <SectionLabel index="01">{about.label}</SectionLabel>
 
-        <Reveal delay={120} className="md:col-span-5">
-          <figure className="border-l-2 border-accent pl-5 md:pl-6">
-            <blockquote className="font-display text-lg italic leading-snug md:text-xl lg:text-2xl">
-              “{about.pullQuote}”
-            </blockquote>
-          </figure>
-          <dl className="mt-6 divide-y divide-[var(--color-rule)] border-y border-[var(--color-rule)]">
-            {about.facts.map((f) => (
-              <div key={f.k} className="flex items-baseline justify-between gap-4 py-2.5 sm:gap-6">
-                <dt className="shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
-                  {f.k}
-                </dt>
-                <dd className="text-right text-[13px] sm:text-sm">{f.v}</dd>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
-      </div>
+        <div className="grid gap-10 md:grid-cols-12 md:gap-12 lg:gap-16">
+          <Reveal className="md:col-span-7">
+            <p className="font-display text-[clamp(1.85rem,3.4vw,3rem)] font-normal leading-[1.12] tracking-[-0.015em] text-ink">
+              {about.lead}
+            </p>
+            <div className="mt-7 space-y-4 text-[16px] leading-[1.7] text-ink-soft md:text-[17px]">
+              {about.body.map((para) => (
+                <p key={para.slice(0, 24)}>{para}</p>
+              ))}
+            </div>
+          </Reveal>
+
+          <Reveal delay={120} className="md:col-span-5">
+            <figure className="relative pl-0">
+              <span className="about-quote-rule mb-5 block h-[2px] w-14 bg-accent" />
+              <blockquote className="font-display text-[clamp(1.35rem,2.2vw,1.85rem)] italic leading-[1.25] text-ink">
+                “{about.pullQuote}”
+              </blockquote>
+            </figure>
+            <dl className="mt-8 divide-y divide-[var(--color-rule)] border-y border-[var(--color-rule)]">
+              {about.facts.map((f) => (
+                <div
+                  key={f.k}
+                  className="group flex items-baseline justify-between gap-4 py-3 sm:gap-6"
+                >
+                  <dt className="shrink-0 font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-ink-faint transition-colors group-hover:text-accent">
+                    {f.k}
+                  </dt>
+                  <dd className="text-right text-[14px] font-medium text-ink sm:text-[15px]">{f.v}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+        </div>
       </div>
     </section>
   );
@@ -1712,39 +1751,46 @@ function ProjectCaseStudy({ project }) {
   );
 }
 
-function ProjectRow({ project, index, onOpen }) {
+function ProjectRow({ project, index, onOpen, active, onActive }) {
   const num = String(index + 1).padStart(2, "0");
   return (
     <Reveal
       as="article"
       delay={index * 60}
+      id={`work-row-${project.id}`}
       className="group border-b border-[var(--color-rule)] px-3 md:px-8"
     >
       <button
         onClick={onOpen}
-        className="flex w-full cursor-pointer items-start gap-3 py-5 text-left sm:gap-5 md:gap-10 md:py-6"
+        onMouseEnter={() => onActive?.(index)}
+        onFocus={() => onActive?.(index)}
+        className="flex w-full cursor-pointer items-start gap-3 py-6 text-left sm:gap-5 md:gap-10 md:py-7"
       >
-        <span className="mt-2 font-mono text-[11px] tracking-[0.18em] text-ink-faint transition-colors duration-300 group-hover:text-accent">
+        <span
+          className={`mt-2 font-mono text-[12px] font-medium tracking-[0.16em] transition-colors duration-300 md:text-[13px] ${
+            active ? "text-accent" : "text-ink-faint group-hover:text-accent"
+          }`}
+        >
           {num}
         </span>
 
         <span className="flex-1">
           <span className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-            <h3 className="font-display text-[clamp(1.8rem,4.4vw,3.4rem)] leading-none tracking-[-0.01em] transition-colors duration-300 group-hover:text-accent">
+            <h3 className="font-display text-[clamp(2rem,4.6vw,3.6rem)] leading-none tracking-[-0.01em] transition-colors duration-300 group-hover:text-accent">
               {project.title}
             </h3>
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
+            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.16em] text-ink-faint md:text-[12px]">
               {project.period}
             </span>
           </span>
-          <span className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
-            <span className="text-sm text-ink-soft">
-              <span className="text-ink">{project.client}</span>
+          <span className="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span className="text-[15px] text-ink-soft md:text-base">
+              <span className="font-medium text-ink">{project.client}</span>
               <span className="text-ink-faint"> · </span>
               {project.subtitle}
             </span>
             {project.urlLabel && (
-              <span className="font-mono text-[10px] tracking-[0.08em] text-ink-faint">
+              <span className="font-mono text-[11px] tracking-[0.06em] text-ink-faint md:text-[12px]">
                 {project.urlLabel}
               </span>
             )}
@@ -1753,7 +1799,7 @@ function ProjectRow({ project, index, onOpen }) {
 
         <span
           aria-hidden="true"
-          className="mt-3 hidden font-mono text-[10px] uppercase tracking-[0.16em] text-ink-faint opacity-0 transition-opacity group-hover:opacity-100 sm:inline"
+          className="mt-3 hidden font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-ink-faint opacity-0 transition-opacity group-hover:opacity-100 sm:inline"
         >
           Open ↗
         </span>
@@ -2028,125 +2074,183 @@ function Work({ runCurtain }) {
     openAt(CONFIG.projects[openIndex + 1].id, "down");
   }, [openIndex, openAt]);
 
-  return (
-    <section
-      id="work"
-      data-bp="work"
-      className="panel-free relative mx-auto max-w-[1400px] px-5 pb-14 pt-24 md:px-12 md:pb-20 md:pt-28"
-    >
-      <SectionLabel index="02">Selected work</SectionLabel>
-      <Reveal className="mb-8 max-w-[62ch] text-[14px] leading-relaxed text-ink-soft md:mb-10 md:text-[15px]">
-        {CONFIG.workIntro}
-      </Reveal>
+  const [activeRow, setActiveRow] = useState(0);
 
-      <div className="border-t border-[var(--color-rule)]">
-        {CONFIG.projects.map((p, i) => (
-          <ProjectRow
-            key={p.id}
-            project={p}
-            index={i}
-            onOpen={() => openAt(p.id, "down")}
-          />
-        ))}
+  return (
+    <section id="work" className="panel-free relative overflow-hidden pb-14 pt-24 md:pb-20 md:pt-28">
+      {/* Side wireframes */}
+      <div className="work-wire pointer-events-none absolute top-36 left-2 hidden w-36 xl:block" aria-hidden>
+        <svg viewBox="0 0 140 100" className="h-auto w-full stroke-current" fill="none" strokeWidth="1">
+          <rect x="4" y="8" width="132" height="84" rx="3" />
+          <rect x="4" y="8" width="132" height="12" />
+          <circle cx="14" cy="14" r="2" />
+          <circle cx="22" cy="14" r="2" />
+          <circle cx="30" cy="14" r="2" />
+          <rect x="14" y="28" width="50" height="52" />
+          <path d="M72 32h50M72 42h40M72 52h46" />
+        </svg>
+      </div>
+      <div className="work-wire pointer-events-none absolute right-4 bottom-40 hidden w-24 xl:block" aria-hidden>
+        <svg viewBox="0 0 80 140" className="h-auto w-full stroke-current" fill="none" strokeWidth="1">
+          <rect x="10" y="4" width="60" height="132" rx="8" />
+          <rect x="18" y="18" width="44" height="96" rx="2" />
+          <circle cx="40" cy="126" r="4" />
+        </svg>
       </div>
 
-      <Reveal className="mt-16 px-1">
-        <h3 className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">
-          {CONFIG.experience.label}
-        </h3>
-        <p className="mt-2 mb-8 max-w-[62ch] text-[13px] leading-relaxed text-ink-faint">
-          {CONFIG.experience.note}
-        </p>
-
-        <div className="space-y-10 border-t border-[var(--color-rule)] pt-8">
-          {CONFIG.experience.companies.map((company) => {
-            const builds =
-              company.buildsKey === "careerBreak" ? CONFIG.careerBreak.builds : null;
+      <div className="relative mx-auto flex max-w-[1400px] gap-6 px-5 md:px-12 lg:gap-10">
+        {/* Project index rail */}
+        <aside className="work-index-rail relative z-[1] hidden w-14 shrink-0 flex-col items-start gap-3 self-start lg:flex">
+          <span className="mb-1 font-mono text-[10px] font-medium uppercase tracking-[0.18em] text-ink-faint">
+            Index
+          </span>
+          {CONFIG.projects.map((p, i) => {
+            const on = activeRow === i;
             return (
-              <article key={company.org} className="experience-entry px-1">
-                <div className="experience-company flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                  <h4 className="font-display text-[1.35rem] leading-none md:text-2xl">{company.org}</h4>
-                  {company.location && (
-                    <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">
-                      {company.location}
-                    </span>
-                  )}
-                </div>
+              <button
+                key={p.id}
+                type="button"
+                onClick={() => {
+                  setActiveRow(i);
+                  document.getElementById(`work-row-${p.id}`)?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center",
+                  });
+                }}
+                onMouseEnter={() => setActiveRow(i)}
+                className={`font-mono text-[13px] font-medium tracking-[0.12em] transition-colors ${
+                  on ? "text-accent" : "text-ink-faint hover:text-ink"
+                }`}
+                aria-label={`Jump to ${p.title}`}
+              >
+                {String(i + 1).padStart(2, "0")}
+              </button>
+            );
+          })}
+        </aside>
 
-                <div className="experience-roles mt-5 space-y-6 border-l border-[var(--color-rule)] py-0.5 pl-4 pr-2 md:pl-5 md:pr-3">
-                  {company.roles.map((role) => (
-                    <div key={`${role.title}-${role.type}-${role.period}`}>
-                      <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                        <h5 className="text-[14px] font-medium text-ink md:text-[15px]">{role.title}</h5>
-                        <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">
-                          {role.type}
+        <div className="relative z-[1] min-w-0 flex-1">
+          <SectionLabel index="02">Selected work</SectionLabel>
+          <Reveal className="mb-8 max-w-[62ch] text-[16px] leading-[1.65] text-ink-soft md:mb-10 md:text-[17px]">
+            {CONFIG.workIntro}
+          </Reveal>
+
+          <div className="border-t border-[var(--color-rule)]">
+            {CONFIG.projects.map((p, i) => (
+              <ProjectRow
+                key={p.id}
+                project={p}
+                index={i}
+                active={activeRow === i}
+                onActive={setActiveRow}
+                onOpen={() => openAt(p.id, "down")}
+              />
+            ))}
+          </div>
+
+          <Reveal className="mt-16 px-1">
+            <h3 className="font-mono text-[12px] font-medium uppercase tracking-[0.18em] text-ink-faint md:text-[13px]">
+              {CONFIG.experience.label}
+            </h3>
+            <p className="mt-2 mb-8 max-w-[62ch] text-[15px] leading-[1.65] text-ink-soft">
+              {CONFIG.experience.note}
+            </p>
+
+            <div className="space-y-10 border-t border-[var(--color-rule)] pt-8">
+              {CONFIG.experience.companies.map((company) => {
+                const builds =
+                  company.buildsKey === "careerBreak" ? CONFIG.careerBreak.builds : null;
+                return (
+                  <article key={company.org} className="experience-entry px-1">
+                    <div className="experience-company flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <h4 className="font-display text-[1.5rem] leading-none md:text-[1.75rem]">
+                        {company.org}
+                      </h4>
+                      {company.location && (
+                        <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-ink-faint">
+                          {company.location}
                         </span>
-                      </div>
-                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-faint">
-                        {role.period}
-                      </p>
-                      <ul className="mt-3 space-y-2">
-                        {role.bullets.map((b) => (
-                          <li
-                            key={b}
-                            className="flex gap-3 text-[13px] leading-relaxed text-ink-soft"
-                          >
-                            <span className="mt-[8px] h-[2px] w-3 shrink-0 bg-accent" />
-                            <span>{b}</span>
+                      )}
+                    </div>
+
+                    <div className="experience-roles mt-5 space-y-6 border-l border-[var(--color-rule)] py-0.5 pl-4 pr-2 md:pl-5 md:pr-3">
+                      {company.roles.map((role) => (
+                        <div key={`${role.title}-${role.type}-${role.period}`}>
+                          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                            <h5 className="text-[15px] font-semibold text-ink md:text-base">
+                              {role.title}
+                            </h5>
+                            <span className="font-mono text-[11px] font-medium uppercase tracking-[0.14em] text-accent">
+                              {role.type}
+                            </span>
+                          </div>
+                          <p className="mt-0.5 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">
+                            {role.period}
+                          </p>
+                          <ul className="mt-3 space-y-2.5">
+                            {role.bullets.map((b) => (
+                              <li
+                                key={b}
+                                className="flex gap-3 text-[15px] leading-[1.65] text-ink-soft"
+                              >
+                                <span className="mt-[9px] h-[2px] w-3 shrink-0 bg-accent" />
+                                <span>{b}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+
+                    {builds && (
+                      <ul className="experience-builds mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
+                        {builds.map((build) => (
+                          <li key={build.url}>
+                            <a
+                              href={build.url}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="group block overflow-hidden border border-[var(--color-rule)] transition-colors hover:border-accent"
+                            >
+                              <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-paper-deep)]">
+                                <img
+                                  src={build.image}
+                                  alt={build.title}
+                                  loading="lazy"
+                                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                                />
+                                <span className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent opacity-80" />
+                                <span className="absolute bottom-2 left-2 font-mono text-[9px] uppercase tracking-[0.14em] text-paper/90">
+                                  {build.name}
+                                </span>
+                              </div>
+                              <div className="px-3 py-3">
+                                <p className="font-display text-[15px] leading-snug transition-colors group-hover:text-accent">
+                                  {build.title}
+                                </p>
+                                <p className="mt-1 font-mono text-[9.5px] leading-relaxed tracking-[0.04em] text-ink-faint">
+                                  {build.spec}
+                                </p>
+                                <span className="mt-2 inline-flex items-center gap-1.5 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-faint group-hover:text-accent">
+                                  Marketplace
+                                  <Icon
+                                    name="arrow"
+                                    className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                                  />
+                                </span>
+                              </div>
+                            </a>
                           </li>
                         ))}
                       </ul>
-                    </div>
-                  ))}
-                </div>
-
-                {builds && (
-                  <ul className="experience-builds mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
-                    {builds.map((build) => (
-                      <li key={build.url}>
-                        <a
-                          href={build.url}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="group block overflow-hidden border border-[var(--color-rule)] transition-colors hover:border-accent"
-                        >
-                          <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-paper-deep)]">
-                            <img
-                              src={build.image}
-                              alt={build.title}
-                              loading="lazy"
-                              className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-                            />
-                            <span className="absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-transparent opacity-80" />
-                            <span className="absolute bottom-2 left-2 font-mono text-[9px] uppercase tracking-[0.14em] text-paper/90">
-                              {build.name}
-                            </span>
-                          </div>
-                          <div className="px-3 py-3">
-                            <p className="font-display text-[15px] leading-snug transition-colors group-hover:text-accent">
-                              {build.title}
-                            </p>
-                            <p className="mt-1 font-mono text-[9.5px] leading-relaxed tracking-[0.04em] text-ink-faint">
-                              {build.spec}
-                            </p>
-                            <span className="mt-2 inline-flex items-center gap-1.5 font-mono text-[9.5px] uppercase tracking-[0.14em] text-ink-faint group-hover:text-accent">
-                              Marketplace
-                              <Icon
-                                name="arrow"
-                                className="h-3 w-3 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                              />
-                            </span>
-                          </div>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </article>
-            );
-          })}
+                    )}
+                  </article>
+                );
+              })}
+            </div>
+          </Reveal>
         </div>
-      </Reveal>
+      </div>
 
       {openProject && (
         <ProjectModal
@@ -2174,7 +2278,7 @@ function SkillRow({ item, projectsById, hovered, onHover }) {
       className="group/skill cursor-pointer border-b border-[var(--color-rule)] py-2 touch-manipulation"
     >
       <div className="flex items-center gap-3">
-        <span className="flex-1 text-[12.5px] transition-colors duration-200 group-hover/skill:text-accent">
+        <span className="flex-1 text-[14px] font-medium transition-colors duration-200 group-hover/skill:text-accent md:text-[14.5px]">
           {item.name}
         </span>
         <span className="flex gap-1" aria-label={`Level ${item.level} of 3`}>
@@ -2223,14 +2327,13 @@ function Capability() {
   return (
     <section
       id="capability"
-      data-bp="capability"
       className="panel-page relative flex min-h-[100svh] flex-col justify-center px-5 py-14 md:px-12 md:py-16"
     >
       <div className="mx-auto w-full max-w-[1400px]">
       <SectionLabel index="03">{skills.label}</SectionLabel>
 
       <div className="mb-4 flex flex-wrap items-end justify-between gap-3 md:mb-5">
-        <Reveal className="max-w-[56ch] text-[12.5px] leading-relaxed text-ink-soft md:text-[13.5px]">
+        <Reveal className="max-w-[56ch] text-[15px] leading-[1.65] text-ink-soft md:text-[16px]">
           {skills.note} Tap or hover a capability to see where it shipped.
         </Reveal>
         <Reveal delay={80} className="flex flex-wrap gap-x-5 gap-y-2">
@@ -2709,7 +2812,6 @@ function Numbers() {
   return (
     <section
       id="numbers"
-      data-bp="numbers"
       className="panel-free relative border-y border-[var(--color-rule)] bg-[var(--color-paper-deep)]/40"
     >
       <div className="mx-auto max-w-[1400px] px-5 pb-14 pt-24 md:px-12 md:pb-20 md:pt-28">
@@ -2753,7 +2855,6 @@ function Contact() {
   return (
     <section
       id="contact"
-      data-bp="contact"
       className="panel-page relative flex h-[100svh] max-h-[100svh] flex-col overflow-hidden"
     >
       <div className="mx-auto flex min-h-0 w-full max-w-[1400px] flex-1 flex-col justify-center overflow-y-auto px-5 py-6 md:overflow-visible md:px-12 md:py-10">
@@ -2766,14 +2867,14 @@ function Contact() {
               <br />
               <span className="italic text-accent">{contact.heading[1]}</span>
             </h2>
-            <p className="mt-4 max-w-[48ch] text-[13.5px] leading-relaxed text-ink-soft md:mt-5 md:text-[15px]">
+            <p className="mt-4 max-w-[48ch] text-[15px] leading-[1.65] text-ink-soft md:mt-5 md:text-[16px]">
               {contact.blurb}
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3 md:mt-7 md:gap-4">
               <a
                 href={`mailto:${identity.email}`}
-                className="group relative overflow-hidden border border-ink px-5 py-3 font-mono text-[11px] uppercase tracking-[0.18em] md:px-7 md:py-3.5"
+                className="group relative overflow-hidden border border-ink px-5 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] md:px-7 md:py-3.5"
               >
                 <span className="relative z-10 transition-colors duration-400 group-hover:text-paper">
                   {contact.cta}
@@ -2868,6 +2969,14 @@ export default function Portfolio() {
   return (
     <div className="relative min-h-screen">
       <PageCurtain curtain={curtain} />
+      {blueprintOn && (
+        <div className="sheet-corners" aria-hidden>
+          <span className="tl" />
+          <span className="tr" />
+          <span className="bl" />
+          <span className="br" />
+        </div>
+      )}
       <Nav
         progress={progress}
         active={active}
