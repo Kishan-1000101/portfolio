@@ -1603,10 +1603,9 @@ function BrowserFrame({ url, urlLabel, title }) {
           key={url}
           title={`Live preview — ${title}`}
           src={url}
-          className="pointer-events-none h-full w-full flex-1 border-0 bg-paper"
+          className="h-full w-full flex-1 border-0 bg-paper"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          tabIndex={-1}
         />
       </div>
     </div>
@@ -1805,8 +1804,17 @@ function ProjectModal({
     let coolUntil = 0;
     let acc = 0;
     const onWheel = (e) => {
-      // Don't steal wheel from interactive controls (links/buttons in the chrome).
+      // Let the live preview iframe (and its chrome) handle its own scroll.
+      if (e.target.closest?.(".project-modal-preview, iframe")) return;
+      // Don't steal wheel from interactive controls.
       if (e.target.closest?.("a, button, input, textarea, select")) return;
+      // Let the left narrative column scroll when it has overflow.
+      const scrollPane = e.target.closest?.(".project-modal-body aside, .project-modal-body");
+      if (scrollPane) {
+        const canDown = scrollPane.scrollTop + scrollPane.clientHeight < scrollPane.scrollHeight - 2;
+        const canUp = scrollPane.scrollTop > 2;
+        if ((e.deltaY > 0 && canDown) || (e.deltaY < 0 && canUp)) return;
+      }
 
       e.preventDefault();
       e.stopPropagation();
@@ -1829,10 +1837,13 @@ function ProjectModal({
     };
 
     let touchY = 0;
+    let touchOnPreview = false;
     const onTouchStart = (e) => {
       touchY = e.touches[0].clientY;
+      touchOnPreview = !!e.target.closest?.(".project-modal-preview, iframe");
     };
     const onTouchEnd = (e) => {
+      if (touchOnPreview) return;
       const dy = touchY - e.changedTouches[0].clientY;
       if (Math.abs(dy) < 50) return;
       if (Date.now() < coolUntil) return;
@@ -1845,7 +1856,7 @@ function ProjectModal({
     };
 
     window.addEventListener("keydown", onKey);
-    // Capture so we win over page immersive-scroll and iframe chrome.
+    // Capture so we win over page immersive-scroll outside the preview.
     window.addEventListener("wheel", onWheel, { passive: false, capture: true });
     window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("touchend", onTouchEnd, { passive: true });
