@@ -505,64 +505,84 @@ function useCountUp(target, { decimals = 0, duration = 1600 } = {}) {
  *  `page` sections: one wheel tick → next/prev with a curtain transition.
  *  `free` sections: normal scroll; crossing top/bottom boundary advances. */
 const SCROLL_PLAN = [
-  { id: "top", mode: "page" },
-  { id: "about", mode: "page" },
-  { id: "work", mode: "free" },
-  { id: "capability", mode: "page" },
-  { id: "numbers", mode: "free" },
-  { id: "contact", mode: "page" },
+  { id: "top", mode: "page", label: "Intro" },
+  { id: "about", mode: "page", label: "About" },
+  { id: "work", mode: "free", label: "Work" },
+  { id: "capability", mode: "page", label: "Capability" },
+  { id: "numbers", mode: "free", label: "Numbers" },
+  { id: "contact", mode: "page", label: "Contact" },
 ];
 
 function useImmersiveScroll(reduced) {
-  const [curtain, setCurtain] = useState(null); // 'down' | 'up' | null
+  const [curtain, setCurtain] = useState(null); // { direction, label, index }
   const locked = useRef(false);
   const touchY = useRef(0);
+  const goToRef = useRef(null);
+
+  const currentIndex = useCallback(() => {
+    const mid = window.scrollY + window.innerHeight * 0.35;
+    let idx = 0;
+    SCROLL_PLAN.forEach((s, i) => {
+      const el = document.getElementById(s.id);
+      if (el && el.offsetTop <= mid) idx = i;
+    });
+    return idx;
+  }, []);
 
   const goTo = useCallback(
     async (targetId, direction) => {
-      if (locked.current || reduced) {
-        document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      if (locked.current) return;
+
+      const from = currentIndex();
+      const to = SCROLL_PLAN.findIndex((s) => s.id === targetId);
+      if (to < 0 || to === from) {
+        // Same section — still jump to its start without animation
+        el.scrollIntoView({ behavior: reduced ? "smooth" : "instant", block: "start" });
         return;
       }
-      locked.current = true;
-      setCurtain(direction);
-      // Cover completes ~42% of 780ms ≈ 330ms; leave a little margin.
-      await new Promise((r) => setTimeout(r, 360));
-      const el = document.getElementById(targetId);
-      if (el) {
-        const plan = SCROLL_PLAN.find((s) => s.id === targetId);
-        if (direction === "up" && plan?.mode === "free") {
-          window.scrollTo({
-            top: Math.max(0, el.offsetTop + el.offsetHeight - window.innerHeight),
-            behavior: "instant",
-          });
-        } else {
-          el.scrollIntoView({ behavior: "instant", block: "start" });
-        }
+      const dir = direction || (to > from ? "down" : "up");
+      const meta = SCROLL_PLAN[to];
+      const label = meta?.label ?? targetId;
+      const index = String(to).padStart(2, "0");
+
+      if (reduced) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
       }
-      // Hold cover briefly, then let the exit half of the animation finish.
-      await new Promise((r) => setTimeout(r, 480));
+
+      locked.current = true;
+      setCurtain({ direction: dir, label, index });
+      // Faster cover (~38% of 480ms)
+      await new Promise((r) => setTimeout(r, 185));
+      const plan = SCROLL_PLAN[to];
+      if (dir === "up" && plan?.mode === "free") {
+        window.scrollTo({
+          top: Math.max(0, el.offsetTop + el.offsetHeight - window.innerHeight),
+          behavior: "instant",
+        });
+      } else {
+        el.scrollIntoView({ behavior: "instant", block: "start" });
+      }
+      await new Promise((r) => setTimeout(r, 310));
       setCurtain(null);
-      await new Promise((r) => setTimeout(r, 80));
+      await new Promise((r) => setTimeout(r, 40));
       locked.current = false;
     },
-    [reduced]
+    [currentIndex, reduced]
   );
+
+  goToRef.current = goTo;
+
+  const navigateTo = useCallback((targetId) => {
+    goToRef.current?.(targetId);
+  }, []);
 
   useEffect(() => {
     if (reduced) return;
     const mq = window.matchMedia("(min-width: 1024px)");
     if (!mq.matches) return;
-
-    const currentIndex = () => {
-      const mid = window.scrollY + window.innerHeight * 0.35;
-      let idx = 0;
-      SCROLL_PLAN.forEach((s, i) => {
-        const el = document.getElementById(s.id);
-        if (el && el.offsetTop <= mid) idx = i;
-      });
-      return idx;
-    };
 
     const atSectionEdge = (el, dir) => {
       const top = el.getBoundingClientRect().top;
@@ -583,7 +603,6 @@ function useImmersiveScroll(reduced) {
         e.preventDefault();
         return;
       }
-      // Don't hijack while a modal/dialog is open
       if (document.body.dataset.modalOpen === "1") return;
 
       const i = currentIndex();
@@ -600,7 +619,6 @@ function useImmersiveScroll(reduced) {
         return;
       }
 
-      // free: only leave at edges
       if (atSectionEdge(el, dir)) {
         e.preventDefault();
         advance(dir);
@@ -655,17 +673,31 @@ function useImmersiveScroll(reduced) {
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("touchend", onTouchEnd);
     };
-  }, [goTo, reduced]);
+  }, [goTo, currentIndex, reduced]);
 
-  return curtain;
+  return { curtain, navigateTo };
 }
 
-function PageCurtain({ direction }) {
-  if (!direction) return null;
+function PageCurtain({ curtain }) {
+  if (!curtain) return null;
+  const { direction, label, index } = curtain;
   return (
     <div className="page-curtain" aria-hidden="true" data-dir={direction}>
-      <div className="page-curtain-panel" />
-      <div className="page-curtain-line" />
+      <div className="page-curtain-shade" />
+      <div className="page-curtain-bands">
+        <span className="band band-1" />
+        <span className="band band-2" />
+        <span className="band band-3" />
+        <span className="band band-4" />
+        <span className="band band-5" />
+      </div>
+      <div className="page-curtain-grid" />
+      <div className="page-curtain-slash" />
+      <div className="page-curtain-meta">
+        <span className="page-curtain-index">{index}</span>
+        <span className="page-curtain-rule" />
+        <span className="page-curtain-label">{label}</span>
+      </div>
     </div>
   );
 }
@@ -996,7 +1028,7 @@ const RAIL = [{ id: "top", label: "Intro" }, ...NAV];
 const RAIL_IDS = RAIL.map((s) => s.id);
 
 /** Fixed rule-marks down the right edge — position indicator and jump nav. */
-function SectionRail({ active }) {
+function SectionRail({ active, onNavigate }) {
   return (
     <nav
       aria-label="Section navigation"
@@ -1009,10 +1041,12 @@ function SectionRail({ active }) {
             key={s.id}
             href={`#${s.id}`}
             aria-current={on ? "true" : undefined}
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate?.(s.id);
+            }}
             className="group flex items-center justify-end gap-2.5 py-1"
           >
-            {/* Label only on hover — at rest the rail stays inside the page
-                margin instead of sitting on top of the content column. */}
             <span
               className={`bg-paper/90 px-1.5 py-0.5 font-mono text-[9.5px] uppercase tracking-[0.16em] opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100 ${
                 on ? "text-accent" : "text-ink-soft"
@@ -1053,7 +1087,7 @@ function BlueprintToggle({ on, onToggle }) {
   );
 }
 
-function Nav({ progress, active, blueprintOn, onToggleBlueprint }) {
+function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
   const [solid, setSolid] = useState(false);
   const atHero = active === "top";
 
@@ -1072,7 +1106,14 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint }) {
       } ${atHero ? "bp-quiet" : ""}`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4 md:px-12">
-        <a href="#top" className="group flex items-baseline gap-2.5">
+        <a
+          href="#top"
+          onClick={(e) => {
+            e.preventDefault();
+            onNavigate?.("top");
+          }}
+          className="group flex items-baseline gap-2.5"
+        >
           <span className="font-display text-xl leading-none">KS</span>
           <span className="hidden font-mono text-[10px] uppercase tracking-[0.2em] text-ink-faint md:inline">
             {CONFIG.identity.role}
@@ -1083,6 +1124,10 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint }) {
             <a
               key={item.id}
               href={`#${item.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate?.(item.id);
+              }}
               className={`group relative hidden font-mono text-[11px] uppercase tracking-[0.16em] transition-colors sm:block ${
                 active === item.id ? "text-accent" : "text-ink-soft hover:text-ink"
               }`}
@@ -1386,7 +1431,7 @@ function ProjectRow({ project, index, onOpen }) {
     <Reveal
       as="article"
       delay={index * 60}
-      className="group border-b border-[var(--color-rule)] px-4 md:px-6"
+      className="group border-b border-[var(--color-rule)] px-5 md:px-8"
     >
       <button
         onClick={onOpen}
@@ -2274,18 +2319,19 @@ export default function Portfolio() {
   const progress = useScrollProgress();
   const active = useActiveSection(RAIL_IDS);
   const [blueprintOn, setBlueprintOn] = useBlueprintMode(CONFIG.easterEgg.sequence);
-  const curtain = useImmersiveScroll(reduced);
+  const { curtain, navigateTo } = useImmersiveScroll(reduced);
 
   return (
     <div className="relative min-h-screen">
-      <PageCurtain direction={curtain} />
+      <PageCurtain curtain={curtain} />
       <Nav
         progress={progress}
         active={active}
         blueprintOn={blueprintOn}
         onToggleBlueprint={() => setBlueprintOn((v) => !v)}
+        onNavigate={navigateTo}
       />
-      <SectionRail active={active} />
+      <SectionRail active={active} onNavigate={navigateTo} />
       <main>
         <Hero reduced={reduced} blueprint={blueprintOn} />
         <About />

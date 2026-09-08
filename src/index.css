@@ -43,7 +43,8 @@ body {
   box-sizing: border-box;
 }
 
-/* ---------- Immersive page curtain ---------- */
+/* ---------- Immersive page transition (~480ms) ----------
+   Staggered bands + grid flash + diagonal slash + section callout. */
 .page-curtain {
   position: fixed;
   inset: 0;
@@ -51,57 +52,130 @@ body {
   pointer-events: none;
   overflow: hidden;
 }
-.page-curtain-panel {
+.page-curtain-shade {
   position: absolute;
   inset: 0;
+  background: color-mix(in srgb, var(--color-ink) 18%, transparent);
+  animation: shade-flash 0.48s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+.page-curtain-bands {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+}
+.page-curtain-bands .band {
   background: var(--color-paper);
+  transform: translateY(105%);
+}
+.page-curtain[data-dir="down"] .band {
+  animation: band-down 0.48s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+.page-curtain[data-dir="up"] .band {
+  animation: band-up 0.48s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+.page-curtain .band-1 { animation-delay: 0ms; }
+.page-curtain .band-2 { animation-delay: 28ms; }
+.page-curtain .band-3 { animation-delay: 56ms; }
+.page-curtain .band-4 { animation-delay: 84ms; }
+.page-curtain .band-5 { animation-delay: 112ms; }
+
+.page-curtain-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-accent) 22%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-accent) 22%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  animation: grid-flash 0.48s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+.page-curtain-slash {
+  position: absolute;
+  left: -20%;
+  width: 140%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  box-shadow: 0 0 28px color-mix(in srgb, var(--color-accent) 70%, transparent);
   transform-origin: center;
 }
-.page-curtain-line {
+.page-curtain[data-dir="down"] .page-curtain-slash {
+  animation: slash-sweep 0.48s cubic-bezier(0.65, 0, 0.35, 1) both;
+  transform: rotate(-8deg);
+}
+.page-curtain[data-dir="up"] .page-curtain-slash {
+  animation: slash-sweep-up 0.48s cubic-bezier(0.65, 0, 0.35, 1) both;
+  transform: rotate(8deg);
+}
+
+.page-curtain-meta {
   position: absolute;
-  left: 0;
-  right: 0;
-  height: 2px;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  z-index: 2;
+  animation: meta-pop 0.48s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.page-curtain-index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  color: var(--color-accent);
+}
+.page-curtain-rule {
+  width: 48px;
+  height: 1px;
   background: var(--color-accent);
-  box-shadow: 0 0 24px color-mix(in srgb, var(--color-accent) 60%, transparent);
 }
-.page-curtain[data-dir="down"] .page-curtain-panel {
-  animation: curtain-cover-down 0.78s cubic-bezier(0.76, 0, 0.24, 1) both;
+.page-curtain-label {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 7vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  text-transform: capitalize;
 }
-.page-curtain[data-dir="up"] .page-curtain-panel {
-  animation: curtain-cover-up 0.78s cubic-bezier(0.76, 0, 0.24, 1) both;
-}
-.page-curtain[data-dir="down"] .page-curtain-line {
-  animation: line-sweep-down 0.78s cubic-bezier(0.76, 0, 0.24, 1) both;
-}
-.page-curtain[data-dir="up"] .page-curtain-line {
-  animation: line-sweep-up 0.78s cubic-bezier(0.76, 0, 0.24, 1) both;
-}
-@keyframes curtain-cover-down {
-  0% { transform: translateY(100%); }
-  42% { transform: translateY(0); }
+
+@keyframes band-down {
+  0% { transform: translateY(105%); }
+  32% { transform: translateY(0); }
   58% { transform: translateY(0); }
-  100% { transform: translateY(-100%); }
+  100% { transform: translateY(-105%); }
 }
-@keyframes curtain-cover-up {
-  0% { transform: translateY(-100%); }
-  42% { transform: translateY(0); }
+@keyframes band-up {
+  0% { transform: translateY(-105%); }
+  32% { transform: translateY(0); }
   58% { transform: translateY(0); }
-  100% { transform: translateY(100%); }
+  100% { transform: translateY(105%); }
 }
-@keyframes line-sweep-down {
-  0% { top: 100%; opacity: 0; }
-  20% { opacity: 1; }
-  42% { top: 50%; }
-  58% { top: 50%; }
-  100% { top: 0%; opacity: 0; }
+@keyframes shade-flash {
+  0%, 100% { opacity: 0; }
+  30%, 55% { opacity: 1; }
 }
-@keyframes line-sweep-up {
-  0% { top: 0%; opacity: 0; }
-  20% { opacity: 1; }
-  42% { top: 50%; }
-  58% { top: 50%; }
-  100% { top: 100%; opacity: 0; }
+@keyframes grid-flash {
+  0%, 100% { opacity: 0; }
+  28%, 52% { opacity: 0.55; }
+}
+@keyframes slash-sweep {
+  0% { top: 110%; opacity: 0; }
+  18% { opacity: 1; }
+  45% { top: 48%; opacity: 1; }
+  100% { top: -10%; opacity: 0; }
+}
+@keyframes slash-sweep-up {
+  0% { bottom: 110%; opacity: 0; }
+  18% { opacity: 1; }
+  45% { bottom: 48%; opacity: 1; }
+  100% { bottom: -10%; opacity: 0; }
+}
+@keyframes meta-pop {
+  0% { opacity: 0; transform: scale(0.92) translateY(12px); }
+  28% { opacity: 1; transform: scale(1) translateY(0); }
+  58% { opacity: 1; transform: scale(1) translateY(0); }
+  100% { opacity: 0; transform: scale(1.04) translateY(-8px); }
 }
 
 /* ---------- Fullscreen case study ---------- */
@@ -312,6 +386,11 @@ html.blueprint [data-bp]::after {
     animation: none;
   }
   .page-curtain,
+  .page-curtain-shade,
+  .page-curtain-bands .band,
+  .page-curtain-grid,
+  .page-curtain-slash,
+  .page-curtain-meta,
   .project-modal,
   .project-modal-panel,
   .project-modal-backdrop {
