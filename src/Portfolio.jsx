@@ -4757,11 +4757,11 @@ function QueueArcade({ reduced, playing, onExit }) {
         <div className="queue-over">
           <h3>Queue leaked</h3>
           <p>Score {hud.score} · Best {hud.best}</p>
-          <div className="mt-2 flex gap-3">
-            <button type="button" onClick={() => restartRef.current()}>
+          <div className="queue-over-actions">
+            <button type="button" className="queue-over-btn" onClick={() => restartRef.current()}>
               Play again
             </button>
-            <button type="button" onClick={onExit}>
+            <button type="button" className="queue-over-btn is-ghost" onClick={onExit}>
               Back to contact
             </button>
           </div>
@@ -4776,6 +4776,8 @@ function Contact() {
   const reduced = usePrefersReducedMotion();
   const [copied, setCopied] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", message: "", company: "" });
+  const [formState, setFormState] = useState("idle"); // idle | sending | ok | error
 
   const copyEmail = async () => {
     try {
@@ -4784,6 +4786,48 @@ function Contact() {
       setTimeout(() => setCopied(false), 1800);
     } catch {
       window.location.href = `mailto:${identity.email}`;
+    }
+  };
+
+  const onFormChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const onFormSubmit = async (e) => {
+    e.preventDefault();
+    if (form.company.trim()) return; // honeypot
+    if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
+      setFormState("error");
+      return;
+    }
+    setFormState("sending");
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${identity.email}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          message: form.message.trim(),
+          _subject: `Portfolio enquiry from ${form.name.trim()}`,
+          _template: "table",
+        }),
+      });
+      if (!res.ok) throw new Error("send failed");
+      setForm({ name: "", email: "", message: "", company: "" });
+      setFormState("ok");
+    } catch {
+      // Fallback: open the user's mail client with the message drafted.
+      const subject = encodeURIComponent(`Portfolio enquiry from ${form.name.trim()}`);
+      const body = encodeURIComponent(
+        `${form.message.trim()}\n\n—\n${form.name.trim()}\n${form.email.trim()}`,
+      );
+      window.location.href = `mailto:${identity.email}?subject=${subject}&body=${body}`;
+      setFormState("error");
     }
   };
 
@@ -4840,7 +4884,7 @@ function Contact() {
       <div className="relative z-[1] mx-auto flex min-h-0 w-full max-w-[1400px] flex-1 flex-col justify-center overflow-y-auto px-5 py-6 md:overflow-visible md:px-12 md:py-10">
         <SectionLabel index="05">{contact.label}</SectionLabel>
 
-        <div className="grid gap-6 md:grid-cols-12 md:items-center md:gap-12">
+        <div className="grid gap-6 md:grid-cols-12 md:items-start md:gap-12">
           <Reveal className="md:col-span-7">
             <h2 className="font-display text-[clamp(1.85rem,5.5vw,4.4rem)] leading-[0.95] tracking-[-0.02em]">
               {contact.heading[0]}
@@ -4851,30 +4895,84 @@ function Contact() {
               {contact.blurb}
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-3 md:mt-7 md:gap-4">
-              <a
-                href={`mailto:${identity.email}`}
-                className="group relative overflow-hidden border border-ink px-5 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] md:px-7 md:py-3.5"
-              >
-                <span className="relative z-10 transition-colors duration-400 group-hover:text-paper">
-                  {contact.cta}
-                </span>
-                <span className="absolute inset-0 -translate-y-full bg-ink transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0" />
-              </a>
-              <a
-                href={`${import.meta.env.BASE_URL}cv/Kishan-Sobhee-Resume.pdf`}
-                download="Kishan-Sobhee-Resume.pdf"
-                className="border border-[var(--color-rule)] px-5 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-accent hover:text-accent md:px-7 md:py-3.5"
-              >
-                Download CV
-              </a>
-              <button
-                onClick={copyEmail}
-                className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft underline decoration-[var(--color-rule)] underline-offset-4 transition-colors hover:text-accent"
-              >
-                {copied ? "Copied ✓" : "Copy email"}
-              </button>
-            </div>
+            <form className="contact-form" onSubmit={onFormSubmit} noValidate>
+              <input
+                className="contact-hp"
+                type="text"
+                name="company"
+                value={form.company}
+                onChange={onFormChange}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+              <div className="contact-form-row">
+                <div className="contact-field">
+                  <label htmlFor="contact-name">Name</label>
+                  <input
+                    id="contact-name"
+                    name="name"
+                    type="text"
+                    autoComplete="name"
+                    required
+                    value={form.name}
+                    onChange={onFormChange}
+                    placeholder="Your name"
+                  />
+                </div>
+                <div className="contact-field">
+                  <label htmlFor="contact-email">Email</label>
+                  <input
+                    id="contact-email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                    value={form.email}
+                    onChange={onFormChange}
+                    placeholder="you@company.com"
+                  />
+                </div>
+              </div>
+              <div className="contact-field">
+                <label htmlFor="contact-message">Project</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  required
+                  value={form.message}
+                  onChange={onFormChange}
+                  placeholder="What is slow, expensive or stuck?"
+                />
+              </div>
+              <div className="contact-form-actions">
+                <button
+                  type="submit"
+                  disabled={formState === "sending"}
+                  className="group relative overflow-hidden border border-ink px-5 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] disabled:opacity-60 md:px-7 md:py-3.5"
+                >
+                  <span className="relative z-10 transition-colors duration-400 group-hover:text-paper">
+                    {formState === "sending" ? "Sending…" : contact.cta}
+                  </span>
+                  <span className="absolute inset-0 -translate-y-full bg-ink transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0" />
+                </button>
+                <a
+                  href={`${import.meta.env.BASE_URL}cv/Kishan-Sobhee-Resume.pdf`}
+                  download="Kishan-Sobhee-Resume.pdf"
+                  className="border border-[var(--color-rule)] px-5 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-accent hover:text-accent md:px-7 md:py-3.5"
+                >
+                  Download CV
+                </a>
+                {formState === "ok" && (
+                  <span className="contact-form-status is-ok">Sent — I will reply soon</span>
+                )}
+                {formState === "error" && (
+                  <span className="contact-form-status is-error">
+                    Could not send in-browser — check your mail draft, or use email below
+                  </span>
+                )}
+              </div>
+            </form>
           </Reveal>
 
           <Reveal delay={120} className="md:col-span-5">
@@ -4926,6 +5024,13 @@ function Contact() {
                 );
               })}
             </dl>
+            <button
+              type="button"
+              onClick={copyEmail}
+              className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft underline decoration-[var(--color-rule)] underline-offset-4 transition-colors hover:text-accent"
+            >
+              {copied ? "Copied ✓" : "Copy email"}
+            </button>
           </Reveal>
         </div>
       </div>

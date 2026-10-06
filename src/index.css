@@ -479,6 +479,119 @@ html.blueprint .hero-core-scan {
   text-transform: uppercase;
   color: var(--color-ink-soft);
 }
+.queue-over-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.queue-over-btn {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  padding: 12px 20px;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.queue-over-btn:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-paper);
+}
+.queue-over-btn.is-ghost {
+  background: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-rule);
+}
+.queue-over-btn.is-ghost:hover {
+  background: transparent;
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ---------- Contact form ---------- */
+.contact-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 1.5rem;
+  max-width: 34rem;
+}
+.contact-form-row {
+  display: grid;
+  gap: 12px;
+}
+@media (min-width: 640px) {
+  .contact-form-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.contact-field label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-ink-faint);
+}
+.contact-field input,
+.contact-field textarea {
+  width: 100%;
+  border: 1px solid var(--color-rule);
+  background: color-mix(in srgb, var(--color-paper) 88%, transparent);
+  color: var(--color-ink);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.45;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+.contact-field textarea {
+  min-height: 108px;
+  resize: vertical;
+}
+.contact-field input:focus,
+.contact-field textarea:focus {
+  border-color: var(--color-accent);
+}
+.contact-form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+.contact-form-status {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+}
+.contact-form-status.is-error {
+  color: #b45309;
+}
+.contact-form-status.is-ok {
+  color: var(--color-accent);
+}
+.contact-hp {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+}
 
 /* ---------- Immersive page transition (~480ms) ----------
    Staggered bands + grid flash + diagonal slash + section callout. */

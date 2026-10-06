@@ -42,7 +42,7 @@ Last updated: 2026-10-06 · Live: https://Kishan-1000101.github.io/portfolio/
 
 ## Optional (not blocking)
 
-- Contact form (beyond mailto / copy email)
+- [x] Contact form (FormSubmit → email) + mailto fallback
 - [x] Downloadable CV beside Contact (`public/cv/Kishan-Sobhee-Resume.pdf`)
 - Custom domain
 - Headshot or mark beyond the KS wordmark
