@@ -36,7 +36,7 @@ Almost everything is driven by the `CONFIG` object near the top of `src/Portfoli
 | Skills schematic | `CONFIG.skills` |
 | Stats, heatmap, timeline | `CONFIG.stats`, `CONFIG.engagements` |
 | Contact + identity | `CONFIG.identity`, `CONFIG.contact` |
-| CV file | `public/cv/Kishan-Sobhee-Resume.docx` |
+| CV file | `public/cv/Kishan-Sobhee-Resume.pdf` |
 
 Design tokens (colours, fonts) live in `src/index.css` under `@theme`. Blueprint mode remaps those same tokens.
 

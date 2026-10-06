@@ -4862,8 +4862,8 @@ function Contact() {
                 <span className="absolute inset-0 -translate-y-full bg-ink transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0" />
               </a>
               <a
-                href={`${import.meta.env.BASE_URL}cv/Kishan-Sobhee-Resume.docx`}
-                download="Kishan-Sobhee-Resume.docx"
+                href={`${import.meta.env.BASE_URL}cv/Kishan-Sobhee-Resume.pdf`}
+                download="Kishan-Sobhee-Resume.pdf"
                 className="border border-[var(--color-rule)] px-5 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-accent hover:text-accent md:px-7 md:py-3.5"
               >
                 Download CV
