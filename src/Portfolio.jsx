@@ -1989,7 +1989,7 @@ function BlueprintToggle({ on, onToggle }) {
   );
 }
 
-function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
+function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate, onOpenEnquiry }) {
   const [solid, setSolid] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -2010,6 +2010,11 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
   const go = (id) => {
     setMenuOpen(false);
     onNavigate?.(id);
+  };
+
+  const openEnquiry = () => {
+    setMenuOpen(false);
+    onOpenEnquiry?.();
   };
 
   return (
@@ -2053,12 +2058,13 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
               />
             </a>
           ))}
-          <a
-            href={`mailto:${CONFIG.identity.email}`}
+          <button
+            type="button"
+            onClick={openEnquiry}
             className="hidden border border-ink px-4 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.14em] transition-colors duration-300 hover:bg-ink hover:text-paper sm:inline-flex"
           >
             Get in touch
-          </a>
+          </button>
           <BlueprintToggle on={blueprintOn} onToggle={onToggleBlueprint} />
           <button
             type="button"
@@ -2092,12 +2098,13 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
               </li>
             ))}
             <li className="pt-2">
-              <a
-                href={`mailto:${CONFIG.identity.email}`}
+              <button
+                type="button"
+                onClick={openEnquiry}
                 className="inline-flex border border-ink px-4 py-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.14em]"
               >
                 Get in touch
-              </a>
+              </button>
             </li>
           </ul>
         </div>
@@ -4771,23 +4778,47 @@ function QueueArcade({ reduced, playing, onExit }) {
   );
 }
 
-function Contact() {
+function ContactEnquiryModal({ open, onClose }) {
   const { contact, identity } = CONFIG;
-  const reduced = usePrefersReducedMotion();
-  const [copied, setCopied] = useState(false);
-  const [playing, setPlaying] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", message: "", company: "" });
-  const [formState, setFormState] = useState("idle"); // idle | sending | ok | error
+  const [formState, setFormState] = useState("idle");
+  const nameRef = useRef(null);
 
-  const copyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(identity.email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1800);
-    } catch {
-      window.location.href = `mailto:${identity.email}`;
-    }
-  };
+  useEffect(() => {
+    if (!open) return undefined;
+    const y = window.scrollY;
+    document.body.dataset.modalOpen = "1";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${y}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    const t = window.setTimeout(() => nameRef.current?.focus(), 40);
+    const onKey = (e) => {
+      if (e.key !== "Escape") return;
+      e.preventDefault();
+      e.stopPropagation();
+      onClose();
+    };
+    window.addEventListener("keydown", onKey, true);
+    return () => {
+      window.clearTimeout(t);
+      delete document.body.dataset.modalOpen;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      window.scrollTo(0, y);
+      window.removeEventListener("keydown", onKey, true);
+    };
+  }, [open, onClose]);
+
+  useEffect(() => {
+    if (!open) setFormState("idle");
+  }, [open]);
+
+  if (!open) return null;
 
   const onFormChange = (e) => {
     const { name, value } = e.target;
@@ -4796,7 +4827,7 @@ function Contact() {
 
   const onFormSubmit = async (e) => {
     e.preventDefault();
-    if (form.company.trim()) return; // honeypot
+    if (form.company.trim()) return;
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       setFormState("error");
       return;
@@ -4821,13 +4852,119 @@ function Contact() {
       setForm({ name: "", email: "", message: "", company: "" });
       setFormState("ok");
     } catch {
-      // Fallback: open the user's mail client with the message drafted.
       const subject = encodeURIComponent(`Portfolio enquiry from ${form.name.trim()}`);
       const body = encodeURIComponent(
         `${form.message.trim()}\n\n—\n${form.name.trim()}\n${form.email.trim()}`,
       );
       window.location.href = `mailto:${identity.email}?subject=${subject}&body=${body}`;
       setFormState("error");
+    }
+  };
+
+  return (
+    <div className="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-enquiry-title">
+      <button type="button" className="contact-modal-backdrop" onClick={onClose} aria-label="Close" />
+      <div className="contact-modal-panel">
+        <div className="contact-modal-top">
+          <div>
+            <h3 id="contact-enquiry-title">{contact.cta}</h3>
+            <p>Share what is stuck. I will come back with a scope, timeline and price.</p>
+          </div>
+          <button type="button" className="contact-modal-close" onClick={onClose}>
+            Close
+          </button>
+        </div>
+
+        <form className="contact-form" onSubmit={onFormSubmit} noValidate>
+          <input
+            className="contact-hp"
+            type="text"
+            name="company"
+            value={form.company}
+            onChange={onFormChange}
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
+          <div className="contact-form-row">
+            <div className="contact-field">
+              <label htmlFor="contact-name">Name</label>
+              <input
+                ref={nameRef}
+                id="contact-name"
+                name="name"
+                type="text"
+                autoComplete="name"
+                required
+                value={form.name}
+                onChange={onFormChange}
+                placeholder="Your name"
+              />
+            </div>
+            <div className="contact-field">
+              <label htmlFor="contact-email">Email</label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={form.email}
+                onChange={onFormChange}
+                placeholder="you@company.com"
+              />
+            </div>
+          </div>
+          <div className="contact-field">
+            <label htmlFor="contact-message">Project</label>
+            <textarea
+              id="contact-message"
+              name="message"
+              required
+              value={form.message}
+              onChange={onFormChange}
+              placeholder="What is slow, expensive or stuck?"
+            />
+          </div>
+          <div className="contact-form-actions">
+            <button
+              type="submit"
+              disabled={formState === "sending"}
+              className="group relative overflow-hidden border border-ink px-5 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] disabled:opacity-60 md:px-7 md:py-3.5"
+            >
+              <span className="relative z-10 transition-colors duration-400 group-hover:text-paper">
+                {formState === "sending" ? "Sending…" : "Send message"}
+              </span>
+              <span className="absolute inset-0 -translate-y-full bg-ink transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0" />
+            </button>
+            {formState === "ok" && (
+              <span className="contact-form-status is-ok">Sent — I will reply soon</span>
+            )}
+            {formState === "error" && (
+              <span className="contact-form-status is-error">
+                Could not send in-browser — check your mail draft
+              </span>
+            )}
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+function Contact({ onOpenEnquiry }) {
+  const { contact, identity } = CONFIG;
+  const reduced = usePrefersReducedMotion();
+  const [copied, setCopied] = useState(false);
+  const [playing, setPlaying] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(identity.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.href = `mailto:${identity.email}`;
     }
   };
 
@@ -4884,7 +5021,7 @@ function Contact() {
       <div className="relative z-[1] mx-auto flex min-h-0 w-full max-w-[1400px] flex-1 flex-col justify-center overflow-y-auto px-5 py-6 md:overflow-visible md:px-12 md:py-10">
         <SectionLabel index="05">{contact.label}</SectionLabel>
 
-        <div className="grid gap-6 md:grid-cols-12 md:items-start md:gap-12">
+        <div className="grid gap-6 md:grid-cols-12 md:items-center md:gap-12">
           <Reveal className="md:col-span-7">
             <h2 className="font-display text-[clamp(1.85rem,5.5vw,4.4rem)] leading-[0.95] tracking-[-0.02em]">
               {contact.heading[0]}
@@ -4895,84 +5032,32 @@ function Contact() {
               {contact.blurb}
             </p>
 
-            <form className="contact-form" onSubmit={onFormSubmit} noValidate>
-              <input
-                className="contact-hp"
-                type="text"
-                name="company"
-                value={form.company}
-                onChange={onFormChange}
-                tabIndex={-1}
-                autoComplete="off"
-                aria-hidden="true"
-              />
-              <div className="contact-form-row">
-                <div className="contact-field">
-                  <label htmlFor="contact-name">Name</label>
-                  <input
-                    id="contact-name"
-                    name="name"
-                    type="text"
-                    autoComplete="name"
-                    required
-                    value={form.name}
-                    onChange={onFormChange}
-                    placeholder="Your name"
-                  />
-                </div>
-                <div className="contact-field">
-                  <label htmlFor="contact-email">Email</label>
-                  <input
-                    id="contact-email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    value={form.email}
-                    onChange={onFormChange}
-                    placeholder="you@company.com"
-                  />
-                </div>
-              </div>
-              <div className="contact-field">
-                <label htmlFor="contact-message">Project</label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  required
-                  value={form.message}
-                  onChange={onFormChange}
-                  placeholder="What is slow, expensive or stuck?"
-                />
-              </div>
-              <div className="contact-form-actions">
-                <button
-                  type="submit"
-                  disabled={formState === "sending"}
-                  className="group relative overflow-hidden border border-ink px-5 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] disabled:opacity-60 md:px-7 md:py-3.5"
-                >
-                  <span className="relative z-10 transition-colors duration-400 group-hover:text-paper">
-                    {formState === "sending" ? "Sending…" : contact.cta}
-                  </span>
-                  <span className="absolute inset-0 -translate-y-full bg-ink transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0" />
-                </button>
-                <a
-                  href={`${import.meta.env.BASE_URL}cv/Kishan-Sobhee-Resume.pdf`}
-                  download="Kishan-Sobhee-Resume.pdf"
-                  className="border border-[var(--color-rule)] px-5 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-accent hover:text-accent md:px-7 md:py-3.5"
-                >
-                  Download CV
-                </a>
-                {formState === "ok" && (
-                  <span className="contact-form-status is-ok">Sent — I will reply soon</span>
-                )}
-                {formState === "error" && (
-                  <span className="contact-form-status is-error">
-                    Could not send in-browser — check your mail draft, or use email below
-                  </span>
-                )}
-              </div>
-            </form>
+            <div className="mt-6 flex flex-wrap items-center gap-3 md:mt-7 md:gap-4">
+              <button
+                type="button"
+                onClick={onOpenEnquiry}
+                className="group relative overflow-hidden border border-ink px-5 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] md:px-7 md:py-3.5"
+              >
+                <span className="relative z-10 transition-colors duration-400 group-hover:text-paper">
+                  {contact.cta}
+                </span>
+                <span className="absolute inset-0 -translate-y-full bg-ink transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0" />
+              </button>
+              <a
+                href={`${import.meta.env.BASE_URL}cv/Kishan-Sobhee-Resume.pdf`}
+                download="Kishan-Sobhee-Resume.pdf"
+                className="border border-[var(--color-rule)] px-5 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-accent hover:text-accent md:px-7 md:py-3.5"
+              >
+                Download CV
+              </a>
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft underline decoration-[var(--color-rule)] underline-offset-4 transition-colors hover:text-accent"
+              >
+                {copied ? "Copied ✓" : "Copy email"}
+              </button>
+            </div>
           </Reveal>
 
           <Reveal delay={120} className="md:col-span-5">
@@ -5024,13 +5109,6 @@ function Contact() {
                 );
               })}
             </dl>
-            <button
-              type="button"
-              onClick={copyEmail}
-              className="mt-4 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-soft underline decoration-[var(--color-rule)] underline-offset-4 transition-colors hover:text-accent"
-            >
-              {copied ? "Copied ✓" : "Copy email"}
-            </button>
           </Reveal>
         </div>
       </div>
@@ -5057,6 +5135,9 @@ export default function Portfolio() {
   const active = useActiveSection(RAIL_IDS);
   const [blueprintOn, setBlueprintOn] = useBlueprintMode(CONFIG.easterEgg.sequence);
   const { curtain, navigateTo, runCurtain } = useImmersiveScroll(reduced);
+  const [enquiryOpen, setEnquiryOpen] = useState(false);
+  const openEnquiry = useCallback(() => setEnquiryOpen(true), []);
+  const closeEnquiry = useCallback(() => setEnquiryOpen(false), []);
 
   return (
     <div className="relative min-h-screen">
@@ -5075,6 +5156,7 @@ export default function Portfolio() {
         blueprintOn={blueprintOn}
         onToggleBlueprint={() => setBlueprintOn((v) => !v)}
         onNavigate={navigateTo}
+        onOpenEnquiry={openEnquiry}
       />
       <SectionRail active={active} onNavigate={navigateTo} />
       <main>
@@ -5083,8 +5165,9 @@ export default function Portfolio() {
         <Work runCurtain={runCurtain} />
         <Capability onNavigate={navigateTo} />
         <Numbers reduced={reduced} blueprint={blueprintOn} />
-        <Contact />
+        <Contact onOpenEnquiry={openEnquiry} />
       </main>
+      <ContactEnquiryModal open={enquiryOpen} onClose={closeEnquiry} />
     </div>
   );
 }
