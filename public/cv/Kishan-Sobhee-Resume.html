@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kishan Kishore Sobhee | Resume</title>
+  <style>
+    :root {
+      --teal: #0B769F;
+      --gray: #7F7F7F;
+      --ink: #000;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    @page { size: A4; margin: 16mm; }
+    body {
+      font-family: Calibri, "Segoe UI", Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.28;
+      color: var(--ink);
+      background: #ececec;
+    }
+    .toolbar {
+      max-width: 210mm;
+      margin: 12px auto 0;
+      font-size: 13px;
+      color: #555;
+    }
+    .toolbar button {
+      background: var(--teal);
+      color: #fff;
+      border: 0;
+      padding: 8px 12px;
+      cursor: pointer;
+      font: inherit;
+      margin-right: 8px;
+    }
+    .sheet {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 12px auto 24px;
+      background: #fff;
+      padding: 16mm;
+      box-shadow: 0 2px 16px rgba(0,0,0,.12);
+    }
+    h1 {
+      font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+      font-size: 36pt;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1.05;
+      margin-bottom: 2px;
+      text-align: center;
+    }
+    .title {
+      font-family: "Cascadia Code", Consolas, "Courier New", monospace;
+      font-size: 14pt;
+      font-weight: 700;
+      color: var(--teal);
+      text-align: center;
+      margin-bottom: 2px;
+    }
+    .company .dates a,
+    .meta a,
+    li a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .company .dates a:hover,
+    .meta a:hover,
+    li a:hover {
+      color: var(--teal);
+    }
+    h2 {
+      color: var(--teal);
+      font-size: 11pt;
+      font-weight: 700;
+      margin: 14px 0 6px;
+    }
+    .company { font-weight: 700; margin-top: 10px; }
+    .company .dates { font-weight: 400; font-size: 10pt; color: var(--gray); }
+    .role { font-weight: 700; margin-top: 6px; }
+    .meta { font-size: 10pt; color: var(--gray); margin-bottom: 3px; }
+    .intro { margin: 4px 0; }
+    ul { margin: 0 0 2px 18px; }
+    li { margin-bottom: 2px; }
+    .skill { margin-top: 4px; }
+    .skill strong { font-weight: 700; }
+    .edu-org { font-weight: 700; margin-top: 6px; }
+    .edu-line .d { font-size: 10pt; color: var(--gray); }
+    .footer-contact {
+      margin-top: 18px;
+      padding-top: 10px;
+      border-top: 1px solid #ccc;
+      font-size: 10pt;
+      color: var(--gray);
+      line-height: 1.45;
+    }
+    .footer-contact strong { color: var(--ink); }
+    .footer-contact a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .footer-contact a:hover {
+      color: var(--teal);
+    }
+    @media print {
+      body { background: #fff; }
+      .toolbar { display: none; }
+      .sheet { margin: 0; box-shadow: none; width: auto; min-height: auto; padding: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <button onclick="window.print()">Print / Save as PDF</button>
+    Short CV. Case studies live on the portfolio.
+  </div>
+
+  <main class="sheet">
+    <h1>Kishan Kishore Sobhee</h1>
+    <p class="title">Full Stack Developer</p>
+
+    <h2>SUMMARY</h2>
+    <p class="intro">
+      Full-stack developer focused on software that runs real business operations. I start from the
+      existing workflow, then design and deliver systems into production and support them after launch.
+      The aim is practical: fewer manual steps, fewer errors, and time returned to the team.
+    </p>
+
+    <h2>SKILLS</h2>
+    <p class="skill"><strong>Daily:</strong> PHP, Laravel, JavaScript, TypeScript, React, Inertia, Filament, Blade, MySQL, Tailwind, REST APIs, Git</p>
+    <p class="skill"><strong>Also:</strong> Node.js, Python, Supabase/PostgreSQL, WordPress, MUI, n8n, OCR/PDF automation, Docker, Nginx, Jenkins, OVH/Linux, Jira</p>
+    <p class="skill"><strong>Earlier:</strong> .NET / C# / ASP.NET, Salesforce (Apex, SOQL, Flows, Omnistudio), Oracle/PL/SQL, Angular/AngularJS, Drupal, MongoDB, Flutter/Android</p>
+
+    <h2>EMPLOYMENT</h2>
+
+    <p class="company">Agence ISCL (Linar) <span class="dates">| Réunion · Remote</span></p>
+    <p class="role">Full Stack Developer</p>
+    <p class="meta">Full-time · Oct 2025 - Sep 2026</p>
+    <ul>
+      <li>Built <a href="https://keycars.fr/" target="_blank" rel="noreferrer">KeyCars (keycars.fr)</a>: multi-tenant car rental SaaS in Laravel, React and TypeScript. Pricing, OCR, contracts, inspections. QA on rentflo.fr.</li>
+    </ul>
+    <p class="role">Full Stack Developer</p>
+    <p class="meta">Part-time · Jun 2025 - Oct 2025</p>
+    <ul>
+      <li>Built <a href="https://tracking-dashboard.fr/" target="_blank" rel="noreferrer">tracking-dashboard.fr</a> (React, Supabase, n8n) and WordPress plugins.</li>
+    </ul>
+
+    <p class="company">Agileum <span class="dates">| Mauritius · Hybrid</span></p>
+    <p class="role">Associate Software Engineer</p>
+    <p class="meta">Full-time · Jan 2025 - Oct 2025</p>
+    <ul>
+      <li>Delivery across Laravel, PHP, Node.js, Angular, Python and Drupal. AI chatbot, document automation, Docker/Nginx/Jenkins deployments, .NET Core migration support.</li>
+    </ul>
+
+    <p class="company">Business Force Limited <span class="dates">| Curepipe · Hybrid</span></p>
+    <p class="role">Information System Engineer</p>
+    <p class="meta">Full-time · Feb 2023 - Sep 2024</p>
+    <ul>
+      <li>Salesforce (Apex, SOQL, Flows, Omnistudio), PL/SQL investigation, production support across time zones, Laravel/API work. Mentored two interns.</li>
+    </ul>
+
+    <h2>FREELANCE</h2>
+
+    <p class="company">Agence ISCL (Linar) <span class="dates">| Sep 2026 - Present · Réunion · Remote</span></p>
+    <p class="role">Full Stack Developer</p>
+    <ul>
+      <li>Retained for upcoming projects (on call).</li>
+    </ul>
+
+    <p class="company">ZilMall <span class="dates">| Oct 2025 - Present · Mauritius · Hybrid · <a href="https://zilmall.mu/" target="_blank" rel="noreferrer">zilmall.mu</a></span></p>
+    <p class="role">Full Stack Developer &amp; Project Manager</p>
+    <ul>
+      <li>Multi-vendor marketplace in Laravel, React and Inertia: storefront, seller portal, admin. Scope and release priorities with stakeholders.</li>
+    </ul>
+
+    <p class="company">MR Production Co Ltd <span class="dates">| Feb 2026 - Present · Remote · <a href="https://mineshramchurn.com/" target="_blank" rel="noreferrer">mineshramchurn.com</a></span></p>
+    <p class="role">Full Stack Developer</p>
+    <ul>
+      <li>Studio site and booking platform (Laravel, Filament, React) live on OVH.</li>
+    </ul>
+
+    <p class="company">Agileum <span class="dates">| Oct 2025 - Apr 2026 · Mauritius · Remote</span></p>
+    <p class="role">Full Stack Web Developer</p>
+    <ul>
+      <li>Continued client delivery after the full-time role: features, integrations and fixes.</li>
+    </ul>
+
+    <p class="company">Safyr Utilis <span class="dates">| Feb 2025 - Nov 2025 · Remote · <a href="https://syul.mu/" target="_blank" rel="noreferrer">syul.mu</a></span></p>
+    <p class="role">Web Developer</p>
+    <ul>
+      <li>Designed, built and deployed the company site as sole developer.</li>
+    </ul>
+
+    <p class="company">Career break: PC building <span class="dates">| Oct 2024 - Dec 2024 · Mauritius</span></p>
+    <ul>
+      <li>Built and sold custom gaming PCs.</li>
+    </ul>
+
+    <h2>EDUCATION</h2>
+    <p class="edu-org">Huawei</p>
+    <p class="edu-line">Seeds For The Future Program <span class="d">2023 - 2024</span></p>
+    <p class="edu-org">University of Technology, Mauritius</p>
+    <p class="edu-line">BSc (Hons) Software Engineering <span class="d">Sep 2021 - 2025</span></p>
+    <p class="edu-org">Sir Abdool Raman Osman State College, Phoenix</p>
+    <p class="edu-line">Higher School Certificate <span class="d">Jan 2019 - Jun 2021</span></p>
+    <p class="edu-line">School Certificate <span class="d">Jan 2017 - Nov 2018</span></p>
+    <p class="edu-org">Wisdom In Tech</p>
+    <p class="edu-line">Multimedia Technologies <span class="d">May 2018 - Apr 2019</span></p>
+    <p class="edu-line">Graphic Technologies <span class="d">Sep 2017 - Jun 2018</span></p>
+    <p class="edu-line">Office Applications, Advanced <span class="d">Jan 2017 - Aug 2017</span></p>
+    <p class="edu-line">Office Applications, Intermediate <span class="d">May 2016 - Dec 2016</span></p>
+    <p class="edu-line">ICT Principle <span class="d">Sep 2015 - Apr 2016</span></p>
+
+    <h2>LANGUAGES</h2>
+    <p class="skill"><strong>Fluent languages:</strong> English, French, Creole</p>
+
+    <div class="footer-contact">
+      <p><strong>Contact</strong></p>
+      <p>Vacoas, Mauritius</p>
+      <p>
+        <a href="mailto:kibee0506@gmail.com">kibee0506@gmail.com</a>
+        &nbsp;|&nbsp;
+        <a href="tel:+23059054115">+230 5905 4115</a>
+      </p>
+      <p>
+        <a href="https://www.linkedin.com/in/ksobhee" target="_blank" rel="noreferrer">linkedin.com/in/ksobhee</a>
+        &nbsp;|&nbsp;
+        <a href="https://github.com/Kishan-1000101" target="_blank" rel="noreferrer">github.com/Kishan-1000101</a>
+        &nbsp;|&nbsp;
+        <a href="https://kishan-1000101.github.io/portfolio/" target="_blank" rel="noreferrer">kishan-1000101.github.io/portfolio</a>
+      </p>
+    </div>
+  </main>
+</body>
+</html>

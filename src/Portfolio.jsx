@@ -55,9 +55,41 @@ const CONFIG = {
       "If it does not save time or help someone earn, it is decoration.",
     facts: [
       { k: "Based", v: "Vacoas, Mauritius" },
-      { k: "Working with", v: "Mauritius · Réunion · France · UK · Remote" },
-      { k: "Education", v: "BSc (Hons) Software Engineering, UTM" },
-      { k: "Languages", v: "English (fluent) · French (working)" },
+      { k: "Working with", v: "Mauritius · Réunion · France · UK · NZ · Australia · Remote" },
+      { k: "Education", v: "BSc (Hons) Software Engineering, UTM · Huawei Seeds" },
+      { k: "Languages", v: "English · French · Creole" },
+    ],
+  },
+
+  education: {
+    label: "Education",
+    note: "Degree, programmes and earlier training.",
+    entries: [
+      {
+        org: "Huawei",
+        items: [{ title: "Seeds For The Future Program", period: "2023 - 2024" }],
+      },
+      {
+        org: "University of Technology, Mauritius",
+        items: [{ title: "BSc (Hons) Software Engineering", period: "Sep 2021 - 2025" }],
+      },
+      {
+        org: "Sir Abdool Raman Osman State College, Phoenix",
+        items: [
+          { title: "Higher School Certificate", period: "Jan 2019 - Jun 2021" },
+          { title: "School Certificate", period: "Jan 2017 - Nov 2018" },
+        ],
+      },
+      {
+        org: "Wisdom In Tech",
+        items: [
+          { title: "Multimedia Technologies", period: "May 2018 - Apr 2019" },
+          { title: "Graphic Technologies", period: "Sep 2017 - Jun 2018" },
+          { title: "Office Applications, Advanced", period: "Jan 2017 - Aug 2017" },
+          { title: "Office Applications, Intermediate", period: "May 2016 - Dec 2016" },
+          { title: "ICT Principle", period: "Sep 2015 - Apr 2016" },
+        ],
+      },
     ],
   },
 
@@ -444,7 +476,7 @@ const CONFIG = {
       { value: 3.5, suffix: "+", decimals: 1, label: "Years turning skill into products", sub: "Since Feb 2023" },
       { value: 5, suffix: "", decimals: 0, label: "Live systems you can visit", sub: "Linked in Selected work" },
       { value: 6, suffix: "", decimals: 0, label: "Organisations shipped for", sub: "Agency, product and enterprise" },
-      { value: 4, suffix: "", decimals: 0, label: "Markets served", sub: "Mauritius · Réunion · France · UK" },
+      { value: 6, suffix: "", decimals: 0, label: "Markets served", sub: "Mauritius · Réunion · France · UK · NZ · Australia" },
     ],
     // Relative weight of where delivery time goes. Keep total near 100.
     breakdown: {
@@ -578,10 +610,17 @@ function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReduced(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
+    const compute = () => {
+      const saveData = !!navigator.connection?.saveData;
+      const cores = navigator.hardwareConcurrency || 8;
+      const mem = navigator.deviceMemory || 8;
+      // Older / constrained machines: fewer cores or low RAM.
+      const lowEnd = saveData || cores <= 2 || mem <= 4;
+      setReduced(mq.matches || lowEnd);
+    };
+    compute();
+    mq.addEventListener("change", compute);
+    return () => mq.removeEventListener("change", compute);
   }, []);
   return reduced;
 }
@@ -1108,7 +1147,7 @@ function InkField({ reduced, blueprint }) {
     const accentRGB = rootStyle.getPropertyValue("--stroke-accent").trim() || "11, 118, 159";
 
     const build = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, reduced ? 1 : 1.5);
       const rect = canvas.getBoundingClientRect();
       w = rect.width;
       h = rect.height;
@@ -1383,7 +1422,7 @@ function HeroCore({ reduced, blueprint, hostRef, titleRef, ruleRef }) {
     };
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, reduced ? 1 : 1.5);
       const rect = canvas.getBoundingClientRect();
       w = rect.width;
       h = rect.height;
@@ -1418,7 +1457,7 @@ function HeroCore({ reduced, blueprint, hostRef, titleRef, ruleRef }) {
 
     const drawRing = (yaw, tilt, radius, z, dash, a, lw) => {
       ctx.beginPath();
-      const n = 72;
+      const n = reduced ? 40 : 64;
       for (let i = 0; i <= n; i++) {
         const ang = (i / n) * Math.PI * 2;
         const x0 = Math.cos(ang) * radius;
@@ -1454,7 +1493,8 @@ function HeroCore({ reduced, blueprint, hostRef, titleRef, ruleRef }) {
     const draw = (now) => {
       if (!running) return;
       if (!visible) {
-        raf = requestAnimationFrame(draw);
+        // Stop the loop while off-screen; restart when visibility returns.
+        raf = 0;
         return;
       }
 
@@ -1822,7 +1862,12 @@ function HeroCore({ reduced, blueprint, hostRef, titleRef, ruleRef }) {
     let inView = true;
     let pageVis = document.visibilityState !== "hidden";
     const syncVisible = () => {
-      visible = inView && pageVis;
+      const next = inView && pageVis;
+      const was = visible;
+      visible = next;
+      if (!was && next && running && !reduced && !raf) {
+        raf = requestAnimationFrame(draw);
+      }
     };
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -1987,7 +2032,7 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
             {CONFIG.identity.role}
           </span>
         </a>
-        <nav className="flex items-center gap-3 md:gap-7">
+        <nav className="flex items-center gap-2.5 md:gap-4 lg:gap-7">
           {NAV.map((item) => (
             <a
               key={item.id}
@@ -1996,7 +2041,7 @@ function Nav({ progress, active, blueprintOn, onToggleBlueprint, onNavigate }) {
                 e.preventDefault();
                 go(item.id);
               }}
-              className={`group relative hidden font-mono text-[12px] font-medium uppercase tracking-[0.14em] transition-colors md:block ${
+              className={`group relative hidden font-mono text-[11px] font-medium uppercase tracking-[0.12em] transition-colors md:block lg:text-[12px] lg:tracking-[0.14em] ${
                 active === item.id ? "text-accent" : "text-ink-soft hover:text-ink"
               }`}
             >
@@ -2262,7 +2307,7 @@ function AboutKeyboard({ reduced, sectionRef }) {
     const pickGlow = (seed) => GLOW_PALETTE[seed % GLOW_PALETTE.length];
 
     const build = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, reduced ? 1 : 1.5);
       const rect = canvas.getBoundingClientRect();
       w = rect.width;
       h = rect.height;
@@ -2909,7 +2954,8 @@ function WorkCodeField() {
 
   const lines = useMemo(() => {
     const out = [];
-    for (let pass = 0; pass < 3; pass++) {
+    const passes = reduced ? 1 : 3;
+    for (let pass = 0; pass < passes; pass++) {
       WORK_CODE_SNIPPETS.forEach((text, i) => {
         const n = pass * WORK_CODE_SNIPPETS.length + i;
         const depth = n % 3;
@@ -2931,7 +2977,7 @@ function WorkCodeField() {
       });
     }
     return out;
-  }, []);
+  }, [reduced]);
 
   return (
     <div ref={fieldRef} className="work-code-field" aria-hidden>
@@ -3421,6 +3467,34 @@ function Work({ runCurtain }) {
                 </article>
               );
             })}
+          </div>
+        </Reveal>
+
+        <Reveal id="education" className="work-education mt-14 md:mt-16">
+          <h3 className="font-mono text-[12px] font-medium uppercase tracking-[0.18em] text-ink-faint md:text-[13px]">
+            {CONFIG.education.label}
+          </h3>
+          <p className="mt-2 mb-8 max-w-[62ch] text-[15px] leading-[1.65] text-ink-soft">
+            {CONFIG.education.note}
+          </p>
+          <div className="space-y-8 border-t border-[var(--color-rule)] pt-8">
+            {CONFIG.education.entries.map((entry) => (
+              <article key={entry.org} className="education-entry px-1">
+                <h4 className="font-display text-[1.35rem] leading-none md:text-[1.5rem]">
+                  {entry.org}
+                </h4>
+                <ul className="mt-3 space-y-2.5 border-l border-[var(--color-rule)] pl-4 md:pl-5">
+                  {entry.items.map((item) => (
+                    <li key={`${item.title}-${item.period}`}>
+                      <p className="text-[15px] font-medium text-ink md:text-base">{item.title}</p>
+                      <p className="mt-0.5 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">
+                        {item.period}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
         </Reveal>
       </div>
@@ -4416,7 +4490,7 @@ function QueueArcade({ reduced, playing, onExit }) {
     restartRef.current = reset;
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, reduced ? 1 : 1.5);
       const rect = wrap.getBoundingClientRect();
       w = rect.width;
       h = rect.height;
@@ -4779,6 +4853,13 @@ function Contact() {
                   {contact.cta}
                 </span>
                 <span className="absolute inset-0 -translate-y-full bg-ink transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0" />
+              </a>
+              <a
+                href={`${import.meta.env.BASE_URL}cv/Kishan-Sobhee-Resume.docx`}
+                download="Kishan-Sobhee-Resume.docx"
+                className="border border-[var(--color-rule)] px-5 py-3 font-mono text-[12px] font-medium uppercase tracking-[0.16em] transition-colors hover:border-accent hover:text-accent md:px-7 md:py-3.5"
+              >
+                Download CV
               </a>
               <button
                 onClick={copyEmail}

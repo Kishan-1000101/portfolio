@@ -1,79 +1,80 @@
-# Portfolio — Kishan Sobhee
+# Kishan Sobhee — Portfolio
 
-Editorial-style single-page portfolio. React + Vite + Tailwind v4.
+Full-stack developer based in Mauritius. Live site:
 
-## Run it
+**[kishan-1000101.github.io/portfolio](https://Kishan-1000101.github.io/portfolio/)**
+
+Built with React, Vite, and Tailwind CSS. Content and layout live in one place (`src/Portfolio.jsx`) so the site stays easy to update.
+
+## What’s on the site
+
+- **Intro** — interactive hero (trackball core) with blueprint / paper toggle
+- **About** — positioning, markets, languages
+- **Work** — live case studies, experience timeline, education
+- **Capability** — skill schematic linked to systems and workplaces
+- **Numbers** — engagement density and timeline
+- **Contact** — email, LinkedIn, GitHub, and **Download CV**
+
+## Run locally
 
 ```bash
 npm install
 npm run dev      # http://localhost:5173
-npm run build    # outputs to dist/
-npm run preview  # serve the production build locally
+npm run build    # production build → dist/
+npm run preview  # serve dist/ locally
 ```
 
-## Where to edit content
+## Edit content
 
-Everything you'd normally want to change lives in the `CONFIG` object at the top of
-`src/Portfolio.jsx`. Nothing below the "Below this line is layout and behaviour"
-comment needs touching to add content.
+Almost everything is driven by the `CONFIG` object near the top of `src/Portfolio.jsx`.
 
-| To do this | Edit |
+| Goal | Where |
 | --- | --- |
-| Add a case study | Push an object onto `CONFIG.projects` — numbering, the accordion row and the problem/approach/result layout are generated. `url` + `urlLabel` add the live link |
-| Add smaller shipped work | Push onto `CONFIG.alsoLive.items` — renders as a compact linked row under the case studies |
-| Add NDA-bound work | Push onto `CONFIG.earlier.items`. This block exists so employer/agency work can be shown by role and technology without naming end clients |
-| Add a skill | Add to the relevant `CONFIG.skills.groups[].items`. `level` is 1–3, `used` is a list of project `id`s and renders the "shipped in" tags |
-| Add a skill category | Push a new group onto `CONFIG.skills.groups` — the column and its number appear automatically |
-| Change a stat | Edit `CONFIG.stats.counters` — the count-up animation reads `value`, `decimals` and `suffix` |
-| Change the tech split | Edit `CONFIG.stats.breakdown.items`, keeping `weight` totals near 100 |
-| Update the heatmap / timeline | Edit `CONFIG.engagements`. Both the density heatmap and the timeline bars are derived from it, so they can't drift apart. Set `end: null` for ongoing work (the bar then stops at today's date automatically), and widen `CONFIG.timelineRange` as years pass. `role` and `focus` populate the hover detail strip |
-| Change contact details | `CONFIG.identity` and `CONFIG.contact` |
-| Change the easter egg word | `CONFIG.easterEgg.sequence` |
+| Case studies | `CONFIG.projects` |
+| Experience / roles | `CONFIG.experience` |
+| Education | `CONFIG.education` |
+| Skills schematic | `CONFIG.skills` |
+| Stats, heatmap, timeline | `CONFIG.stats`, `CONFIG.engagements` |
+| Contact + identity | `CONFIG.identity`, `CONFIG.contact` |
+| CV file | `public/cv/Kishan-Sobhee-Resume.docx` |
 
-Design tokens (colours, fonts) are in `src/index.css` under `@theme`. The blueprint
-easter egg works by remapping those same variables, so any new component built with
-`text-ink` / `bg-paper` / `text-accent` flips with it for free.
+Design tokens (colours, fonts) live in `src/index.css` under `@theme`. Blueprint mode remaps those same tokens.
 
-## Blueprint view
+## Navigation
 
-The "Blueprint view" button in the header inverts the site to a dark technical
-wireframe with section labels and dashed bounding boxes. Typing `grid` anywhere
-still works as a shortcut, and `Esc` exits.
+On desktop, viewport-height sections use an immersive hop with a short curtain transition. Tall sections (Work, Numbers) scroll normally. Mobile uses standard scroll plus a hamburger menu.
 
-## One-page scrolling
+## Performance
 
-`src/index.css` applies `scroll-snap-type: y proximity` at 1024px and above.
-Proximity rather than mandatory is deliberate: the work, capability and numbers
-sections are taller than a viewport, and mandatory snapping would fight the reader
-inside them. Short sections settle into place; tall ones scroll freely. The rule
-marks down the right edge track position and jump between sections.
+- Respects `prefers-reduced-motion`
+- Also lights up a lite mode on low-end devices (Data Saver, ≤2 CPU cores, or ≤4 GB device memory)
+- Hero canvas pauses when off-screen
+- Scroll reveals and counters use `IntersectionObserver`
 
-## Deploying to GitHub Pages
+## Deploy (GitHub Pages)
 
-This site is published from the `gh-pages` branch (static `dist/` output).
+Published from the `gh-pages` branch (static `dist/` output).
+
+```powershell
+npm ci
+$env:VITE_BASE="/portfolio/"; npm run build
+```
 
 ```bash
 npm ci
-$env:VITE_BASE="/portfolio/"; npm run build   # PowerShell
-# VITE_BASE=/portfolio/ npm run build         # bash
+VITE_BASE=/portfolio/ npm run build
 ```
 
-Then publish `dist/` to the `gh-pages` branch (done automatically when pushing from this agent setup). Site URL:
+Then publish the contents of `dist/` to `gh-pages` (root). In the repo:
 
-`https://Kishan-1000101.github.io/portfolio/`
+**Settings → Pages → Deploy from a branch → `gh-pages` / `/ (root)`**
 
-In the repo: **Settings → Pages → Deploy from a branch → `gh-pages` / `/ (root)`**.
+Live URL: `https://Kishan-1000101.github.io/portfolio/`
 
-## Deploying to OVH
+## Deploy (OVH or any static host)
 
-`npm run build` produces a fully static `dist/`. Upload the contents of `dist/` to your web root.
+`npm run build` (without `VITE_BASE`, or with `base: "./"`) produces a static `dist/`. Upload its contents to the web root or subdirectory.
 
-For a subdirectory deploy without GitHub Actions, keep or set `base: "./"` in `vite.config.js`.
+## License
 
-## Accessibility / performance notes
-
-- All motion is gated behind `prefers-reduced-motion`; the hero canvas renders a
-  single static frame instead of animating when reduced motion is on.
-- Scroll reveals and counters use `IntersectionObserver` and disconnect after firing.
-- The hero canvas allocates its grid once per resize, not per frame.
-- Total production bundle is roughly 58 kB gzipped, most of which is React itself.
+Personal portfolio. All rights reserved unless noted otherwise.

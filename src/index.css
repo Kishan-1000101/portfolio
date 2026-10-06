@@ -45,6 +45,40 @@ body[data-modal-open="1"] {
   box-sizing: border-box;
 }
 
+/* Short laptop / short mobile: let fixed viewport panels grow instead of clipping. */
+@media (max-height: 820px) {
+  #top.panel-page,
+  #about.panel-page,
+  #capability.panel-page,
+  #contact.panel-page {
+    height: auto;
+    max-height: none;
+    min-height: 100svh;
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+  #top.panel-page,
+  #contact.panel-page {
+    overflow-y: auto;
+  }
+  .work-education {
+    padding: 1.25rem 1rem 1.5rem;
+  }
+  .work-education .education-entry + .education-entry {
+    margin-top: 1.25rem;
+  }
+}
+
+/* Narrow phones: keep education readable edge-to-edge. */
+@media (max-width: 767px) {
+  .work-education {
+    padding: 1.25rem 0.85rem 1.5rem;
+  }
+  .education-entry h4 {
+    font-size: 1.2rem;
+  }
+}
+
 /* Capability is one viewport page so Work → Capability → Numbers hop cleanly. */
 #capability.panel-page {
   min-height: 100svh;
@@ -1153,6 +1187,36 @@ html.blueprint #about.panel-page {
     0 0 0 1px color-mix(in srgb, var(--color-accent) 10%, transparent),
     0 0 42px -8px color-mix(in srgb, var(--color-accent) 14%, transparent),
     0 0 70px -18px color-mix(in srgb, #c084fc 12%, transparent);
+}
+
+.work-education {
+  position: relative;
+  z-index: 1;
+  scroll-margin-top: 5.75rem;
+  padding: 1.75rem 1.35rem 2.1rem;
+  border: 1px solid color-mix(in srgb, var(--color-rule) 90%, transparent);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-paper) 97%, transparent),
+      color-mix(in srgb, var(--color-paper-deep) 94%, transparent)
+    );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.education-entry h4 {
+  transition: color 0.25s ease;
+}
+.education-entry:hover h4 {
+  color: var(--color-accent);
+}
+html.blueprint .work-education {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-paper) 95%, #0d1b26),
+      color-mix(in srgb, var(--color-paper-deep) 92%, #0a1520)
+    );
 }
 html.blueprint .work-experience {
   background:
