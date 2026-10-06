@@ -3696,7 +3696,7 @@ function Capability({ onNavigate }) {
   return (
     <section
       id="capability"
-      className="panel-page relative flex min-h-[100svh] flex-col justify-center overflow-x-clip px-5 py-12 md:px-8 md:py-14 lg:px-10 lg:py-16"
+      className="panel-page relative flex min-h-[100svh] flex-col justify-center overflow-x-clip px-5 pb-12 pt-24 md:px-8 md:pb-14 md:pt-28 lg:px-10 lg:pb-16"
     >
       <div className="capability-sheet" aria-hidden="true">
         <span className="capability-sheet-grid" />
