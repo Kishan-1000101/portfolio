@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -88,21 +88,18 @@
     .skill strong { font-weight: 700; }
     .edu-org { font-weight: 700; margin-top: 6px; }
     .edu-line .d { font-size: 10pt; color: var(--gray); }
-    .footer-contact {
-      margin-top: 18px;
-      padding-top: 10px;
-      border-top: 1px solid #ccc;
+    .contact {
       font-size: 10pt;
       color: var(--gray);
-      line-height: 1.45;
+      text-align: center;
+      margin-top: 4px;
     }
-    .footer-contact strong { color: var(--ink); }
-    .footer-contact a {
+    .contact a {
       color: inherit;
       text-decoration: underline;
       text-underline-offset: 2px;
     }
-    .footer-contact a:hover {
+    .contact a:hover {
       color: var(--teal);
     }
     @media print {
@@ -121,18 +118,65 @@
   <main class="sheet">
     <h1>Kishan Kishore Sobhee</h1>
     <p class="title">Full Stack Developer</p>
+    <p class="contact">
+      Vacoas, Mauritius
+      &nbsp;|&nbsp;
+      <a href="mailto:kibee0506@gmail.com">kibee0506@gmail.com</a>
+      &nbsp;|&nbsp;
+      <a href="tel:+23059054115">+230 5905 4115</a>
+      <br />
+      <a href="https://www.linkedin.com/in/ksobhee" target="_blank" rel="noreferrer">linkedin.com/in/ksobhee</a>
+      &nbsp;|&nbsp;
+      <a href="https://kishan-1000101.github.io/portfolio/" target="_blank" rel="noreferrer">kishan-1000101.github.io/portfolio</a>
+    </p>
 
     <h2>SUMMARY</h2>
     <p class="intro">
-      Full-stack developer focused on software that runs real business operations. I start from the
-      existing workflow, then design and deliver systems into production and support them after launch.
-      The aim is practical: fewer manual steps, fewer errors, and time returned to the team.
+      Full-stack developer with 3+ years delivering production systems in Laravel and React, from
+      multi-tenant SaaS to marketplaces and booking platforms. Works with AI-assisted development (Cursor)
+      and ships AI features such as a customer support chatbot and camera OCR onboarding. Sole developer
+      on KeyCars, a car rental SaaS, and project manager on ZilMall, a Mauritius multi-vendor marketplace,
+      owning scope, release priorities and stakeholder communication. Has delivered for local and
+      international clients across Europe, the Indian Ocean and Australasia. Open to full-time or
+      contract roles, remote or hybrid. Based in Mauritius (GMT+4).
     </p>
 
     <h2>SKILLS</h2>
     <p class="skill"><strong>Daily:</strong> PHP, Laravel, JavaScript, TypeScript, React, Inertia, Filament, Blade, MySQL, Tailwind, REST APIs, Git</p>
     <p class="skill"><strong>Also:</strong> Node.js, Python, Supabase/PostgreSQL, WordPress, MUI, n8n, OCR/PDF automation, Docker, Nginx, Jenkins, OVH/Linux, Jira</p>
     <p class="skill"><strong>Earlier:</strong> .NET / C# / ASP.NET, Salesforce (Apex, SOQL, Flows, Omnistudio), Oracle/PL/SQL, Angular/AngularJS, Drupal, MongoDB, Flutter/Android</p>
+    <p class="skill"><strong>Languages:</strong> English, French, Creole (fluent)</p>
+
+    <h2>FREELANCE</h2>
+    <p class="intro">Current clients: ZilMall, MR Production and Agence ISCL (Linar), on contract since the full-time role below ended.</p>
+
+    <p class="company">ZilMall <span class="dates">| Oct 2025 - Present · Mauritius · Hybrid · <a href="https://zilmall.mu/" target="_blank" rel="noreferrer">zilmall.mu</a></span></p>
+    <p class="role">Full Stack Developer &amp; Project Manager</p>
+    <ul>
+      <li>Project manager and co-developer, with one other developer, of a Mauritius multi-vendor marketplace in Laravel 12, React 19 and Inertia: storefront, seller portal and admin in one codebase.</li>
+      <li>Built onboarding for business and individual sellers, with documents, payouts and VAT details behind admin approval queues, plus wholesale pricing.</li>
+      <li>Own scope, release priorities and stakeholder updates. Now in soft launch, onboarding the first sellers.</li>
+    </ul>
+
+    <p class="company">MR Production Co Ltd <span class="dates">| Feb 2026 - Present · Remote · <a href="https://mineshramchurn.com/" target="_blank" rel="noreferrer">mineshramchurn.com</a></span></p>
+    <p class="role">Full Stack Developer</p>
+    <ul>
+      <li>Sole developer of the studio website and booking platform (Laravel, Filament, Inertia, React), live on OVH.</li>
+      <li>Replaced booking over chat with a live calendar: blocked dates, multi-day and multi-location shoots, and budget options.</li>
+      <li>Built a Filament admin so the studio runs bookings, crew, availability, portfolio and content itself.</li>
+    </ul>
+
+    <p class="company">Agileum <span class="dates">| Oct 2025 - Apr 2026 · Mauritius · Remote</span></p>
+    <p class="role">Full Stack Web Developer</p>
+    <ul>
+      <li>Contract continuation of client work from the full-time role: new features, integrations and production fixes.</li>
+    </ul>
+
+    <p class="company">Safyr Utilis <span class="dates">| Feb 2025 - Nov 2025 · Remote · <a href="https://syul.mu/" target="_blank" rel="noreferrer">syul.mu</a></span></p>
+    <p class="role">Web Developer</p>
+    <ul>
+      <li>Designed, built and deployed the company website as sole developer, with a responsive layout the team edits itself after handover.</li>
+    </ul>
 
     <h2>EMPLOYMENT</h2>
 
@@ -140,99 +184,44 @@
     <p class="role">Full Stack Developer</p>
     <p class="meta">Full-time · Oct 2025 - Sep 2026</p>
     <ul>
-      <li>Built <a href="https://keycars.fr/" target="_blank" rel="noreferrer">KeyCars (keycars.fr)</a>: multi-tenant car rental SaaS in Laravel, React and TypeScript. Pricing, OCR, contracts, inspections. QA on rentflo.fr.</li>
+      <li>Sole developer of <a href="https://keycars.fr/" target="_blank" rel="noreferrer">KeyCars (keycars.fr)</a>, a multi-tenant car rental SaaS in Laravel 12, React, TypeScript and MySQL: 50+ domain models, company-scoped tenancy, and admin, manager and field agent roles.</li>
+      <li>Built a pricing engine that picks the daily rate from plans, duration tiers, packages and seasonal rates.</li>
+      <li>Automated quotes, contracts and invoices as PDFs, added camera OCR for customer records, and built vehicle inspections with damage diagrams, photos and dual signatures.</li>
+      <li>QA on rentflo.fr, a related rental product.</li>
     </ul>
     <p class="role">Full Stack Developer</p>
     <p class="meta">Part-time · Jun 2025 - Oct 2025</p>
     <ul>
-      <li>Built <a href="https://tracking-dashboard.fr/" target="_blank" rel="noreferrer">tracking-dashboard.fr</a> (React, Supabase, n8n) and WordPress plugins.</li>
+      <li>Built <a href="https://tracking-dashboard.fr/" target="_blank" rel="noreferrer">tracking-dashboard.fr</a>: white-label, multi-tenant marketing dashboards in React, TypeScript and Supabase, fed by scheduled n8n workflows, replacing manually built client reports.</li>
+      <li>Built custom WordPress plugins for the agency.</li>
     </ul>
 
     <p class="company">Agileum <span class="dates">| Mauritius · Hybrid</span></p>
     <p class="role">Associate Software Engineer</p>
     <p class="meta">Full-time · Jan 2025 - Oct 2025</p>
     <ul>
-      <li>Delivery across Laravel, PHP, Node.js, Angular, Python and Drupal. AI chatbot, document automation, Docker/Nginx/Jenkins deployments, .NET Core migration support.</li>
+      <li>Built and maintained client applications across Laravel, PHP, Node.js, Angular, Python and Drupal.</li>
+      <li>Delivered an AI support chatbot for a client's customers, plus document automation.</li>
+      <li>Set up deployments with Docker, Nginx and Jenkins, and supported a .NET Core migration.</li>
     </ul>
 
     <p class="company">Business Force Limited <span class="dates">| Curepipe · Hybrid</span></p>
     <p class="role">Information System Engineer</p>
     <p class="meta">Full-time · Feb 2023 - Sep 2024</p>
     <ul>
-      <li>Salesforce (Apex, SOQL, Flows, Omnistudio), PL/SQL investigation, production support across time zones, Laravel/API work. Mentored two interns.</li>
-    </ul>
-
-    <h2>FREELANCE</h2>
-
-    <p class="company">Agence ISCL (Linar) <span class="dates">| Sep 2026 - Present · Réunion · Remote</span></p>
-    <p class="role">Full Stack Developer</p>
-    <ul>
-      <li>Retained for upcoming projects (on call).</li>
-    </ul>
-
-    <p class="company">ZilMall <span class="dates">| Oct 2025 - Present · Mauritius · Hybrid · <a href="https://zilmall.mu/" target="_blank" rel="noreferrer">zilmall.mu</a></span></p>
-    <p class="role">Full Stack Developer &amp; Project Manager</p>
-    <ul>
-      <li>Multi-vendor marketplace in Laravel, React and Inertia: storefront, seller portal, admin. Scope and release priorities with stakeholders.</li>
-    </ul>
-
-    <p class="company">MR Production Co Ltd <span class="dates">| Feb 2026 - Present · Remote · <a href="https://mineshramchurn.com/" target="_blank" rel="noreferrer">mineshramchurn.com</a></span></p>
-    <p class="role">Full Stack Developer</p>
-    <ul>
-      <li>Studio site and booking platform (Laravel, Filament, React) live on OVH.</li>
-    </ul>
-
-    <p class="company">Agileum <span class="dates">| Oct 2025 - Apr 2026 · Mauritius · Remote</span></p>
-    <p class="role">Full Stack Web Developer</p>
-    <ul>
-      <li>Continued client delivery after the full-time role: features, integrations and fixes.</li>
-    </ul>
-
-    <p class="company">Safyr Utilis <span class="dates">| Feb 2025 - Nov 2025 · Remote · <a href="https://syul.mu/" target="_blank" rel="noreferrer">syul.mu</a></span></p>
-    <p class="role">Web Developer</p>
-    <ul>
-      <li>Designed, built and deployed the company site as sole developer.</li>
-    </ul>
-
-    <p class="company">Career break: PC building <span class="dates">| Oct 2024 - Dec 2024 · Mauritius</span></p>
-    <ul>
-      <li>Built and sold custom gaming PCs.</li>
+      <li>Delivered Salesforce features with Apex, SOQL, Flows and Omnistudio.</li>
+      <li>Provided production support for users in New Zealand, Australia and France, investigating data issues in Oracle PL/SQL.</li>
+      <li>Worked on Laravel and REST API development, and mentored two interns.</li>
     </ul>
 
     <h2>EDUCATION</h2>
-    <p class="edu-org">Huawei</p>
-    <p class="edu-line">Seeds For The Future Program <span class="d">2023 - 2024</span></p>
     <p class="edu-org">University of Technology, Mauritius</p>
-    <p class="edu-line">BSc (Hons) Software Engineering <span class="d">Sep 2021 - 2025</span></p>
+    <p class="edu-line">BSc (Hons) Software Engineering, Upper Second Class (2:1) <span class="d">Sep 2021 - 2025</span></p>
+    <p class="edu-org">Huawei</p>
+    <p class="edu-line">Seeds for the Future Program <span class="d">2023 - 2024</span></p>
     <p class="edu-org">Sir Abdool Raman Osman State College, Phoenix</p>
     <p class="edu-line">Higher School Certificate <span class="d">Jan 2019 - Jun 2021</span></p>
-    <p class="edu-line">School Certificate <span class="d">Jan 2017 - Nov 2018</span></p>
-    <p class="edu-org">Wisdom In Tech</p>
-    <p class="edu-line">Multimedia Technologies <span class="d">May 2018 - Apr 2019</span></p>
-    <p class="edu-line">Graphic Technologies <span class="d">Sep 2017 - Jun 2018</span></p>
-    <p class="edu-line">Office Applications, Advanced <span class="d">Jan 2017 - Aug 2017</span></p>
-    <p class="edu-line">Office Applications, Intermediate <span class="d">May 2016 - Dec 2016</span></p>
-    <p class="edu-line">ICT Principle <span class="d">Sep 2015 - Apr 2016</span></p>
-
-    <h2>LANGUAGES</h2>
-    <p class="skill"><strong>Fluent languages:</strong> English, French, Creole</p>
-
-    <div class="footer-contact">
-      <p><strong>Contact</strong></p>
-      <p>Vacoas, Mauritius</p>
-      <p>
-        <a href="mailto:kibee0506@gmail.com">kibee0506@gmail.com</a>
-        &nbsp;|&nbsp;
-        <a href="tel:+23059054115">+230 5905 4115</a>
-      </p>
-      <p>
-        <a href="https://www.linkedin.com/in/ksobhee" target="_blank" rel="noreferrer">linkedin.com/in/ksobhee</a>
-        &nbsp;|&nbsp;
-        <a href="https://github.com/Kishan-1000101" target="_blank" rel="noreferrer">github.com/Kishan-1000101</a>
-        &nbsp;|&nbsp;
-        <a href="https://kishan-1000101.github.io/portfolio/" target="_blank" rel="noreferrer">kishan-1000101.github.io/portfolio</a>
-      </p>
-    </div>
   </main>
 </body>
 </html>
+
