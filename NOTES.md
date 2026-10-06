@@ -7,7 +7,7 @@ Last updated: 2026-10-06 · Live: https://Kishan-1000101.github.io/portfolio/
 ## Planned next (confirmed)
 
 ### 1. Education & certifications
-- [x] Education block on site under Work (UTM, SARC, Wisdom In Tech; Huawei Seeds removed).
+- [x] Education block on site under Work (matches CV: Huawei, UTM, SARC, Wisdom In Tech). About fact lists UTM only.
 - [ ] Capability credentials bus wiring (optional follow-up).
 - About facts + Languages + Markets (NZ/AU) synced.
 

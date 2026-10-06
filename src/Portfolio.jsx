@@ -66,6 +66,10 @@ const CONFIG = {
     note: "Degree, programmes and earlier training.",
     entries: [
       {
+        org: "Huawei",
+        items: [{ title: "Seeds For The Future Program", period: "2023 - 2024" }],
+      },
+      {
         org: "University of Technology, Mauritius",
         items: [{ title: "BSc (Hons) Software Engineering", period: "Sep 2021 - 2025" }],
       },
