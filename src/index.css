@@ -67,6 +67,29 @@ body[data-modal-open="1"] {
   .work-education .education-entry + .education-entry {
     margin-top: 1.25rem;
   }
+  #capability.panel-page {
+    padding-top: 4.5rem;
+    padding-bottom: 1.25rem;
+    justify-content: flex-start;
+  }
+  .capability-intro {
+    margin-bottom: 0.75rem;
+  }
+  .capability-main {
+    gap: 10px;
+  }
+  .capability-node {
+    padding-top: 3px;
+    padding-bottom: 3px;
+  }
+  .capability-module-head {
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+  }
+  .capability-bus-deliverable .capability-project-sub,
+  .capability-bus-deliverable .capability-project-jump {
+    display: none;
+  }
 }
 
 /* Narrow phones: keep education readable edge-to-edge. */
@@ -1489,8 +1512,14 @@ html.blueprint .work-card:focus-within {
 }
 @media (min-width: 1024px) {
   .capability-board {
-    grid-template-columns: minmax(0, 1fr) 268px;
+    grid-template-columns: minmax(0, 1fr) 240px;
     align-items: start;
+    gap: 18px;
+  }
+}
+@media (min-width: 1280px) {
+  .capability-board {
+    grid-template-columns: minmax(0, 1fr) 268px;
     gap: 22px;
   }
 }
@@ -1548,21 +1577,26 @@ html.blueprint .work-card:focus-within {
 @media (min-width: 700px) {
   .capability-modules {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
+    gap: 14px;
   }
 }
-@media (min-width: 1100px) {
+@media (min-width: 1280px) {
   .capability-modules {
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 18px;
+    gap: 16px;
   }
 }
 
 .capability-module {
   position: relative;
-  padding: 14px 14px 12px;
+  padding: 12px 12px 10px;
   background: color-mix(in srgb, var(--color-paper-deep) 55%, transparent);
   border: 1px dashed var(--color-rule);
+}
+@media (min-width: 1280px) {
+  .capability-module {
+    padding: 14px 14px 12px;
+  }
 }
 .capability-module-frame {
   pointer-events: none;

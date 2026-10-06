@@ -56,7 +56,7 @@ const CONFIG = {
     facts: [
       { k: "Based", v: "Vacoas, Mauritius" },
       { k: "Working with", v: "Mauritius · Réunion · France · UK · NZ · Australia · Remote" },
-      { k: "Education", v: "BSc (Hons) Software Engineering, UTM · Huawei Seeds" },
+      { k: "Education", v: "BSc (Hons) Software Engineering, UTM" },
       { k: "Languages", v: "English · French · Creole" },
     ],
   },
@@ -65,10 +65,6 @@ const CONFIG = {
     label: "Education",
     note: "Degree, programmes and earlier training.",
     entries: [
-      {
-        org: "Huawei",
-        items: [{ title: "Seeds For The Future Program", period: "2023 - 2024" }],
-      },
       {
         org: "University of Technology, Mauritius",
         items: [{ title: "BSc (Hons) Software Engineering", period: "Sep 2021 - 2025" }],
@@ -3696,7 +3692,7 @@ function Capability({ onNavigate }) {
   return (
     <section
       id="capability"
-      className="panel-page relative flex min-h-[100svh] flex-col justify-center overflow-x-clip px-5 py-16 md:px-8 lg:px-10"
+      className="panel-page relative flex min-h-[100svh] flex-col justify-center overflow-x-clip px-5 py-12 md:px-8 md:py-14 lg:px-10 lg:py-16"
     >
       <div className="capability-sheet" aria-hidden="true">
         <span className="capability-sheet-grid" />
@@ -3704,13 +3700,16 @@ function Capability({ onNavigate }) {
         <span className="capability-sheet-mark br">A3 · 1:1</span>
       </div>
       <div className="relative z-[1] mx-auto w-full max-w-none">
-        <SectionLabel index="03">{skills.label}</SectionLabel>
-
-        <div className="mb-5 flex flex-wrap items-end justify-between gap-3 md:mb-6">
-          <Reveal className="max-w-[58ch] text-[15px] leading-[1.65] text-ink-soft md:text-[16px]">
-            {skills.note}
-          </Reveal>
-          <Reveal delay={80} className="flex flex-wrap gap-x-5 gap-y-2">
+        <div className="mb-3 flex flex-wrap items-end justify-between gap-x-6 gap-y-3 border-b border-[var(--color-rule)] pb-3 md:mb-4">
+          <div className="flex items-baseline gap-4">
+            <span className="font-mono text-[12px] font-medium tracking-[0.22em] text-accent md:text-[13px]">
+              03
+            </span>
+            <span className="font-mono text-[12px] font-medium uppercase tracking-[0.2em] text-ink md:text-[13px]">
+              {skills.label}
+            </span>
+          </div>
+          <div className="flex shrink-0 flex-wrap gap-x-5 gap-y-2">
             {skills.legend.map((l) => (
               <div key={l.level} className="flex items-center gap-2">
                 <span className="flex gap-1">
@@ -3728,8 +3727,12 @@ function Capability({ onNavigate }) {
                 </span>
               </div>
             ))}
-          </Reveal>
+          </div>
         </div>
+
+        <p className="capability-intro mb-4 text-[14px] leading-[1.45] text-ink-soft md:mb-5 md:text-[15px] lg:text-[15.5px]">
+          {skills.note}
+        </p>
 
         <div
           ref={boardRef}
