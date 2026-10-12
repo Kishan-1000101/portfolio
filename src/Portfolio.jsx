@@ -119,7 +119,7 @@ const CONFIG = {
       approach:
         "A multi-tenant product where each company owns fleets, agencies, limits and roles. Pricing picks the right daily rate from plans, duration tiers, packages and seasons. Camera OCR feeds customer records. Quotes, contracts and invoices write themselves. Agents mark damage on diagrams with photos and dual signatures.",
       result:
-        "Staff finish a rental in one path instead of chasing paperwork. Less desk time per booking, fewer errors, faster turnaround from quote to keys.",
+        "Quotes, contracts, inspections and invoices run through one system, from the first quote to handing over the keys.",
       stack: ["Laravel 12", "React", "TypeScript", "MUI", "MySQL", "OCR", "PDF"],
       highlights: [
         { k: "Tenancy", v: "Company-scoped" },
@@ -238,7 +238,7 @@ const CONFIG = {
               "Freelance engagement: about 20 hrs/week (evenings and weekends) from Jun 2025, about 40 hrs/week (weekdays) from Oct 2025 to Sep 2026, then ongoing on a contract basis for upcoming product work",
               "Built KeyCars (keycars.fr) as sole developer: a multi-tenant car rental SaaS in Laravel 12, React, TypeScript and MySQL, with 50+ domain models, company-scoped tenancy, and admin, manager and field-agent roles",
               "Built a pricing engine that selects the daily rate from plans, duration tiers, packages and seasonal rates, replacing manual quote calculation",
-              "Automated quotes, contracts and invoices as PDFs, added camera OCR for customer records, and built vehicle inspections with damage diagrams, photos and dual signatures, so staff complete a rental in one flow instead of on paper",
+              "Automated quotes, contracts and invoices as PDFs, added camera OCR for customer records, and built vehicle inspections with damage diagrams, photos and dual signatures, all in one system",
               "Built tracking-dashboard.fr: white-label, multi-tenant marketing dashboards (React, TypeScript, Supabase) fed by scheduled n8n workflows, replacing manually built client reports. Also delivered custom WordPress plugins and QA on rentflo.fr",
             ],
           },
@@ -320,7 +320,7 @@ const CONFIG = {
       },
       {
         id: "pc-break",
-        org: "Career break: PC building",
+        org: "Between roles: PC building",
         location: "Mauritius",
         roles: [
           {
@@ -509,7 +509,7 @@ const CONFIG = {
       name: "PC building",
       start: [2024, 10],
       end: [2024, 12],
-      kind: "Career break",
+      kind: "Between roles",
       role: "Custom PC builds",
       focus: "Design, assemble, test and sell gaming PCs",
     },
