@@ -67,7 +67,13 @@ const CONFIG = {
     entries: [
       {
         org: "Huawei",
-        items: [{ title: "Seeds For The Future Program", period: "2023 - 2024" }],
+        items: [
+          {
+            title: "Seeds For The Future Program",
+            period: "2023 - 2024",
+            note: "Selected for Huawei's ICT programme: cloud, 5G and IoT. Our Tech4Good team pitch, a greenhouse robot that scans plants for disease and sends the data to a mobile app, placed second.",
+          },
+        ],
       },
       {
         org: "University of Technology, Mauritius",
@@ -187,7 +193,7 @@ const CONFIG = {
       highlights: [
         { k: "Tenancy", v: "Per-client slugs" },
         { k: "Data", v: "Scheduled ingestion" },
-        { k: "Phase", v: "Built part-time, Jun-Oct 2025" },
+        { k: "Phase", v: "Built Jun-Oct 2025, ~20 hrs/week" },
       ],
     },
     {
@@ -227,26 +233,13 @@ const CONFIG = {
           {
             title: "Full Stack Developer",
             type: "Freelance",
-            period: "Sep 2026 - Present",
+            period: "Jun 2025 - Present",
             bullets: [
-              "Retained for upcoming projects (on call)",
-            ],
-          },
-          {
-            title: "Full Stack Developer",
-            type: "Full-time",
-            period: "Oct 2025 - Sep 2026",
-            bullets: [
-              "Built KeyCars (keycars.fr): multi-tenant car rental SaaS in Laravel, React and TypeScript. Pricing, OCR, contracts/invoices, vehicle inspections, parking editor",
-              "QA on rentflo.fr, a related rental product",
-            ],
-          },
-          {
-            title: "Full Stack Developer",
-            type: "Part-time",
-            period: "Jun 2025 - Oct 2025",
-            bullets: [
-              "Built tracking-dashboard.fr (React, Supabase, n8n) and WordPress plugins for the agency",
+              "Freelance engagement: about 20 hrs/week (evenings and weekends) from Jun 2025, about 40 hrs/week (weekdays) from Oct 2025 to Sep 2026, then ongoing on a contract basis for upcoming product work",
+              "Built KeyCars (keycars.fr) as sole developer: a multi-tenant car rental SaaS in Laravel 12, React, TypeScript and MySQL, with 50+ domain models, company-scoped tenancy, and admin, manager and field-agent roles",
+              "Built a pricing engine that selects the daily rate from plans, duration tiers, packages and seasonal rates, replacing manual quote calculation",
+              "Automated quotes, contracts and invoices as PDFs, added camera OCR for customer records, and built vehicle inspections with damage diagrams, photos and dual signatures, so staff complete a rental in one flow instead of on paper",
+              "Built tracking-dashboard.fr: white-label, multi-tenant marketing dashboards (React, TypeScript, Supabase) fed by scheduled n8n workflows, replacing manually built client reports. Also delivered custom WordPress plugins and QA on rentflo.fr",
             ],
           },
         ],
@@ -261,8 +254,9 @@ const CONFIG = {
             type: "Freelance",
             period: "Oct 2025 - Present",
             bullets: [
-              "Building a Mauritius multi-vendor marketplace (Laravel, React, Inertia): storefront, seller portal, admin and commerce flows",
-              "Managing scope and release priorities with stakeholders",
+              "Project manager and co-developer of a multi-vendor marketplace in Laravel 12, React 19 and Inertia, with storefront, seller portal and admin in one codebase",
+              "Co-develop with a second developer, splitting features and reviewing each other's code, and run regular meetings with the client on scope and releases",
+              "Built seller onboarding for business and individual sellers, with documents, payouts and VAT details behind admin approval queues, plus wholesale pricing. Now in soft launch, onboarding the first sellers",
             ],
           },
         ],
@@ -277,7 +271,9 @@ const CONFIG = {
             type: "Freelance",
             period: "Feb 2026 - Present",
             bullets: [
-              "Studio website and booking platform (Laravel, Filament, React) live on OVH",
+              "Sole developer of the studio website and booking platform (Laravel, Filament, Inertia, React), live on OVH",
+              "Replaced booking over chat with a live calendar handling blocked dates, multi-day and multi-location shoots, and budget options",
+              "Built a Filament admin so the studio manages bookings, crew, availability, portfolio and content without a developer",
             ],
           },
         ],
@@ -285,14 +281,14 @@ const CONFIG = {
       {
         id: "agileum",
         org: "Agileum",
-        location: "Mauritius",
+        location: "Mauritius · Hybrid",
         roles: [
           {
             title: "Full Stack Web Developer",
-            type: "Freelance",
+            type: "Contract",
             period: "Oct 2025 - Apr 2026",
             bullets: [
-              "Continued client delivery after the full-time role: features, integrations and fixes",
+              "Continued client work after the full-time role: new features, integrations and production fixes",
             ],
           },
           {
@@ -300,8 +296,9 @@ const CONFIG = {
             type: "Full-time",
             period: "Jan 2025 - Oct 2025",
             bullets: [
-              "Built and maintained apps across Laravel, PHP, Node.js, Angular, Python and Drupal",
-              "AI chatbot, document automation, proposals, deployments (Docker, Nginx, Jenkins), .NET Core migration support",
+              "Built and maintained client applications across Laravel, PHP, Node.js, Angular, Python and Drupal",
+              "Delivered an AI support chatbot for a client's customers, plus document automation",
+              "Set up deployments with Docker, Nginx and Jenkins, and supported a .NET Core migration",
             ],
           },
         ],
@@ -316,7 +313,7 @@ const CONFIG = {
             type: "Freelance",
             period: "Feb 2025 - Nov 2025",
             bullets: [
-              "Designed, built and deployed the company site (syul.mu) as sole developer",
+              "Designed, built and deployed the company website (syul.mu) as sole developer, with a responsive layout the team edits itself after handover",
             ],
           },
         ],
@@ -348,8 +345,10 @@ const CONFIG = {
             type: "Full-time",
             period: "Feb 2023 - Sep 2024",
             bullets: [
-              "Salesforce delivery (Apex, SOQL, Flows, Omnistudio), PL/SQL investigation, production support across time zones",
-              "Laravel/API work and mentoring two interns",
+              "Held alongside my BSc studies",
+              "Delivered Salesforce features with Apex, SOQL, Flows and Omnistudio",
+              "Provided production support as part of a team serving users in New Zealand, Australia and France, investigating data issues in Oracle PL/SQL",
+              "Mentored two interns through onboarding and code reviews, and worked on Laravel and REST API development",
             ],
           },
         ],
@@ -533,24 +532,16 @@ const CONFIG = {
     {
       name: "Agence ISCL",
       start: [2025, 6],
-      end: [2025, 10],
-      kind: "Part-time",
+      end: null,
+      kind: "Freelance",
       role: "Full-stack developer",
-      focus: "WordPress · analytics · n8n",
-    },
-    {
-      name: "Agence ISCL",
-      start: [2025, 10],
-      end: [2026, 9],
-      kind: "Full-time",
-      role: "Full-stack developer",
-      focus: "KeyCars SaaS · analytics",
+      focus: "KeyCars SaaS · analytics dashboards",
     },
     {
       name: "Agileum",
       start: [2025, 10],
       end: [2026, 4],
-      kind: "Freelance",
+      kind: "Contract",
       role: "Full stack web developer",
       focus: "Continued client delivery",
     },
@@ -569,14 +560,6 @@ const CONFIG = {
       kind: "Freelance",
       role: "Full-stack developer",
       focus: "Studio site & booking platform",
-    },
-    {
-      name: "Agence ISCL",
-      start: [2026, 9],
-      end: null,
-      kind: "Freelance",
-      role: "Full-stack developer",
-      focus: "Retained, upcoming projects on call",
     },
   ],
   timelineRange: { from: 2023, to: 2026 },
@@ -3497,6 +3480,9 @@ function Work({ runCurtain }) {
                       <p className="mt-0.5 font-mono text-[11px] uppercase tracking-[0.14em] text-ink-faint">
                         {item.period}
                       </p>
+                      {item.note && (
+                        <p className="mt-1.5 max-w-[60ch] text-[14px] leading-[1.6] text-ink-soft">{item.note}</p>
+                      )}
                     </li>
                   ))}
                 </ul>
