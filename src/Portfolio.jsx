@@ -71,7 +71,7 @@ const CONFIG = {
           {
             title: "Seeds For The Future Program",
             period: "Jun 2023",
-            note: "Tech4Good team pitch placed second: a greenhouse robot that scans plants for disease.",
+            note: "Selected for Huawei's ICT programme: cloud, 5G and IoT. Our Tech4Good team pitch, a greenhouse robot that scans plants for disease and sends the data to a mobile app, placed second.",
           },
         ],
       },
