@@ -70,14 +70,14 @@ const CONFIG = {
         items: [
           {
             title: "Seeds For The Future Program",
-            period: "2023 - 2024",
-            note: "Selected for Huawei's ICT programme: cloud, 5G and IoT. Our Tech4Good team pitch, a greenhouse robot that scans plants for disease and sends the data to a mobile app, placed second.",
+            period: "Jun 2023",
+            note: "Tech4Good team pitch placed second: a greenhouse robot that scans plants for disease.",
           },
         ],
       },
       {
         org: "University of Technology, Mauritius",
-        items: [{ title: "BSc (Hons) Software Engineering", period: "Sep 2021 - 2025" }],
+        items: [{ title: "BSc (Hons) Software Engineering", period: "Sep 2021 - Oct 2025" }],
       },
       {
         org: "Sir Abdool Raman Osman State College, Phoenix",
@@ -235,7 +235,7 @@ const CONFIG = {
             type: "Freelance",
             period: "Jun 2025 - Present",
             bullets: [
-              "Freelance engagement: about 20 hrs/week (evenings and weekends) from Jun 2025, about 40 hrs/week (weekdays) from Oct 2025 to Sep 2026, then ongoing on a contract basis for upcoming product work",
+              "Freelance engagement: about 20 hrs/week (evenings and weekends) from Jun 2025, about 40 hrs/week (weekdays) from Oct 2025 to Sep 2026, then ongoing on a contract basis for upcoming product work. Ran alongside Agileum evenings until the full-time role ended, then became the main client",
               "Built KeyCars (keycars.fr) as sole developer: a multi-tenant car rental SaaS in Laravel 12, React, TypeScript and MySQL, with 50+ domain models, company-scoped tenancy, and admin, manager and field-agent roles",
               "Built a pricing engine that selects the daily rate from plans, duration tiers, packages and seasonal rates, replacing manual quote calculation",
               "Automated quotes, contracts and invoices as PDFs, added camera OCR for customer records, and built vehicle inspections with damage diagrams, photos and dual signatures, all in one system",
